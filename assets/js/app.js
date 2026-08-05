@@ -1,6 +1,6 @@
 /* 화면 보조 기능만 담당합니다. 본문은 index.html 에 그대로 들어 있어
    자바스크립트가 없어도 사이트와 인쇄 결과는 동일합니다.
-   (상세 보기 내용은 인쇄 시 자동으로 펼쳐집니다. print.css 참고) */
+   (상세 팝업의 내용은 인쇄 시 자동으로 펼쳐집니다. print.css 참고) */
 
 /* ─────────────────────────────────────────────────────────────────────────
    1) 개인 정보 설정
@@ -9,7 +9,7 @@
    비워 두면 버튼 자체가 나타나지 않습니다. (자리표시 문구는 노출되지 않습니다.)
 
      email     연락용 이메일 주소.            예: "example@gmail.com"
-     resumeUrl 공개해도 되는 경력기술서 PDF.  예: "./assets/docs/경력기술서.pdf"
+     resumeUrl 공개해도 되는 포트폴리오 PDF.  예: "./assets/docs/포트폴리오.pdf"
 
    ※ resumeUrl 에는 특정 기업명·지원 직무명이 적힌 파일이나
       연락처가 비어 있는 파일을 연결하지 마세요.
@@ -20,29 +20,77 @@ var PROFILE = {
 };
 
 /* ─────────────────────────────────────────────────────────────────────────
-   2) 프로젝트 이미지 설정
+   2) 이미지 · 영상 설정
 
-   프로젝트마다 이미지를 순서대로 적습니다.
+   프로젝트별로 두 종류를 관리합니다.
 
-     · 첫 번째 이미지가 본문의 "대표 이미지" 1장으로 나옵니다.
-     · 2장 이상이면 "상세 이미지 보기" 버튼이 나타나고,
-       모달에서 좌우 이동 · 캡션 · 썸네일로 나머지를 볼 수 있습니다.
-     · 목록이 비어 있으면(지금 상태) 이미지 영역 전체가 화면에 나타나지 않습니다.
-     · 파일을 assets/img/ 에 넣고 아래 목록만 채우면 바로 동작합니다.
+     cover  메인 화면 카드에 나오는 대표 이미지 1장 (16:9). 없으면 null.
+            실무 경험 · 기타 프로젝트 카드에는 대표 이미지 영역이 없습니다.
+     items  상세 팝업의 "이미지 · 영상" 영역에 순서대로 나오는 목록.
+            항목별로 미리 정해 둔 자리(label)가 있고, src 를 채운 항목만
+            화면에 나타납니다. 전부 비어 있으면 "이미지 · 영상" 제목과
+            영역 전체가 화면에서 사라집니다. (빈 박스나 안내 문구 없음)
 
-   예시:
-     finance: [
-       { src: "./assets/img/finance-dashboard.png",
-         alt: "금융 데이터 검증 대시보드. 오류 유형별 건수와 오류 목록이 보인다.",
-         caption: "검증 결과와 오류 목록을 함께 보여주는 화면입니다." }
-     ]
+   이미지 항목:
+     { type: "image", label: "화면 이름", src: "./assets/img/파일명.png",
+       alt: "화면을 설명하는 대체 텍스트", caption: "화면 아래 짧은 설명",
+       portrait: false }   // 세로 촬영본이면 true (4:5 비율로 표시)
 
-   ※ 회사 내부 경로 · 서버 정보 · API 키가 보이는 자료는 넣지 마세요.
+   영상 항목 (자동재생 없음 · 컨트롤 · 포스터 이미지 지원):
+     { type: "video", label: "영상 이름", src: "./assets/video/파일명.mp4",
+       poster: "./assets/img/파일명-poster.png", caption: "영상 아래 짧은 설명" }
+
+   권장 파일명 · 비율:
+     대표 이미지(cover)      16:9, 가로 1600px 이상   예) finance-cover.png
+     상세 팝업 이미지        16:9 기본, 세로 촬영본은 portrait:true 로 4:5
+     영상                    mp4, 포스터 이미지 별도 준비
+
+   넣기 전에 회사 내부 경로 · 서버 정보 · API 키 · 고객 정보가 보이지 않는지
+   확인하고, alt 는 반드시 채웁니다.
    ───────────────────────────────────────────────────────────────────────── */
-var GALLERY = {
-  spec:    [],
-  finance: [],
-  sunday:  []
+var MEDIA = {
+  spec: {
+    cover: null,
+    items: [
+      { type: "image", label: "데이터 · 평가 흐름도", src: "", alt: "", caption: "" },
+      { type: "image", label: "평가 조건 정리표", src: "", alt: "", caption: "" },
+      { type: "image", label: "3D 생성 결과", src: "", alt: "", caption: "" },
+      { type: "video", label: "Relic 랜딩페이지 영상", src: "", poster: "", caption: "" }
+    ]
+  },
+  finance: {
+    cover: { src: "", alt: "", caption: "" },
+    items: [
+      { type: "image", label: "전체 대시보드", src: "", alt: "", caption: "" },
+      { type: "image", label: "오류 상세 화면", src: "", alt: "", caption: "" },
+      { type: "image", label: "데이터 처리 흐름도", src: "", alt: "", caption: "" },
+      { type: "image", label: "감사 로그 · 역추적 화면", src: "", alt: "", caption: "" }
+    ]
+  },
+  sunday: {
+    cover: { src: "", alt: "", caption: "" },
+    items: [
+      { type: "image", label: "예측 화면", src: "", alt: "", caption: "" },
+      { type: "image", label: "이벤트 캘린더", src: "", alt: "", caption: "" },
+      { type: "image", label: "캐릭터 조회", src: "", alt: "", caption: "" },
+      { type: "image", label: "공지 화면", src: "", alt: "", caption: "" },
+      { type: "image", label: "백엔드 구조도", src: "", alt: "", caption: "" }
+    ]
+  },
+  withmarry: {
+    cover: null,
+    items: [
+      { type: "image", label: "랜딩페이지", src: "", alt: "", caption: "" },
+      { type: "image", label: "청첩장 화면", src: "", alt: "", caption: "" },
+      { type: "image", label: "AI 음성 화면", src: "", alt: "", caption: "" }
+    ]
+  },
+  moonlight: {
+    cover: null,
+    items: [
+      { type: "image", label: "운영 대시보드 화면", src: "", alt: "", caption: "" }
+    ]
+  }
 };
 
 (function () {
@@ -82,220 +130,144 @@ var GALLERY = {
   });
 
   /* ═══════════════════════════════════════════════════════════════════════
-     대표 이미지 — GALLERY 목록의 첫 장만 본문에 표시
+     대표 이미지 — MEDIA[key].cover 가 있을 때만 카드에 표시
      ═══════════════════════════════════════════════════════════════════ */
 
-  function listFor(key) {
-    var raw = GALLERY[key];
-    if (!raw || !raw.length) { return []; }
-    return raw.filter(function (item) { return item && item.src; });
-  }
+  Array.prototype.forEach.call(doc.querySelectorAll("[data-cover]"), function (block) {
+    var key = block.getAttribute("data-cover");
+    var entry = MEDIA[key];
+    var cover = entry && entry.cover;
+    if (!cover || !cover.src) { return; }
 
-  Array.prototype.forEach.call(doc.querySelectorAll("[data-media]"), function (block) {
-    var key = block.getAttribute("data-media");
-    var list = listFor(key);
     var fig = block.querySelector("[data-shot]");
-    var btn = block.querySelector("[data-gallery]");
-
-    /* 이미지가 없으면 영역은 숨겨진 채로 둡니다 (index.html 에서 기본 hidden) */
-    if (!list.length || !fig) { return; }
-
-    var first = list[0];
+    if (!fig) { return; }
     var img = fig.querySelector("img");
     var cap = fig.querySelector("[data-caption]");
 
     img.addEventListener("error", function () { block.setAttribute("hidden", ""); });
-    img.setAttribute("src", first.src);
-    img.setAttribute("alt", first.alt || first.caption || "");
+    img.setAttribute("src", cover.src);
+    img.setAttribute("alt", cover.alt || cover.caption || "");
 
     if (cap) {
-      if (first.caption) { cap.textContent = first.caption; }
+      if (cover.caption) { cap.textContent = cover.caption; }
       else { cap.setAttribute("hidden", ""); }
     }
 
     fig.removeAttribute("hidden");
     block.removeAttribute("hidden");
-
-    if (btn && list.length > 1) {
-      btn.textContent = "상세 이미지 보기 (" + list.length + "장)";
-      btn.removeAttribute("hidden");
-    }
   });
 
   /* ═══════════════════════════════════════════════════════════════════════
-     모달 — '상세 보기'(글) 와 '상세 이미지 보기'(이미지) 를 함께 씁니다.
-     닫기: 닫기 버튼 · ESC · 배경 클릭
-     이미지 이동: 좌우 버튼 · ← → 키 · 썸네일 · 모바일 스와이프
+     상세 팝업의 이미지 · 영상 — MEDIA[key].items 중 src 가 있는 항목만 표시
+     하나도 없으면 "이미지 · 영상" 영역 전체를 숨깁니다.
      ═══════════════════════════════════════════════════════════════════ */
 
-  var modal = doc.getElementById("modal");
-  if (!modal) { return; }
+  function buildMediaItem(item) {
+    var fig = doc.createElement("figure");
+    fig.className = "media-item" + (item.portrait ? " is-portrait" : "");
 
-  var panel = modal.querySelector(".modal-panel");
-  var titleEl = doc.getElementById("modal-title");
-  var bodyEl = doc.getElementById("modal-body");
-
-  var lastFocus = null;
-  var gallery = null;   /* { list: [], index: 0 } — 이미지 모드일 때만 값이 있습니다 */
-
-  var FOCUSABLE = 'a[href], button:not([disabled]), input, select, textarea, [tabindex]:not([tabindex="-1"])';
-
-  function isOpen() { return !modal.hasAttribute("hidden"); }
-
-  function openModal(title, mode) {
-    lastFocus = doc.activeElement;
-    titleEl.textContent = title || "";
-    modal.classList.toggle("is-gallery", mode === "gallery");
-    modal.removeAttribute("hidden");
-    doc.body.classList.add("is-locked");
-    /* 패널 안 첫 번째 조작 가능한 요소로 포커스를 옮깁니다 */
-    var first = panel.querySelector(FOCUSABLE);
-    (first || panel).focus();
-  }
-
-  function closeModal() {
-    if (!isOpen()) { return; }
-    modal.setAttribute("hidden", "");
-    modal.classList.remove("is-gallery");
-    bodyEl.innerHTML = "";
-    doc.body.classList.remove("is-locked");
-    gallery = null;
-    if (lastFocus && typeof lastFocus.focus === "function") { lastFocus.focus(); }
-    lastFocus = null;
-  }
-
-  /* ── 글 모달 ── */
-  function openDetail(id) {
-    var source = doc.getElementById(id);
-    if (!source) { return; }
-    bodyEl.innerHTML = source.innerHTML;
-    openModal(source.getAttribute("data-detail-title") || "상세 보기", "detail");
-  }
-
-  /* ── 이미지 모달 ── */
-  function renderGallery() {
-    if (!gallery) { return; }
-    var item = gallery.list[gallery.index];
-    var img = bodyEl.querySelector("[data-gimg]");
-    var cap = bodyEl.querySelector("[data-gcap]");
-    var cnt = bodyEl.querySelector("[data-gcount]");
-
-    img.setAttribute("src", item.src);
-    img.setAttribute("alt", item.alt || item.caption || "");
-    cap.textContent = item.caption || "";
-    cnt.textContent = (gallery.index + 1) + " / " + gallery.list.length;
-
-    Array.prototype.forEach.call(bodyEl.querySelectorAll("[data-gthumb]"), function (b, i) {
-      if (i === gallery.index) { b.setAttribute("aria-current", "true"); }
-      else { b.removeAttribute("aria-current"); }
-    });
-  }
-
-  function moveGallery(step) {
-    if (!gallery) { return; }
-    var n = gallery.list.length;
-    gallery.index = (gallery.index + step + n) % n;
-    renderGallery();
-  }
-
-  function openGallery(key, title) {
-    var list = listFor(key);
-    if (!list.length) { return; }
-    gallery = { list: list, index: 0 };
-
-    var thumbs = list.map(function (item, i) {
-      return '<button type="button" data-gthumb data-index="' + i + '" aria-label="' + (i + 1) + '번째 이미지">' +
-             '<img src="' + item.src + '" alt="" loading="lazy"></button>';
-    }).join("");
-
-    bodyEl.innerHTML =
-      '<div class="gallery">' +
-        '<div class="gallery-stage">' +
-          '<img data-gimg src="" alt="">' +
-          (list.length > 1 ?
-            '<button class="gallery-nav gallery-prev" type="button" data-gprev aria-label="이전 이미지">‹</button>' +
-            '<button class="gallery-nav gallery-next" type="button" data-gnext aria-label="다음 이미지">›</button>' : "") +
-        '</div>' +
-        '<p class="gallery-meta"><span class="gallery-count" data-gcount></span>' +
-        '<span class="gallery-caption" data-gcap></span></p>' +
-        (list.length > 1 ? '<div class="gallery-thumbs">' + thumbs + '</div>' : "") +
-      '</div>';
-
-    renderGallery();
-    openModal(title || "상세 이미지 보기", "gallery");
-  }
-
-  /* ── 버튼 연결 ── */
-  Array.prototype.forEach.call(doc.querySelectorAll("[data-detail]"), function (btn) {
-    btn.addEventListener("click", function () { openDetail(btn.getAttribute("data-detail")); });
-  });
-
-  Array.prototype.forEach.call(doc.querySelectorAll("[data-gallery]"), function (btn) {
-    btn.addEventListener("click", function () {
-      var project = btn.closest(".project");
-      var heading = project ? project.querySelector(".project-title") : null;
-      var name = heading ? heading.textContent.trim() : "";
-      openGallery(btn.getAttribute("data-gallery"), name ? name + " — 상세 이미지" : "상세 이미지");
-    });
-  });
-
-  /* ── 닫기 · 이동 ── */
-  modal.addEventListener("click", function (e) {
-    if (e.target.closest("[data-close]")) { closeModal(); return; }
-    if (e.target.closest("[data-gprev]")) { moveGallery(-1); return; }
-    if (e.target.closest("[data-gnext]")) { moveGallery(1); return; }
-    var thumb = e.target.closest("[data-gthumb]");
-    if (thumb && gallery) {
-      gallery.index = Number(thumb.getAttribute("data-index"));
-      renderGallery();
+    if (item.type === "video") {
+      fig.classList.add("media-item-video");
+      var video = doc.createElement("video");
+      video.setAttribute("controls", "");
+      video.setAttribute("preload", "metadata");
+      if (item.poster) { video.setAttribute("poster", item.poster); }
+      var source = doc.createElement("source");
+      source.setAttribute("src", item.src);
+      video.appendChild(source);
+      fig.appendChild(video);
+    } else {
+      var img = doc.createElement("img");
+      img.setAttribute("loading", "lazy");
+      img.setAttribute("decoding", "async");
+      img.setAttribute("src", item.src);
+      img.setAttribute("alt", item.alt || item.label || "");
+      fig.appendChild(img);
     }
-  });
 
-  doc.addEventListener("keydown", function (e) {
-    if (!isOpen()) { return; }
-
-    if (e.key === "Escape") { e.preventDefault(); closeModal(); return; }
-    if (gallery && e.key === "ArrowLeft") { e.preventDefault(); moveGallery(-1); return; }
-    if (gallery && e.key === "ArrowRight") { e.preventDefault(); moveGallery(1); return; }
-
-    /* 포커스가 모달 밖으로 나가지 않도록 Tab 을 가둡니다 */
-    if (e.key !== "Tab") { return; }
-    var items = Array.prototype.filter.call(panel.querySelectorAll(FOCUSABLE), function (el) {
-      return el.offsetParent !== null;
-    });
-    if (!items.length) { e.preventDefault(); panel.focus(); return; }
-    var firstItem = items[0];
-    var lastItem = items[items.length - 1];
-    if (e.shiftKey && (doc.activeElement === firstItem || doc.activeElement === panel)) {
-      e.preventDefault(); lastItem.focus();
-    } else if (!e.shiftKey && doc.activeElement === lastItem) {
-      e.preventDefault(); firstItem.focus();
+    var caption = item.caption || item.label || "";
+    if (caption) {
+      var cap = doc.createElement("figcaption");
+      cap.textContent = caption;
+      fig.appendChild(cap);
     }
+
+    return fig;
+  }
+
+  Array.prototype.forEach.call(doc.querySelectorAll("[data-media-gallery]"), function (gallery) {
+    var key = gallery.getAttribute("data-media-gallery");
+    var entry = MEDIA[key];
+    var items = (entry && entry.items) || [];
+    var section = doc.querySelector('[data-media-section="' + key + '"]');
+    var rendered = 0;
+
+    items.forEach(function (item) {
+      if (!item.src) { return; }
+      gallery.appendChild(buildMediaItem(item));
+      rendered += 1;
+    });
+
+    if (rendered > 0 && section) { section.removeAttribute("hidden"); }
   });
 
-  /* ── 모바일 스와이프 ── */
-  var touchX = null;
-  var touchY = null;
-  modal.addEventListener("touchstart", function (e) {
-    if (!gallery || e.touches.length !== 1) { return; }
-    touchX = e.touches[0].clientX;
-    touchY = e.touches[0].clientY;
-  }, { passive: true });
+  /* ═══════════════════════════════════════════════════════════════════════
+     상세 팝업 — native <dialog> + 바닐라 JS
 
-  modal.addEventListener("touchend", function (e) {
-    if (!gallery || touchX === null) { return; }
-    var dx = e.changedTouches[0].clientX - touchX;
-    var dy = e.changedTouches[0].clientY - touchY;
-    touchX = null; touchY = null;
-    if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)) { moveGallery(dx < 0 ? 1 : -1); }
-  }, { passive: true });
+     · ESC 로 닫기            : <dialog> 기본 동작 (별도 구현 불필요)
+     · 배경 클릭으로 닫기      : 클릭 좌표가 팝업 박스 밖이면 닫습니다
+     · 닫은 뒤 포커스 복귀     : 열 때 눌렀던 버튼을 기억해 뒀다가 돌려줍니다
+     · 배경 스크롤 차단        : 열려 있는 동안 body.is-locked 를 붙입니다
+     · 포커스 가두기           : <dialog> 의 기본 동작을 그대로 사용합니다
+     ═══════════════════════════════════════════════════════════════════ */
 
-  /* 인쇄할 때는 모달을 닫아 둡니다 (상세 내용은 본문에 펼쳐집니다) */
+  var openDialogs = [];
+
+  Array.prototype.forEach.call(doc.querySelectorAll("dialog.detail-dialog"), function (dialog) {
+    var opener = null;
+
+    function closeDialog() {
+      if (dialog.open) { dialog.close(); }
+    }
+
+    dialog.addEventListener("click", function (e) {
+      var r = dialog.getBoundingClientRect();
+      var inside = e.clientX >= r.left && e.clientX <= r.right &&
+                   e.clientY >= r.top && e.clientY <= r.bottom;
+      if (!inside) { closeDialog(); }
+    });
+
+    dialog.addEventListener("close", function () {
+      doc.body.classList.remove("is-locked");
+      if (opener && typeof opener.focus === "function") { opener.focus(); }
+      opener = null;
+    });
+
+    var closeBtn = dialog.querySelector("[data-dialog-close]");
+    if (closeBtn) { closeBtn.addEventListener("click", closeDialog); }
+
+    var openers = doc.querySelectorAll('[data-open-dialog="' + dialog.id + '"]');
+    Array.prototype.forEach.call(openers, function (btn) {
+      btn.addEventListener("click", function () {
+        opener = btn;
+        doc.body.classList.add("is-locked");
+        dialog.showModal();
+      });
+    });
+
+    openDialogs.push(dialog);
+  });
+
+  /* 인쇄할 때는 팝업을 닫아 둡니다. 열려 있는 상세 내용은
+     print.css 가 본문에 그대로 펼쳐서 출력합니다. */
+  function closeAllDialogs() {
+    openDialogs.forEach(function (d) { if (d.open) { d.close(); } });
+  }
+  window.addEventListener("beforeprint", closeAllDialogs);
   if (window.matchMedia) {
     var printQuery = window.matchMedia("print");
-    if (printQuery.addEventListener) { printQuery.addEventListener("change", closeModal); }
+    if (printQuery.addEventListener) { printQuery.addEventListener("change", closeAllDialogs); }
   }
-  window.addEventListener("beforeprint", closeModal);
 
   /* ═══════════════════════════════════════════════════════════════════════
      현재 섹션 표시

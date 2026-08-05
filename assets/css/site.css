@@ -7,6 +7,9 @@
       실무 경험 → 주요 프로젝트 → 기타 프로젝트 → 프로필 순서로
       영역의 시작과 끝이 눈에 띄도록 했습니다.
    3) 구조는 .section (화면 전체 폭 배경) > .wrap (읽기 너비) 두 겹입니다.
+   4) 메인 화면은 회사명 · 한 줄 설명 · 핵심 수치 · 역할 · 버튼 정도로만
+      채우고, 배경 · 수행 과정 · 결과 같은 긴 설명은 <dialog> 상세 팝업에
+      둡니다. (assets/js/app.js 참고)
    ========================================================================= */
 
 :root {
@@ -45,7 +48,8 @@
 
 *, *::before, *::after { box-sizing: border-box; }
 
-/* 설정되지 않은 연락처 버튼 등은 어떤 display 값보다 우선해 감춥니다. */
+/* 설정되지 않은 연락처 버튼 · 빈 미디어 영역 등은 어떤 display 값보다
+   우선해 감춥니다. (자리표시 문구 없이 완전히 사라져야 합니다) */
 [hidden] { display: none !important; }
 
 html {
@@ -132,16 +136,16 @@ a:focus-visible, .btn:focus-visible, button:focus-visible {
 
 .band { border-top: 1px solid var(--line-strong); }
 
-/* 1) 실무 경험 — 포인트색 계열 배경, 가장 넓은 여백 */
+/* 1) 실무 경험 — 포인트색 계열 배경 */
 .band-exp {
   background: var(--tint);
   border-top: 3px solid var(--accent);
-  padding: 6.5rem 0 7rem;
+  padding: 5.5rem 0 6rem;
 }
 /* 2) 주요 프로젝트 — 흰 배경, 넓은 여백 */
 .band-selected {
   background: var(--bg);
-  padding: 6.5rem 0 7rem;
+  padding: 6rem 0 6.5rem;
 }
 /* 3) 기타 프로젝트 — 회색 배경, 눈에 띄게 좁은 여백 */
 .band-other {
@@ -158,12 +162,11 @@ a:focus-visible, .btn:focus-visible, button:focus-visible {
 .band-title,
 .project-title { word-break: keep-all; overflow-wrap: normal; text-wrap: balance; }
 .band-lead,
-.hero-description,
 .lede, .kf-text, .card-desc { word-break: keep-all; overflow-wrap: break-word; text-wrap: pretty; }
 
 /* ── 밴드 머리말 — 작은 영문 라벨 + 큰 한글 제목 ─────────────────────── */
 
-.band-head { margin-bottom: 3.5rem; }
+.band-head { margin-bottom: 3rem; }
 .band-label {
   display: inline-flex; align-items: center; gap: .55rem;
   font-size: .75rem; font-weight: 800;
@@ -187,10 +190,7 @@ a:focus-visible, .btn:focus-visible, button:focus-visible {
 .band-head-sm { margin-bottom: 2rem; }
 .band-head-sm .band-title { font-size: clamp(1.5rem, 2.2vw, 1.875rem); }
 
-/* 하위 호환용 (예전 클래스명) */
-.eyebrow { font-size: .75rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); }
-
-/* ── Hero ────────────────────────────────────────────────────────────── */
+/* ── Hero — 한 줄 포지셔닝 · 핵심 역량 3개 · 버튼 3개 ──────────────────── */
 
 .hero-top { display: flex; gap: 3rem; align-items: flex-start; }
 .hero-head { flex: 1 1 auto; min-width: 0; }
@@ -218,16 +218,7 @@ a:focus-visible, .btn:focus-visible, button:focus-visible {
   overflow-wrap: normal;
   text-wrap: balance;
 }
-.hero-description {
-  margin-top: 1.25rem;
-  max-width: 40rem;
-  color: var(--body);
-  word-break: keep-all;
-  overflow-wrap: break-word;
-  text-wrap: pretty;
-}
 
-/* 핵심 문장 3개 — 별도의 '한눈에 보기' 섹션 대신 여기서만 요약합니다. */
 .hero-points { display: flex; flex-wrap: wrap; gap: .5rem .75rem; margin-top: 1.5rem; }
 .hero-points li {
   padding: .35rem .8rem;
@@ -255,7 +246,7 @@ a:focus-visible, .btn:focus-visible, button:focus-visible {
 .btn-primary:hover { background: var(--accent-deep); border-color: var(--accent-deep); color: #fff; }
 .btn-sm { min-height: 2.25rem; padding: .35rem .9rem; font-size: var(--fs-small); }
 
-/* '상세 보기' — 포인트색 테두리로 눈에 띄되 주 CTA 는 아님 */
+/* '상세 보기' 계열 — 포인트색 테두리로 눈에 띄되 주 CTA 는 아님 */
 .btn-detail {
   border-color: var(--accent);
   color: var(--accent-deep);
@@ -264,32 +255,29 @@ a:focus-visible, .btn:focus-visible, button:focus-visible {
 .btn-detail:hover { background: var(--accent-soft); border-color: var(--accent-deep); color: var(--accent-deep); }
 .btn-detail::after { content: "›"; margin-left: .45rem; font-size: 1.1em; line-height: 1; }
 
-/* ── 이미지 ──────────────────────────────────────────────────────────
-   대표 이미지 1장만 본문에 두고, 나머지는 '상세 이미지 보기' 모달에서 봅니다.
-   이미지 목록은 assets/js/app.js 의 GALLERY 에서 관리하며,
-   목록이 비어 있으면 이 영역은 화면에 나타나지 않습니다. */
+/* ── 대표 이미지 (Selected Projects 카드) ────────────────────────────
+   assets/js/app.js 의 MEDIA[key].cover 가 있을 때만 나타납니다. */
 
 .media { margin-top: 2.25rem; }
 .shot { margin: 0; }
 .shot img { width: 100%; border: 1px solid var(--line); border-radius: 10px; background: var(--muted); }
 .shot .img-16x9 { aspect-ratio: 16 / 9; object-fit: cover; }
-.shot .img-4x3  { aspect-ratio: 4 / 3;  object-fit: contain; }
 .hero-photo img {
   width: 100%; aspect-ratio: 4 / 5; object-fit: cover;
   border: 1px solid var(--line); border-radius: 10px; background: var(--muted);
 }
 .shot figcaption { margin-top: .6rem; font-size: var(--fs-small); color: var(--dim); line-height: 1.55; }
-.media-actions { margin-top: .9rem; }
 
-/* ── 프로젝트 ────────────────────────────────────────────────────────── */
+/* ── 프로젝트 (실무 경험 · 주요 프로젝트 공용) ──────────────────────────
+   메인 화면에는 회사/유형 · 제목 · 한 줄 설명 · 수치 · 역할 · 버튼만 둡니다.
+   배경 · 수행 과정 · 결과 등 긴 설명은 각 프로젝트의 <dialog> 로 옮겼습니다. */
 
 .project + .project {
-  margin-top: 5rem;
-  padding-top: 5rem;
+  margin-top: 4rem;
+  padding-top: 4rem;
   border-top: 2px solid var(--line-strong);
 }
 
-/* 헤더만 묶습니다. 프로젝트 전체를 카드로 감싸지 않습니다. */
 .project-head {
   padding: 2rem 2.25rem 2.25rem;
   background: var(--surface);
@@ -315,20 +303,9 @@ a:focus-visible, .btn:focus-visible, button:focus-visible {
   max-width: 22em;
 }
 
-/* 역할 · 핵심 결과 — 프로젝트에서 가장 먼저 읽히는 자리 */
-.keyfacts {
-  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1.25rem 2rem;
-  margin-top: 1.5rem;
-  padding: 1.25rem 0 0;
-  border-top: 1px solid var(--line-strong);
-}
-.keyfacts > li { min-width: 0; padding-left: .9rem; border-left: 3px solid var(--accent); }
-.kf-label {
-  font-size: .75rem; font-weight: 800; letter-spacing: .08em;
-  color: var(--accent-deep);
-}
-.kf-text { margin-top: .3rem; font-size: .9375rem; color: var(--ink); line-height: 1.6; }
+/* 한 줄 설명 (Selected Projects) · 상세 팝업의 문단 설명 공용 */
+.lede { margin-top: .9rem; font-size: .9375rem; color: var(--dim); max-width: 40rem; }
+.project-title + .lede { margin-top: .75rem; }
 
 .project-meta { margin-top: 1.25rem; font-size: .8125rem; color: var(--dim); }
 .meta-sub { display: block; }
@@ -357,29 +334,53 @@ a:focus-visible, .btn:focus-visible, button:focus-visible {
   vertical-align: 1px;
 }
 
-.project-links {
-  margin-top: 1.5rem; padding-top: 1.25rem;
+/* 역할 — 실무 경험은 3개 불릿, 주요 프로젝트는 한 줄 (유형 · 역할) */
+.kf-block {
+  margin-top: 1.5rem;
+  padding: 1.25rem 0 0 .9rem;
   border-top: 1px solid var(--line-strong);
-  font-size: var(--fs-small);
+  border-left: 3px solid var(--accent);
 }
+.kf-label {
+  font-size: .75rem; font-weight: 800; letter-spacing: .08em;
+  color: var(--accent-deep);
+}
+.kf-block .kf-text { margin-top: .3rem; max-width: none; color: var(--ink); }
+.kf-block .ticks { margin-top: .55rem; }
+.kf-block .ticks li { font-size: .9375rem; color: var(--ink); }
+
+/* 사용 기술 (상세 팝업) */
+.tech { font-size: var(--fs-small); color: var(--dim); }
+.tech span { display: inline-block; min-width: 2.5rem; font-weight: 700; color: var(--ink); }
+
+.links { font-size: var(--fs-small); }
+.links a { font-weight: 600; text-decoration: none; }
+.links a:hover { text-decoration: underline; }
+
+/* 메인 카드 하단 — 버튼(왼쪽) · GitHub 링크(오른쪽) */
+.project-foot {
+  display: flex; flex-wrap: wrap; align-items: center;
+  justify-content: space-between; gap: 1rem 1.5rem;
+  margin-top: 1.75rem; padding-top: 1.5rem;
+  border-top: 1px solid var(--line-strong);
+}
+.project-foot-solo { justify-content: flex-start; }
+.detail-actions { flex: 0 0 auto; }
+.project-foot .project-links { font-size: var(--fs-small); }
 .project-links a { font-weight: 700; text-decoration: none; }
 .project-links a:hover { text-decoration: underline; }
 .links-note { display: block; margin-top: .2rem; color: var(--dim); font-weight: 400; }
 
-/* 프로젝트 본문 — 배경 / 수행 내용 두 칸 */
-.project-body {
-  display: grid; grid-template-columns: 1fr 1.35fr; gap: 2rem 3.5rem;
-  margin-top: 2.5rem;
-  align-items: start;
+/* 결과 · 문제 · 산출물 등 인용/강조 문단 (상세 팝업) */
+.callout {
+  margin-top: 1.1rem;
+  padding-left: .85rem;
+  border-left: 2px solid var(--line-strong);
+  font-size: var(--fs-small);
+  color: var(--dim);
 }
-.pcol h4, .outcome h4, .detail h4 {
-  font-size: var(--fs-h4); font-weight: 800;
-  letter-spacing: .08em; color: var(--dim);
-  margin-bottom: .7rem;
-}
-.lede { font-size: .9375rem; color: var(--dim); }
 
-/* 수행 내용 — 01 · 02 번호 목록 */
+/* 수행 과정 — 01 · 02 번호 목록 (상세 팝업) */
 .steps { counter-reset: s; }
 .steps li {
   counter-increment: s;
@@ -403,45 +404,14 @@ a:focus-visible, .btn:focus-visible, button:focus-visible {
   background: #a9b4bd;
 }
 
-/* 본인 / 팀원 구분 (모달 안에서 사용) */
-.split { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-top: .5rem; }
+/* 본인 / 팀원 구분 (상세 팝업) */
+.split { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-top: .75rem; }
 .split-head {
   font-size: .75rem; font-weight: 700; letter-spacing: .04em; color: var(--ink);
   padding-bottom: .4rem; margin-bottom: .6rem;
   border-bottom: 1px solid var(--line-strong);
 }
 .split .ticks li { font-size: var(--fs-small); }
-
-/* 결과 — 흰 배경 + 테두리 */
-.outcome {
-  margin-top: 2.25rem;
-  padding: 1.75rem 2rem;
-  background: #fff;
-  border: 1px solid var(--line-strong);
-  border-radius: 14px;
-}
-.outcome .ticks li { margin-bottom: .55rem; }
-.callout {
-  margin-top: 1.1rem;
-  padding-left: .85rem;
-  border-left: 2px solid var(--line-strong);
-  font-size: var(--fs-small);
-  color: var(--dim);
-}
-
-/* 사용 기술 + 상세 보기 버튼 */
-.project-foot {
-  display: flex; flex-wrap: wrap; align-items: center;
-  justify-content: space-between; gap: 1rem;
-  margin-top: 1.75rem;
-}
-.tech { font-size: var(--fs-small); color: var(--dim); }
-.tech span { display: inline-block; min-width: 2.5rem; font-weight: 700; color: var(--ink); }
-.detail-actions { flex: 0 0 auto; }
-
-.links { font-size: var(--fs-small); }
-.links a { font-weight: 600; text-decoration: none; }
-.links a:hover { text-decoration: underline; }
 
 /* ── 기타 프로젝트 — 정보량과 크기를 확실히 줄인 작은 카드 ───────────── */
 
@@ -458,14 +428,13 @@ a:focus-visible, .btn:focus-visible, button:focus-visible {
   border-radius: 12px;
 }
 .card h3 { font-size: 1.0625rem; font-weight: 700; line-height: 1.4; }
-.card-meta { margin-top: .3rem; font-size: .78125rem; color: var(--dim); }
+.card-desc { margin-top: .35rem; font-size: .8125rem; color: var(--dim); }
 .card-facts { margin-top: .9rem; display: grid; gap: .45rem; }
 .card-facts > div { display: grid; grid-template-columns: 2.75rem 1fr; gap: .6rem; align-items: baseline; }
 .card-facts dt { font-size: .6875rem; font-weight: 700; letter-spacing: .04em; color: var(--dim); }
 .card-facts dd { margin: 0; font-size: .8125rem; color: var(--ink); line-height: 1.55; }
-.card .tech { margin-top: auto; padding-top: 1rem; font-size: .78125rem; }
-.card .tech span { min-width: 2.2rem; }
-.card .links { margin-top: .35rem; font-size: .78125rem; }
+.card .detail-actions { margin-top: auto; padding-top: 1.1rem; }
+.card .btn-sm.btn-detail { width: 100%; }
 
 /* ── 프로필 ──────────────────────────────────────────────────────────── */
 
@@ -505,32 +474,38 @@ a:focus-visible, .btn:focus-visible, button:focus-visible {
   font-size: var(--fs-small); color: var(--dim);
 }
 
-/* ── 모달 (상세 보기 · 상세 이미지 보기 공용) ─────────────────────────
-   ESC · 배경 클릭 · 닫기 버튼으로 닫히고, 이미지 모드에서는
-   좌우 버튼 · 방향키 · 스와이프로 이동합니다. */
+/* ═══════════════════════════════════════════════════════════════════════
+   상세 팝업 — native <dialog>
+   데스크톱: 900~1050px 너비, 최대 높이 85vh, 본문만 스크롤.
+   모바일: 거의 전체 화면, 닫기 버튼은 스크롤되지 않는 헤더에 고정.
+   열고 닫기 · ESC · 포커스 가두기는 <dialog> 기본 동작을 그대로 씁니다.
+   (assets/js/app.js — showModal / close 이벤트만 보조)
+   ═══════════════════════════════════════════════════════════════════ */
 
-.modal { position: fixed; inset: 0; z-index: 200; display: flex; }
-.modal-backdrop { position: absolute; inset: 0; background: rgba(12, 18, 22, .62); }
-.modal-panel {
-  position: relative;
-  margin: auto;
-  width: min(100% - 2rem, 56rem);
-  max-height: min(92vh, 56rem);
+/* [open] 로 한정합니다. 그렇지 않으면 author 스타일이 UA 기본값인
+   dialog:not([open]){display:none} 보다 우선해 닫힌 팝업까지 화면에
+   그대로 남는 문제가 생깁니다. */
+dialog.detail-dialog[open] {
+  position: fixed; inset: 0; margin: auto; padding: 0;
+  width: min(92vw, 62.5rem);   /* ~1000px */
+  max-height: 85vh;
   display: flex; flex-direction: column;
-  background: #fff;
-  border-radius: 14px;
+  background: #fff; color: var(--body);
+  border: 0; border-radius: 14px;
   box-shadow: 0 18px 60px rgba(12, 18, 22, .3);
   overflow: hidden;
 }
-.modal.is-gallery .modal-panel { width: min(100% - 2rem, 68rem); }
-.modal-head {
+dialog.detail-dialog::backdrop { background: rgba(12, 18, 22, .62); }
+
+.dialog-head {
+  flex: 0 0 auto;
   display: flex; align-items: flex-start; gap: 1rem;
   padding: 1.25rem 1.5rem;
   border-bottom: 1px solid var(--line);
   background: #fff;
 }
-.modal-title { flex: 1 1 auto; min-width: 0; font-size: 1.0625rem; font-weight: 700; line-height: 1.45; }
-.modal-close {
+.dialog-title { flex: 1 1 auto; min-width: 0; font-size: 1.0625rem; font-weight: 700; line-height: 1.45; }
+.dialog-close {
   flex: 0 0 auto;
   width: 2.25rem; height: 2.25rem;
   display: inline-flex; align-items: center; justify-content: center;
@@ -538,53 +513,43 @@ a:focus-visible, .btn:focus-visible, button:focus-visible {
   background: #fff; color: var(--ink);
   font-size: 1rem; line-height: 1; cursor: pointer;
 }
-.modal-close:hover { background: var(--muted); border-color: var(--ink); }
-.modal-body { padding: 1.5rem; overflow-y: auto; -webkit-overflow-scrolling: touch; }
-.modal-body h4:not(:first-child) { margin-top: 1.5rem; }
-.modal-body .split { margin-top: .25rem; }
-.modal-body .steps li,
-.modal-body .ticks li { color: var(--ink); }
+.dialog-close:hover { background: var(--muted); border-color: var(--ink); }
 
-/* 이미지 모드 */
-.gallery { display: grid; gap: .9rem; }
-.gallery-stage {
-  position: relative;
-  background: #0d1216;
-  border-radius: 10px;
-  overflow: hidden;
+.dialog-body {
+  flex: 1 1 auto;
+  overflow-y: auto; -webkit-overflow-scrolling: touch;
+  padding: 1.5rem 1.75rem 1.75rem;
 }
-.gallery-stage img {
-  width: 100%;
-  max-height: min(62vh, 34rem);
-  object-fit: contain;
-  margin-inline: auto;
-  background: #0d1216;
+.dialog-body section + section {
+  margin-top: 1.75rem; padding-top: 1.75rem;
+  border-top: 1px solid var(--line);
 }
-.gallery-nav {
-  position: absolute; top: 50%; transform: translateY(-50%);
-  width: 2.75rem; height: 2.75rem;
-  display: inline-flex; align-items: center; justify-content: center;
-  border: 0; border-radius: 999px;
-  background: rgba(255,255,255,.9); color: var(--ink);
-  font-size: 1.25rem; line-height: 1; cursor: pointer;
+.dialog-body h4 {
+  font-size: var(--fs-h4); font-weight: 800;
+  letter-spacing: .08em; color: var(--dim);
+  margin-bottom: .7rem;
 }
-.gallery-nav:hover { background: #fff; }
-.gallery-prev { left: .6rem; }
-.gallery-next { right: .6rem; }
-.gallery-meta {
-  display: flex; align-items: baseline; gap: .9rem;
-  font-size: var(--fs-small); color: var(--dim);
+.dialog-body .lede { margin-top: 0; max-width: none; }
+.dialog-body .split { margin-top: .5rem; }
+.dialog-body .steps li,
+.dialog-body .ticks li { color: var(--ink); }
+
+/* 이미지 · 영상 (상세 팝업) — 항목이 있을 때만 나타나는 단순 그리드 */
+.media-gallery {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  gap: 1rem;
+  margin-top: .25rem;
 }
-.gallery-count { flex: 0 0 auto; font-weight: 700; color: var(--ink); font-variant-numeric: tabular-nums; }
-.gallery-caption { flex: 1 1 auto; min-width: 0; line-height: 1.55; }
-.gallery-thumbs { display: flex; flex-wrap: wrap; gap: .5rem; }
-.gallery-thumbs button {
-  width: 4.5rem; padding: 0;
-  border: 2px solid transparent; border-radius: 6px;
-  background: var(--muted); cursor: pointer; overflow: hidden;
+.media-item { margin: 0; }
+.media-item img,
+.media-item video {
+  width: 100%; border: 1px solid var(--line); border-radius: 10px;
+  background: var(--muted);
+  aspect-ratio: 16 / 9; object-fit: cover;
 }
-.gallery-thumbs button[aria-current="true"] { border-color: var(--accent); }
-.gallery-thumbs img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; }
+.media-item.is-portrait img { aspect-ratio: 4 / 5; }
+.media-item-video video { background: #0d1216; object-fit: contain; }
+.media-item figcaption { margin-top: .5rem; font-size: var(--fs-small); color: var(--dim); line-height: 1.5; }
 
 /* ═══════════════ 반응형 ═══════════════ */
 
@@ -598,7 +563,6 @@ a:focus-visible, .btn:focus-visible, button:focus-visible {
   :root { --wrap: 64rem; --fs-project: 1.75rem; }
   .hero-top { gap: 2.5rem; }
   .hero-photo { flex-basis: 11rem; }
-  .project-body { grid-template-columns: 1fr; gap: 2rem; }
   .other-grid { grid-template-columns: 1fr; max-width: 34rem; }
   .profile-grid { grid-template-columns: 1fr 1fr; }
   .profile-col-wide { grid-column: 1 / -1; }
@@ -608,8 +572,8 @@ a:focus-visible, .btn:focus-visible, button:focus-visible {
 /* 768 — 모바일 */
 @media (max-width: 768px) {
   .section-hero { padding: 2.5rem 0 2.75rem; }
-  .band-exp { padding: 3.5rem 0 3.75rem; }
-  .band-selected { padding: 3.5rem 0 3.75rem; }
+  .band-exp { padding: 3.25rem 0 3.5rem; }
+  .band-selected { padding: 3.25rem 0 3.5rem; }
   .band-other { padding: 2.5rem 0 2.75rem; }
   .band-profile { padding: 2.75rem 0 3rem; }
   .band-head { margin-bottom: 2rem; }
@@ -617,12 +581,11 @@ a:focus-visible, .btn:focus-visible, button:focus-visible {
 
   .hero-top { flex-direction: column; gap: 1.5rem; }
   .hero-photo { flex: 0 0 auto; width: 100%; max-width: 11.25rem; }
+  .hero-actions .btn { flex: 1 1 auto; }
 
   /* 프로젝트 사이 여백 + 굵은 구분선 */
-  .project + .project { margin-top: 3rem; padding-top: 3rem; }
+  .project + .project { margin-top: 2.75rem; padding-top: 2.75rem; }
   .project-head { padding: 1.5rem 1.5rem 1.75rem; }
-
-  .keyfacts { grid-template-columns: 1fr; gap: 1rem; }
 
   /* 지표는 세로 1열 — 좁은 3열로 찌그러지지 않게 */
   .stats { grid-template-columns: 1fr; }
@@ -632,20 +595,23 @@ a:focus-visible, .btn:focus-visible, button:focus-visible {
     border-left: 0; border-top: 1px solid var(--line-strong);
   }
 
-  .outcome { padding: 1.5rem; }
   .project-foot { align-items: stretch; }
-  .detail-actions { width: 100%; }
+  .project-foot:not(.project-foot-solo) { flex-direction: column; align-items: flex-start; }
   .detail-actions .btn { width: 100%; }
 
   .profile-grid { grid-template-columns: 1fr; gap: 2rem; }
   .stack > div { grid-template-columns: 1fr; gap: .15rem; padding: .7rem 0; }
 
-  /* 모달 — 모바일에서는 화면을 거의 가득 채웁니다 */
-  .modal-panel { width: 100%; max-width: none; max-height: 100%; height: 100%; border-radius: 0; margin: 0; }
-  .modal-head { padding: 1rem 1.1rem; }
-  .modal-body { padding: 1.1rem; }
-  .gallery-stage img { max-height: 52vh; }
-  .gallery-nav { width: 2.5rem; height: 2.5rem; }
+  /* 상세 팝업 — 모바일에서는 화면을 거의 가득 채우고, 닫기 버튼은 위에 고정 */
+  dialog.detail-dialog[open] {
+    inset: 0; margin: 0;
+    width: 100%; max-width: none;
+    height: 100%; max-height: 100%;
+    border-radius: 0;
+  }
+  .dialog-head { padding: 1rem 1.1rem; position: sticky; top: 0; z-index: 1; }
+  .dialog-body { padding: 1.1rem 1.1rem 1.5rem; }
+  .media-gallery { grid-template-columns: 1fr; }
 }
 
 /* 480 */
@@ -653,16 +619,13 @@ a:focus-visible, .btn:focus-visible, button:focus-visible {
   :root { --fs-project: 1.5rem; --fs-body: 1rem; --fs-stat: 1.625rem; }
   .wrap, .nav-inner { width: min(100% - 2rem, var(--wrap)); }
   .hero-photo { max-width: 9.5rem; }
-  .hero-actions .btn { flex: 1 1 100%; }
   .hero-points li { flex: 1 1 100%; }
 
   .project-head { padding: 1.25rem 1.25rem 1.5rem; }
-  .keyfacts > li { padding-left: .8rem; }
+  .kf-block { padding-left: .8rem; }
   .split { grid-template-columns: 1fr; gap: 1rem; }
   .steps li { grid-template-columns: 1.6rem 1fr; }
 
   .card { padding: 1.25rem; }
-  .outcome { padding: 1.25rem; }
   .project-title { max-width: none; }
-  .gallery-thumbs button { width: 3.75rem; }
 }

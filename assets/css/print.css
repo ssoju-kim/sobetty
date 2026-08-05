@@ -1,259 +1,233 @@
 /* =========================================================================
-   인쇄 전용 스타일 — A4 문서형
-   브라우저 인쇄와 WeasyPrint 양쪽에서 같은 결과가 나오도록 작성했습니다.
-   영상은 썸네일 + 재생 아이콘 + QR + 링크로 대체됩니다.
+   인쇄 · PDF 전용 스타일 (A4 문서형)
+
+   화면보다 정보량을 줄입니다. 읽는 사람이 종이에서 훑을 때
+   프로젝트명 → 핵심 결과 → 역할 → 수행 내용 순으로 눈이 가도록 맞췄습니다.
    ========================================================================= */
 
 @page {
   size: A4;
-  margin: 16mm 15mm 15mm;
+  margin: 16mm 14mm 15mm;
 
   @bottom-center {
     content: counter(page) " / " counter(pages);
     font-family: "Noto Sans CJK KR", "Malgun Gothic", sans-serif;
-    font-size: 8pt;
-    color: #8697a6;
+    font-size: 8pt; color: #8a959e;
   }
   @bottom-right {
     content: "김소영 · 포트폴리오";
     font-family: "Noto Sans CJK KR", "Malgun Gothic", sans-serif;
-    font-size: 8pt;
-    color: #aab8c4;
+    font-size: 8pt; color: #aeb8c0;
   }
 }
 @page :first {
-  margin-top: 20mm;
+  margin-top: 22mm;
   @bottom-right { content: ""; }
 }
-
-/* ── 기본 ────────────────────────────────────────────────────────────── */
 
 html { scroll-behavior: auto; }
 
 body {
   font-size: 9.3pt;
   line-height: 1.6;
-  color: #26333d;
+  color: #2b343c;
   background: #fff;
-  -webkit-print-color-adjust: exact;
   print-color-adjust: exact;
+  -webkit-print-color-adjust: exact;
 }
 
-*, *::before, *::after { animation: none !important; transition: none !important; box-shadow: none !important; }
+*, *::before, *::after { animation: none !important; transition: none !important; }
 
 /* ── 화면 전용 요소 제거 ─────────────────────────────────────────────── */
 
-.rail, .skip-link, .hero-actions, .cap-link { display: none !important; }
+.topbar, .skip-link, .hero-actions, .cap-ref { display: none !important; }
 .print-only { display: block !important; }
 
-.main { margin-left: 0 !important; padding: 0 !important; }
-.hero, .section, .foot { max-width: none !important; margin: 0 !important; }
+.hero, .capsec, .project, .misc, .profile, .foot {
+  width: auto !important;
+  max-width: none !important;
+  margin-inline: 0 !important;
+}
 
 /* ── 페이지 나눔 ─────────────────────────────────────────────────────── */
 
-.section {
-  break-before: auto;
-  page-break-before: auto;
-  border-top: 1px solid #dde5ec !important;
-  margin-top: 7mm !important;
-  padding: 6mm 0 0 !important;
+h1, h2, h3, .kicker, .statement, .section-label { break-after: avoid; page-break-after: avoid; }
+
+.project-head, .results, .pblock, .flow-node, .grades li, .clarify,
+.shot, .diagram, figure, table, .misc-row, .project-foot {
+  break-inside: avoid; page-break-inside: avoid;
 }
-/* 경력부터는 새 페이지에서 시작해 앞쪽이 표지 성격을 갖도록 합니다. */
-#experience { break-before: page; page-break-before: always; border-top: 0 !important; margin-top: 0 !important; padding-top: 0 !important; }
-/* 주의: .eyebrow 에 break-before: avoid 를 주면 앞 섹션의 마지막 요소까지
-   함께 끌려가 빈 페이지가 생깁니다. 사용하지 않습니다. */
+tr, thead { break-inside: avoid; page-break-inside: avoid; }
 
-h1, h2, h3 { break-after: avoid; page-break-after: avoid; }
-.entry-head, .lead, .eyebrow { break-after: avoid; page-break-after: avoid; }
+/* 프로젝트를 강제로 새 페이지에서 시작시키면 앞 페이지에 큰 여백이 남습니다.
+   대신 개별 블록이 쪼개지지 않게만 막고, 제목 위에 여백을 넉넉히 둡니다. */
+.project { break-before: auto; page-break-before: auto; margin-top: 9mm !important; padding-top: 5mm !important; border-top: 1px solid #e3e8ec !important; }
+#finance { margin-top: 7mm !important; padding-top: 4mm !important; }
 
-/* .subproject 는 통째로 묶지 않습니다. 묶으면 앞 페이지에 큰 여백이 생깁니다. */
-.cap, .flow-step, .grade, .ops li, .stat, .stats,
-.media, .media-video, .callout, .closing,
-figure, table, .table-wrap { break-inside: avoid; page-break-inside: avoid; }
+/* ── HERO (표지) ─────────────────────────────────────────────────────── */
 
-tr, thead, .media-row { break-inside: avoid; page-break-inside: avoid; }
-
-/* ── 표지 성격의 Hero ────────────────────────────────────────────────── */
-
-.hero { padding: 0 0 8mm !important; }
-.hero h1 { font-size: 20pt; margin-bottom: 5mm; }
-.hero-sub { font-size: 9.6pt; max-width: none; }
-.hero-note {
-  margin-top: 6mm; padding-top: 3mm;
-  border-top: 1px solid #dde5ec;
-  font-size: 8.4pt; color: #62778a;
+.hero { padding: 0 0 9mm !important; }
+.hero-major { font-size: 10pt; color: #0d6b60; margin-bottom: 3mm; }
+.hero h1 { font-size: 30pt !important; margin-bottom: 5mm; }
+.hero-line { font-size: 11pt; max-width: none; }
+.hero-tags { gap: 2mm; margin-top: 6mm; }
+.hero-tags li { padding: 1.2mm 3mm; font-size: 8.5pt; background: #e8f2f0 !important; color: #084f47 !important; }
+.hero-print {
+  margin-top: 8mm; padding-top: 3mm;
+  border-top: 1px solid #e3e8ec;
+  font-family: ui-monospace, monospace; font-size: 8.5pt; color: #6b737c;
 }
 
-/* ── 제목 ────────────────────────────────────────────────────────────── */
+/* ── 핵심 역량 ───────────────────────────────────────────────────────── */
 
-.eyebrow { font-size: 7.4pt; letter-spacing: .1em; margin-bottom: 1.5mm; }
-.section > h2 { font-size: 14.5pt; margin: 0 0 2.5mm; }
-h3 { font-size: 9.8pt; margin: 4mm 0 1.2mm; }
-.col > h3:first-child, .subproject h3 { margin-top: 0; }
-.subproject h3 { font-size: 11pt; }
+.section-label { font-size: 7.6pt; padding-bottom: 1.5mm; margin-bottom: 3.5mm; }
 
-.lead { font-size: 9.3pt; margin-bottom: 3.5mm; max-width: none; }
-.body, .bullets { font-size: 9.3pt; }
-.body { margin-bottom: 2.5mm; }
-.bullets { margin-bottom: 2.5mm; padding-left: 4mm; }
-.bullets li { margin-bottom: .8mm; }
-.note { font-size: 8pt; }
-.meta { font-size: 8.2pt; }
+.capsec { padding: 0 0 4mm !important; }
+.caplist { display: flex !important; flex-direction: row; gap: 6mm; }
+.caplist > li { flex: 1 1 0; min-width: 0; }
+.cap-name { font-size: 10pt; margin-bottom: 1mm; }
+.cap-one { font-size: 8.6pt; }
 
-.entry-head { margin-bottom: 4mm; padding-bottom: 2.5mm; }
+/* ── 프로젝트 ────────────────────────────────────────────────────────── */
 
-/* ── 2단 구성 (WeasyPrint 안정성을 위해 flex 사용) ───────────────────── */
+.project { padding-bottom: 4mm !important; }
+.project-head { max-width: none; }
 
-.cols {
-  display: flex !important;
-  flex-direction: row;
-  gap: 8mm;
-  align-items: flex-start;
+.kicker { font-size: 8pt; margin-bottom: 1.5mm; }
+.project-head h2 { font-size: 19pt !important; margin-bottom: 2mm; }
+.statement { font-size: 10.5pt; }
+
+.results {
+  display: flex !important; flex-wrap: wrap;
+  gap: 4mm 9mm; max-width: none;
+  margin-top: 4mm; padding-top: 3mm;
 }
-.cols > .col { flex: 1 1 0; min-width: 0; }
-.cols-uneven > .col:first-child { flex: 1.3 1 0; }
-.cols-3 { gap: 6mm; }
+.results > li { flex: 0 1 auto; max-width: 55mm; }
+.result-num { font-size: 18pt !important; color: #0d6b60 !important; }
+.result-unit { font-size: .5em; }
+.result-cap { font-size: 8.2pt; margin-top: .8mm; }
+.team { font-size: 7pt; padding: 0 1mm; }
 
-/* ── 역량 요약 ───────────────────────────────────────────────────────── */
-
-.capabilities { display: block; }
-.cap {
-  padding: 3.5mm 4mm;
-  margin-bottom: 3mm;
-  border: 1px solid #dde5ec;
-  background: #fff;
+.project-grid {
+  display: flex !important; flex-direction: row;
+  gap: 8mm; margin-top: 5mm; align-items: flex-start;
 }
-.cap-label { font-size: 7.4pt; margin-bottom: 1mm; }
-.cap-title { font-size: 10.5pt; margin-bottom: 1.5mm; }
-.cap-body { font-size: 9.2pt; }
+.project-grid > .pblock { flex: 1 1 0; min-width: 0; }
+.project-grid > .pblock:last-child { flex: 1.3 1 0; }
 
-/* ── 근거 등급 · 흐름도 · 운영 목록 ──────────────────────────────────── */
+.pblock h3 { font-size: 7.8pt; margin-bottom: 1.5mm; }
+.pbody { font-size: 9.2pt; max-width: none; }
+.pnote { margin-top: 2mm; padding-left: 2.5mm; font-size: 8.2pt; max-width: none; }
 
-.grades { display: block; margin: 3mm 0 4mm; }
-.grade { display: flex; margin-bottom: 1.2mm; }
-.grade-name { flex: 0 0 30mm; font-size: 8pt; padding: .8mm 1.5mm; }
-.grade-desc { font-size: 8.2pt; }
+.steps li { padding-left: 5mm; margin-bottom: 1.6mm; font-size: 9pt; }
+.steps li::before { width: 3.6mm; height: 3.6mm; font-size: 6.8pt; background: #f0f4f6 !important; }
 
-.flow { display: block; margin: 2.5mm 0 3mm; }
-.flow-step { padding: 1.6mm 2.5mm; margin-bottom: 1.2mm; border: 1px solid #dde5ec; }
-.flow-step + .flow-step::before { display: none; }
-.flow-name { font-size: 8.8pt; }
-.flow-desc { font-size: 8pt; }
+.clarify { margin-top: 4mm; padding: 2.5mm 3mm; font-size: 8.8pt; background: #f7f9fa !important; max-width: none; }
 
-.ops { display: block; margin: 2.5mm 0 3mm; }
-.ops li { margin-bottom: 2mm; padding-left: 2.5mm; border-left: 2px solid #dde5ec; }
-.ops-name { font-size: 8.8pt; }
-.ops-desc { font-size: 8.2pt; }
+.project-foot { margin-top: 5mm; padding-top: 2.5mm; gap: 2mm 6mm; }
+.facts { flex: 1 1 auto; gap: 1mm 6mm; }
+.facts dt { font-size: 7pt; }
+.facts dd { font-size: 7.8pt; }
+.plinks { font-size: 8pt; }
+.plinks-note { font-size: 7pt; }
 
-/* ── 수치 ────────────────────────────────────────────────────────────── */
+/* ── 흐름도 ──────────────────────────────────────────────────────────── */
 
-.stats {
-  display: flex !important;
-  flex-direction: row; flex-wrap: wrap;
-  gap: 6mm;
-  padding: 2.5mm 3.5mm;
-  margin: 2.5mm 0;
-  background: #f4f8fb;
-  border: 1px solid #dde5ec;
+.diagram { margin-top: 5mm; }
+.flow { display: flex !important; flex-direction: row; gap: 1.5mm; }
+.flow > .flow-node { flex: 1 1 0; min-width: 0; padding: 2mm 2.5mm; }
+.flow-node + .flow-node::before { display: none; }
+.flow-name { font-size: 8.6pt; }
+.flow-sub { font-size: 7.4pt; }
+.flow-src { background: #f7f9fa !important; }
+.flow-mine { background: #e8f2f0 !important; border-color: #0d6b60 !important; }
+.flow-check {
+  margin-top: 1.5mm; padding: 2mm 3mm;
+  background: #0d6b60 !important; color: #fff !important;
+  font-size: 8.6pt;
 }
-.stat { display: block; }
-.stat-num { font-size: 17pt; }
-.stat-unit { font-size: 8.5pt; }
-.stat-label { display: block; font-size: 7.6pt; }
+.diagram figcaption { font-size: 8pt; margin-top: 1.5mm; max-width: none; }
+
+/* ── 근거 등급 ───────────────────────────────────────────────────────── */
+
+.grades-block { margin-top: 5mm; }
+.grades { display: block; max-width: none; margin-bottom: 3mm; }
+.grades li { display: flex; margin-bottom: 1mm; }
+.g-name { flex: 0 0 28mm; padding: .8mm 1.5mm; font-size: 7.8pt; }
+.g-desc { font-size: 8.2pt; }
+.g1 .g-name { background: #0d6b60 !important; color: #fff !important; }
+.g2 .g-name { background: #4f9089 !important; color: #fff !important; }
+.g3 .g-name { background: #b9cbc8 !important; color: #14312d !important; }
+.g4 .g-name { background: #eef2f5 !important; color: #5c646d !important; }
 
 /* ── 표 ──────────────────────────────────────────────────────────────── */
 
-.table-wrap { overflow: visible; }
-.data-table { font-size: 8pt; }
-.data-table th, .data-table td { padding: 1.2mm 1.8mm; }
-.data-table thead th { background: #10314f !important; color: #fff !important; }
-.data-table tbody tr:nth-child(even) { background: #fafcfd !important; }
-.role-table td { line-height: 1.65; }
-
-.callout { padding: 2mm 2.6mm; margin-top: 2.5mm; font-size: 8.7pt; background: #f4f8fb; }
-.callout-plain { background: #fff; }
+.table-wrap { margin-top: 5mm; overflow: visible; }
+.dtable { min-width: 0; font-size: 8.2pt; }
+.dtable caption { font-size: 7.6pt; padding-bottom: 1.5mm; }
+.dtable th, .dtable td { padding: 1.3mm 2mm; }
+.dtable thead th { border-bottom: 1.5pt solid #12171c !important; }
+.dtable tbody td::before { content: none; }
 
 /* ── 이미지 ──────────────────────────────────────────────────────────── */
+/* 인쇄에서는 높이를 고정해 섹션이 페이지를 넘기지 않게 합니다.
+   실제 캡처는 위쪽부터 보이므로 중요한 내용을 화면 상단에 두고 캡처하세요. */
 
-.media-row { display: flex !important; flex-wrap: nowrap; gap: 3.5mm; margin-top: 4mm; }
-.media-row > .media { flex: 1 1 0; min-width: 0; }
-.media img { border: 1px solid #dde5ec; }
-.media figcaption { margin-top: 1mm; font-size: 7.2pt; line-height: 1.4; }
+.shot { margin-top: 5mm; }
+.shot figcaption { font-size: 7.6pt; margin-top: 1.2mm; max-width: none; }
 
-/* 인쇄에서는 이미지 높이를 고정해 섹션이 한 페이지 안에 들어오게 합니다.
-   실제 캡처를 넣으면 위쪽부터 잘려 보이므로, 중요한 내용이 화면 상단에
-   오도록 캡처하세요. */
-.media-row-2 .media img { height: 30mm; object-fit: cover; object-position: top; }
-.media-row-3 .media img { height: 36mm; object-fit: cover; object-position: top; }
-.media-row-4 .media img { height: 44mm; object-fit: cover; object-position: top; }
-.subproject > .media img,
-.subproject .media-row-2 .media img { height: 36mm; object-fit: cover; object-position: top; }
-
-/* ── 영상 → 썸네일 + QR + 링크 ───────────────────────────────────────── */
-
-.media-video {
-  display: flex !important;
-  flex-direction: row;
-  gap: 4mm;
-  align-items: flex-start;
-  margin-top: 4mm;
-  padding: 2.5mm;
-  background: #f4f8fb;
-  border: 1px solid #dde5ec;
+.frame { border: 1px solid #dfe5ea !important; border-radius: 3px; }
+.frame-browser::before {
+  padding: 1mm 2mm 1mm 9mm;
+  font-size: 6.6pt;
+  background-color: #f7f9fa !important;
+  background-size: 1.4mm 1.4mm;
+  background-position: 2.2mm center, 4.2mm center, 6.2mm center;
 }
-.media-video .media { flex: 1 1 auto; max-width: 62mm; }
-.media-video .media img { height: auto; object-fit: fill; }
-.play-badge { width: 10mm; height: 10mm; background: #10314f !important; }
-.play-badge::after { border-width: 2.1mm 0 2.1mm 3.4mm; }
-.qr-block { flex: 0 0 20mm; width: 20mm; }
-.qr-block img { padding: .8mm; }
-.qr-caption { font-size: 6.2pt; margin-top: 1.2mm; line-height: 1.35; }
 
-/* ── 링크 표기 ───────────────────────────────────────────────────────── */
+.shot-lead > .frame { max-width: 140mm; }
+.shot-sub  > .frame { max-width: 112mm; }
+.shot-lead .frame img { height: 72mm; object-fit: cover; object-position: top; }
+.shot-sub  .frame img { height: 52mm; object-fit: cover; object-position: top; }
 
-a { color: #10314f; text-decoration: none; }
-.links { margin-top: 4mm; font-size: 8.4pt; display: block; }
-.links a { font-size: 8pt; display: inline-block; margin-right: 5mm; }
-.links a::after { content: none; }
-.links-note { display: block; margin-top: 1mm; font-size: 7.6pt; }
-.cap-body a, .body a { text-decoration: underline; }
+.frame-phone { border-width: 2px !important; border-color: #1d242a !important; border-radius: 3mm; }
+.frame-phone img { border-radius: 2mm; height: 80mm; }
+.phones { display: flex !important; flex-direction: row; gap: 3mm; max-width: none; }
+.phones > .frame { flex: 1 1 0; min-width: 0; }
 
-/* ── 태그 · 프로필 ───────────────────────────────────────────────────── */
+.shot-pair { display: flex !important; flex-direction: row; gap: 5mm; margin-top: 5mm; }
+.shot-pair > .shot { flex: 1 1 0; min-width: 0; margin-top: 0; }
+.shot-pair .frame img { height: 54mm; object-fit: cover; object-position: top; }
+
+.mixed { display: flex !important; flex-direction: row; gap: 3mm; align-items: flex-start; }
+.mixed > .frame-browser { flex: 1.6 1 0; }
+.mixed > .frame-phone { flex: .7 1 0; }
+.mixed .frame-browser img { height: 52mm; object-fit: cover; object-position: top; }
+.mixed .frame-phone img { height: 58mm; }
+
+/* ── 기타 · 프로필 · 푸터 (압축) ─────────────────────────────────────── */
+
+.misc { padding: 0 !important; margin-top: 0 !important; border-top: 0 !important; }
+.misc-row { display: flex !important; flex-direction: row; gap: 6mm; align-items: flex-start; }
+.misc-row > .misc-text { flex: 1.2 1 0; min-width: 0; }
+.misc-row > .shot { flex: 1 1 0; min-width: 0; margin-top: 0; }
+.misc-row .frame img { height: 46mm; object-fit: cover; object-position: top; }
+.misc-text h3 { font-size: 11pt; margin-bottom: 1.5mm; }
 
 .tags { display: flex !important; flex-wrap: wrap; gap: 1.2mm; margin-top: 2mm; }
-.tags li { padding: .6mm 1.6mm; font-size: 7.4pt; border: 1px solid #dde5ec; }
+.tags li { padding: .5mm 1.6mm; font-size: 7.2pt; }
 
-.certs { display: block; }
-.certs li { margin-bottom: 2mm; }
-.cert-name { display: block; font-size: 9pt; }
-.cert-desc { display: block; font-size: 7.8pt; }
+.profile { padding: 5mm 0 0 !important; margin-top: 5mm !important; border-top: 1px solid #e3e8ec !important; }
+.profile-grid { display: flex !important; flex-direction: row; gap: 8mm; }
+.profile-grid > div { flex: 1 1 0; min-width: 0; }
+.profile-grid > div:last-child { flex: 1.5 1 0; }
+.profile-grid dt { font-size: 7pt; }
+.profile-grid dd { font-size: 8.6pt; }
 
-.skills dt { font-size: 7.8pt; margin-top: 3mm; }
-.profile-main { font-size: 10.5pt; }
+.foot { padding: 4mm 0 0 !important; margin-top: 5mm !important; border-top: 1px solid #e3e8ec !important; }
+.foot-line { font-size: 9.6pt; max-width: none; }
+.foot-links { gap: 1mm 6mm; margin-top: 2mm; font-size: 8.2pt; }
+.foot-meta { margin-top: 2.5mm; font-size: 7.4pt; }
 
-.closing { margin-top: 6mm; padding-top: 4mm; }
-.closing-line { font-size: 9.6pt; max-width: none; }
-
-.foot {
-  margin-top: 6mm !important;
-  padding-top: 3mm;
-  border-top: 1px solid #dde5ec;
-  font-size: 7.6pt;
-}
-
-/* ── 좁은 화면에서 인쇄할 때도 2단을 유지 ───────────────────────────── */
-@media print and (max-width: 900px) {
-  .cols { flex-direction: row !important; }
-  .media-row { flex-wrap: nowrap !important; }
-}
-
-/* ── 보조 프로젝트는 인쇄에서 2단 대신 위아래로 쌓습니다 ────────────────
-   2단 flex 컨테이너는 페이지 사이로 쪼개지지 않아, 앞 페이지에 큰 여백이
-   생깁니다. 세로로 쌓으면 내용이 자연스럽게 이어집니다. */
-#others .cols { display: block !important; }
-#others .subproject-minor {
-  margin-top: 6mm;
-  padding-top: 5mm;
-  border-top: 1px solid #eaf0f5;
-}
-#others .subproject-minor .media { max-width: 90mm; }
+/* 링크는 눌리도록 유지하되, 종이에서는 밑줄 없이 색으로만 구분 */
+a { color: #0d6b60 !important; text-decoration: none; }

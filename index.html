@@ -28,11 +28,10 @@
     <a class="nav-name" href="#top">김소영</a>
     <nav aria-label="섹션 이동">
       <ul class="nav-list">
-        <li><a href="#summary">요약</a></li>
+        <li><a href="#summary">한눈에 보기</a></li>
         <li><a href="#projects">대표 프로젝트</a></li>
         <li><a href="#other">기타 프로젝트</a></li>
-        <li><a href="#skills">기술</a></li>
-        <li><a href="#contact">학력 · 연락</a></li>
+        <li><a href="#profile">프로필 · 연락</a></li>
       </ul>
     </nav>
   </div>
@@ -40,397 +39,446 @@
 
 <main id="main">
 
-<!-- ══════════════ Hero ══════════════ -->
-<section class="hero" id="top">
-  <div class="hero-top">
-    <div class="hero-head">
-      <p class="hero-major">
-        동국대학교 통계학 주전공 · 소프트웨어 AI 연계전공
-        <span class="badge">2027년 8월 졸업 예정</span>
-      </p>
+<!-- ══════════════ Hero (흰 배경) ══════════════ -->
+<section class="section section-hero" id="top">
+  <div class="wrap">
+    <div class="hero-top">
+      <div class="hero-head">
+        <p class="hero-major">
+          동국대학교 통계학 주전공 · 소프트웨어 AI 연계전공
+          <span class="badge">2027년 8월 졸업 예정</span>
+        </p>
 
-      <h1 class="hero-title">데이터를 검증하고 서비스로 연결하는 김소영입니다.</h1>
+        <h1 class="hero-title">데이터를 검증하고 서비스로 연결하는 김소영입니다.</h1>
 
-      <p class="hero-description">
-        통계학과 소프트웨어 AI를 기반으로 데이터 품질을 검증하고,
-        AI 모델의 평가 조건을 구조화하며, API와 데이터베이스를 연동한 서비스를 구현해 왔습니다.
-      </p>
+        <p class="hero-description">
+          통계학과 소프트웨어 AI를 기반으로 데이터 품질을 검증하고,
+          AI 모델의 평가 조건을 구조화하며, API와 데이터베이스를 연동한 서비스를 구현해 왔습니다.
+        </p>
 
-      <ul class="hero-points">
-        <li>금융 데이터 정합성 검증 규칙 설계</li>
-        <li>3D 생성 AI 평가 조건 표준화</li>
-        <li>FastAPI · Supabase 기반 서비스 구현</li>
-      </ul>
+        <ul class="hero-points">
+          <li>금융 데이터 정합성 검증 규칙 설계</li>
+          <li>3D 생성 AI 평가 조건 표준화</li>
+          <li>FastAPI · Supabase 기반 서비스 구현</li>
+        </ul>
 
-      <div class="hero-actions">
-        <a class="btn btn-primary" href="#projects">대표 프로젝트 보기</a>
-        <a class="btn" href="https://github.com/ssoju-kim" target="_blank" rel="noopener noreferrer">GitHub</a>
-        <!-- 이메일 · 경력기술서 버튼은 assets/js/app.js 의 PROFILE 값이 채워질 때만 나타납니다. -->
-        <a class="btn" data-profile="email" href="#" hidden>이메일 보내기</a>
-        <a class="btn" data-profile="resume" href="#" hidden>경력기술서 PDF</a>
-      </div>
-    </div>
-
-    <!-- 프로필 사진 자리 (4:5). 준비되면 아래 주석을 풀어 사용합니다.
-    <div class="hero-photo">
-      <img src="./assets/img/profile.jpg" alt="김소영 프로필 사진" width="800" height="1000">
-    </div>
-    -->
-  </div>
-</section>
-
-<!-- ══════════════ 요약 ══════════════ -->
-<section class="band" id="summary" aria-labelledby="summary-h">
-  <h2 class="section-title" id="summary-h">한눈에 보기</h2>
-  <ul class="summary">
-    <li>
-      <h3>금융 데이터 정합성 검증</h3>
-      <p class="sum-desc">은행·카드·증권 모의 데이터를 하나의 형식으로 통합하고, 통합 결과를 원천과 대사하는 검증 규칙을 구현했습니다.</p>
-      <dl class="sum-facts">
-        <div><dt>결과</dt><dd>모의 데이터 84건 대사 · 오류 시나리오 15건 검출</dd></div>
-        <div><dt>역할</dt><dd>개인 프로젝트 · 수집부터 검증·대시보드까지 전 과정</dd></div>
-      </dl>
-      <p class="summary-link"><a href="#finance">자세히 보기</a></p>
-    </li>
-    <li>
-      <h3>3D 생성 AI 데이터 검증 · 모델 평가</h3>
-      <p class="sum-desc">정부지원 R&amp;D 과제에서 학습 데이터를 점검·정리하고, 평가 조건을 근거와 함께 표준화했습니다.</p>
-      <dl class="sum-facts">
-        <div><dt>결과</dt><dd>유효 데이터 1,451건 정리 · 재현 가능한 평가 실행 문서</dd></div>
-        <div><dt>역할</dt><dd>실무 경험 · 데이터 전처리, 학습·평가 실행, 문서화</dd></div>
-      </dl>
-      <p class="summary-link"><a href="#spec">자세히 보기</a></p>
-    </li>
-    <li>
-      <h3>MAPLESSUNDAY 예측 서비스</h3>
-      <p class="sum-desc">흩어져 있던 이벤트 이력을 데이터로 정리하고, 백엔드·데이터베이스·배포를 담당해 서비스를 출시했습니다.</p>
-      <dl class="sum-facts">
-        <div><dt>결과</dt><dd>2026년 5월 출시 · 이벤트 이력 455건 구조화</dd></div>
-        <div><dt>역할</dt><dd>2인 팀 · 백엔드 API, 데이터베이스, 배포 담당</dd></div>
-      </dl>
-      <p class="summary-link"><a href="#sunday">자세히 보기</a></p>
-    </li>
-  </ul>
-</section>
-
-<!-- ══════════════ 대표 프로젝트 ══════════════ -->
-<section class="band" id="projects" aria-labelledby="proj-h">
-  <h2 class="section-title" id="proj-h">대표 프로젝트</h2>
-
-  <!-- ───── 1. 금융 데이터 정합성 검증 ───── -->
-  <article class="project" id="finance">
-    <p class="project-meta">개인 프로젝트 · 2026년 6월 – 7월 · 모의 금융 데이터</p>
-    <h3 class="project-title">금융 데이터 통합과 정합성 검증</h3>
-    <p class="project-description">
-      84건의 모의 금융 데이터를 대사하고, 누락·중복·금액·건수 불일치 검증 규칙을 구현했습니다.
-    </p>
-
-    <ul class="stats">
-      <li class="stat-lead">
-        <p class="stat-num">84<span class="unit">건</span></p>
-        <p class="stat-cap">대사한 모의 거래 데이터<span class="stat-sub">실제 금융회사 데이터가 아닌 모의 데이터</span></p>
-      </li>
-      <li>
-        <p class="stat-num">15<span class="unit">건</span></p>
-        <p class="stat-cap">오류 시나리오 검출<span class="stat-sub">의도적으로 구성한 오류 15건 기준</span></p>
-      </li>
-      <li>
-        <p class="stat-num">4<span class="unit">개</span></p>
-        <p class="stat-cap">검증 규칙<span class="stat-sub">누락 · 중복 · 금액 · 건수/잔액 불일치</span></p>
-      </li>
-    </ul>
-
-    <!-- 대표 이미지 자리 (16:9). 준비되면 아래 주석을 풀어 사용합니다.
-    <figure class="shot">
-      <img class="img-16x9" src="./assets/img/finance-dashboard.png" alt="금융 데이터 검증 대시보드. 오류 유형별 건수와 오류 목록이 보인다." width="1600" height="900">
-      <figcaption>검증 결과와 오류 목록을 함께 보여주는 화면입니다.</figcaption>
-    </figure>
-    -->
-
-    <div class="project-body">
-      <section class="pcol">
-        <h4>배경</h4>
-        <p>기관마다 형식이 다른 데이터를 하나로 모으면 통합 과정에서 생긴 누락·중복·금액 오류가 드러나지 않습니다. 통합 결과를 원천과 대사해 오류를 자동으로 찾는 것이 과제였습니다.</p>
-
-        <h4 class="mt">내가 맡은 역할</h4>
-        <p>개인 프로젝트로 데이터 수집, 형식 표준화, 통합, 검증 규칙, 결과 확인 화면까지 전 과정을 직접 구현했습니다.</p>
-      </section>
-
-      <section class="pcol">
-        <h4>수행 내용</h4>
-        <ol class="steps">
-          <li>은행·카드·증권 모의 제공기관 API에서 데이터를 수집해 원천 → 표준 → 운영 3개 계층으로 적재</li>
-          <li>기관마다 다른 필드명·날짜·금액 형식을 공통 스키마로 정규화하고, (원천, 원천레코드ID)를 키로 중복 병합</li>
-          <li>통합 결과를 원천·정답집합과 대사해 누락·중복·금액 불일치·건수/잔액 불일치 4개 규칙으로 검증</li>
-          <li>모든 운영 레코드에 원천·원천레코드ID·원본 링크를 남겨 역추적이 가능하도록 설계</li>
-        </ol>
-      </section>
-    </div>
-
-    <section class="outcome">
-      <h4>결과 및 산출물</h4>
-      <ul class="ticks">
-        <li>대사 대상 84건 중 의도적으로 삽입한 오류 15건 검출 (누락 12 · 중복 1 · 금액 불일치 1 · 건수·잔액 불일치 1)</li>
-        <li>오류 판정은 규칙 기반으로 처리하고, 생성형 AI는 결과 설명 보조 용도로만 사용</li>
-        <li>오류 발생 원인을 페이지 타임아웃 · 재전송 · 환율 반올림 등으로 구분해 기록</li>
-        <li>대사 결과를 확인하는 웹 대시보드, Supabase SQL 스키마 · 마이그레이션 · 감사 로그</li>
-      </ul>
-    </section>
-
-    <footer class="project-foot">
-      <p class="tech"><span>기술</span> Python · Supabase(PostgreSQL) · Next.js</p>
-      <p class="links">
-        <a href="https://github.com/ssoju-kim/finance_betty" target="_blank" rel="noopener noreferrer">GitHub 저장소</a>
-      </p>
-    </footer>
-  </article>
-
-  <!-- ───── 2. 스팩스페이스 실무 경험 ───── -->
-  <article class="project" id="spec">
-    <p class="project-meta">실무 경험 · 스팩스페이스 개발사업부 CV팀 · 2026년 1월 – 7월<span class="meta-sub">1~2월 · 7월 프리랜서 / 3~6월 IPP 장기현장실습</span></p>
-    <h3 class="project-title">3D 생성 AI 학습 데이터 검증과 모델 평가</h3>
-    <p class="project-description">
-      3D 학습 데이터 1,500건을 점검해 1,451건으로 정리하고, 학습·holdout 데이터의 누출 여부를 검증했습니다.
-      모델 성능 목표에는 도달하지 못했지만, 지표별 미달 원인과 평가 조건을 분리해 후속 담당자가 재현할 수 있는 실행 문서로 남겼습니다.
-    </p>
-
-    <ul class="stats">
-      <li class="stat-lead">
-        <p class="stat-num">1,451<span class="unit">건</span></p>
-        <p class="stat-cap">정리한 유효 학습 데이터<span class="stat-sub">원본 1,500건 점검 후</span></p>
-      </li>
-      <li>
-        <p class="stat-num">1,268 / 143</p>
-        <p class="stat-cap">학습 · holdout 분할<span class="stat-sub">두 집합 간 데이터 누출 여부 점검</span></p>
-      </li>
-      <li>
-        <p class="stat-num">4<span class="unit">단계</span></p>
-        <p class="stat-cap">평가 조건 근거 분류<span class="stat-sub">논문 명시 · 공식 코드 · 후속 관행 · 미확인</span></p>
-      </li>
-    </ul>
-
-    <!-- 대표 이미지 자리 (16:9). 회사 내부 경로·서버 정보·API 키가 보이지 않는 자료만 사용합니다.
-    <figure class="shot">
-      <img class="img-16x9" src="./assets/img/spec-eval.png" alt="평가 조건 정리표. 조건마다 근거 수준이 함께 표시되어 있다." width="1600" height="900">
-      <figcaption>조건마다 근거 수준을 함께 표시한 정리표입니다.</figcaption>
-    </figure>
-    -->
-
-    <div class="project-body">
-      <section class="pcol">
-        <h4>배경</h4>
-        <p>한국 문화 특화 3D 에셋 생성 정부지원 R&amp;D 과제에서, 학습 데이터의 품질과 평가 조건이 정리되어 있지 않아 결과를 신뢰하거나 재현하기 어려운 상태였습니다.</p>
-
-        <h4 class="mt">내가 맡은 역할</h4>
-        <p>학습 데이터 점검과 구성, LoRA 학습 실행과 체크포인트 비교, 정량평가 실행, 평가 조건 리서치와 문서화를 담당했습니다. 사업화 영역에서는 시장조사와 Relic 랜딩페이지 구현을 맡았습니다.</p>
-      </section>
-
-      <section class="pcol">
-        <h4>수행 내용</h4>
-        <ol class="steps">
-          <li>3D 학습 데이터 1,500건을 점검해 사용 불가 데이터를 분류하고 1,451건으로 정리</li>
-          <li>학습 1,268건 / holdout 143건으로 분할하고, 두 집합 간 데이터 누출 여부와 캡션·프롬프트 결측을 점검</li>
-          <li>TRELLIS2 기반 LoRA 학습을 실행하고 체크포인트별 생성 결과를 비교</li>
-          <li>정량평가 지표와 실행 조건을 조사해 실행하고, 평가 코드·렌더링·입력 조건이 의도대로 동작하는지 검증</li>
-          <li>논문·공식 코드·후속 연구 구현을 대조해 조건별 근거를 4단계로 분류</li>
-        </ol>
-      </section>
-    </div>
-
-    <section class="outcome">
-      <h4>결과 및 산출물</h4>
-      <ul class="ticks">
-        <li>과제 목표 성능에는 도달하지 못했습니다. 미달 원인을 데이터 · 전처리 · 평가 조건 · 체크포인트 관점으로 분리해 분석하고, 시도한 개선안과 그 결과를 기록했습니다.</li>
-        <li>후속 담당자와 시험기관이 같은 조건으로 재현할 수 있도록 데이터 구성, 평가 지표, 실행 환경, 실행 명령어를 실행 문서로 정리</li>
-        <li>확인된 사실과 미확인 사항을 구분해 표기한 인수인계 자료</li>
-        <li>사업계획서 시장조사 영역 담당(3D 생성 AI 시장·경쟁 서비스 조사), Relic 랜딩페이지 기획부터 구현까지 담당</li>
-      </ul>
-      <p class="callout">정성평가는 실행 전 단계에서 비교 대상, 평가 항목, 평가자 구성을 계획했습니다. 실제 평가는 진행하지 않았습니다.</p>
-    </section>
-
-    <footer class="project-foot">
-      <p class="tech"><span>기술</span> Python · PyTorch · TRELLIS2 · LoRA · Linux</p>
-    </footer>
-  </article>
-
-  <!-- ───── 3. MAPLESSUNDAY ───── -->
-  <article class="project" id="sunday">
-    <p class="project-meta">팀 프로젝트 · 2026년 3월 – 6월 · 2인 · 2026년 5월 출시</p>
-    <h3 class="project-title">MAPLESSUNDAY 이벤트 예측 서비스</h3>
-    <p class="project-description">
-      흩어져 있던 이벤트 이력 약 455건을 데이터로 구조화하고,
-      FastAPI 백엔드와 데이터베이스 설계, 외부 API 연동, 배포·운영을 담당했습니다.
-    </p>
-
-    <ul class="stats">
-      <li class="stat-lead">
-        <p class="stat-num">9주 / 10주</p>
-        <p class="stat-cap">TOP3 후보 적중 <span class="tag-team">팀 결과</span><span class="stat-sub">10주 백테스트 중 9주 TOP3 적중</span></p>
-      </li>
-      <li>
-        <p class="stat-num">455<span class="unit">건</span></p>
-        <p class="stat-cap">구조화한 과거 이벤트 이력<span class="stat-sub">2017년 3월 – 2026년 5월</span></p>
-      </li>
-      <li>
-        <p class="stat-num">7.6<span class="unit">만 회</span></p>
-        <p class="stat-cap">인벤 홍보 게시글 누적 조회수 <span class="tag-team">팀 결과</span><span class="stat-sub">서비스 방문자 수와는 별도 지표</span></p>
-      </li>
-    </ul>
-
-    <!-- 대표 이미지 자리 (16:9). 준비되면 아래 주석을 풀어 사용합니다.
-    <figure class="shot">
-      <img class="img-16x9" src="./assets/img/sunday-main.png" alt="MAPLESSUNDAY 메인 화면. 다음 이벤트 후보가 표시되어 있다." width="1600" height="900">
-      <figcaption>다음 이벤트 후보를 보여주는 화면입니다.</figcaption>
-    </figure>
-    -->
-
-    <div class="project-body">
-      <section class="pcol">
-        <h4>배경</h4>
-        <p>커뮤니티에서 반복되던 “다음 이벤트는 언제인가”라는 질문을 서비스 문제로 정의하고, 예측·캘린더·캐릭터 조회·공지 조회를 하나의 웹서비스로 기획했습니다.</p>
-
-        <h4 class="mt">내가 맡은 역할</h4>
-        <div class="split">
-          <div>
-            <p class="split-head">본인</p>
-            <ul class="ticks">
-              <li>백엔드 API 개발 (FastAPI)</li>
-              <li>Supabase 데이터베이스 설계 및 연동</li>
-              <li>넥슨 오픈 API 등 외부 API 연동</li>
-              <li>Render 배포 및 운영</li>
-              <li>이벤트 이력 수집 · 구조화</li>
-            </ul>
-          </div>
-          <div>
-            <p class="split-head">팀원</p>
-            <ul class="ticks">
-              <li>예측 모델 구현</li>
-              <li>프론트엔드 구현</li>
-            </ul>
-          </div>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#projects">대표 프로젝트 보기</a>
+          <a class="btn" href="https://github.com/ssoju-kim" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <!-- 이메일 · 경력기술서 버튼은 assets/js/app.js 의 PROFILE 값이 채워질 때만 나타납니다. -->
+          <a class="btn" data-profile="email" href="#" hidden>이메일 보내기</a>
+          <a class="btn" data-profile="resume" href="#" hidden>경력기술서 PDF</a>
         </div>
-      </section>
+      </div>
 
-      <section class="pcol">
-        <h4>수행 내용</h4>
-        <ol class="steps">
-          <li>2017년 3월 – 2026년 5월 이벤트 약 455건을 공지·커뮤니티·위키에서 수집해 날짜·이벤트명·혜택·태그로 구조화</li>
-          <li>캐릭터·공지·예측 API 엔드포인트를 구성하고, 넥슨 오픈 API 응답을 가공해 Supabase와 연동</li>
-          <li>외부 호출을 비동기로 처리하고 429·5xx·타임아웃에 지수 백오프 재시도, TTL 캐시(30분·1시간)와 GZip 압축, 헬스체크를 적용</li>
-          <li>API 키와 접속정보를 환경변수로 분리해 Render에 배포하고 운영</li>
-        </ol>
-      </section>
+      <!-- 프로필 사진 자리 (4:5). 준비되면 아래 주석을 풀어 사용합니다.
+      <div class="hero-photo">
+        <img src="./assets/img/profile.jpg" alt="김소영 프로필 사진" width="800" height="1000">
+      </div>
+      -->
     </div>
-
-    <section class="outcome">
-      <h4>결과 및 산출물</h4>
-      <ul class="ticks">
-        <li>2026년 5월 서비스 출시 — 이벤트 후보 예측, 과거 이벤트 캘린더, 캐릭터 조회, 공지 조회 기능</li>
-        <li>10주 백테스트 중 9주 TOP3 적중 (팀 백테스트 결과이며, 예측 모델 구현은 팀원이 담당했습니다)</li>
-        <li>2017년 이후 이벤트 이력 455건을 재사용 가능한 데이터셋으로 정리</li>
-      </ul>
-    </section>
-
-    <footer class="project-foot">
-      <p class="tech"><span>기술</span> FastAPI · Supabase · 넥슨 오픈 API · Render</p>
-      <p class="links">
-        <a href="https://github.com/yeonsik-choi/maplessunday-web" target="_blank" rel="noopener noreferrer">GitHub 저장소</a>
-        <span class="links-note">공동 저장소이며 백엔드가 본인 구현 범위입니다.</span>
-      </p>
-    </footer>
-  </article>
+  </div>
 </section>
 
-<!-- ══════════════ 기타 프로젝트 ══════════════ -->
-<section class="band" id="other" aria-labelledby="other-h">
-  <h2 class="section-title" id="other-h">기타 프로젝트</h2>
+<!-- ══════════════ 한눈에 보기 (연회색 배경) ══════════════ -->
+<section class="section section-muted" id="summary" aria-labelledby="summary-h">
+  <div class="wrap">
+    <p class="eyebrow">AT A GLANCE</p>
+    <h2 class="section-title" id="summary-h">한눈에 보기</h2>
 
-  <div class="other-grid">
-    <article class="card">
-      <p class="project-meta">팀 프로젝트 · 약 1개월 · 3인 (개발 2 · 마케팅 1)</p>
-      <h3>Withmarry — 모바일 청첩장 MVP</h3>
-      <p>개발 2명 중 한 명으로 FastAPI · Supabase 기반 백엔드와 청첩장·랜딩페이지를 구현하고 배포했습니다.</p>
-      <dl class="sum-facts">
-        <div><dt>결과</dt><dd>실제 배포 · 사용자 문의 5건 · 첫 유료 결제 발생 <span class="tag-team">팀 결과</span></dd></div>
-        <div><dt>역할</dt><dd>백엔드 · 청첩장 템플릿 · 배포 · 문의 대응</dd></div>
-      </dl>
-      <p class="tech"><span>기술</span> FastAPI · Supabase · Vite · Cloudflare Pages</p>
+    <ul class="summary">
+      <li>
+        <h3>금융 데이터 정합성 검증</h3>
+        <p class="sum-desc">은행·카드·증권 모의 데이터를 하나의 형식으로 통합하고, 통합 결과를 원천과 대사하는 검증 규칙을 구현했습니다.</p>
+        <dl class="sum-facts">
+          <div><dt>결과</dt><dd>모의 데이터 84건 대사 · 오류 시나리오 15건 검출</dd></div>
+          <div><dt>역할</dt><dd>개인 프로젝트 · 수집부터 검증·대시보드까지 전 과정</dd></div>
+        </dl>
+        <p class="summary-link"><a href="#finance">PROJECT 01 자세히 보기</a></p>
+      </li>
+      <li>
+        <h3>3D 생성 AI 데이터 검증 · 모델 평가</h3>
+        <p class="sum-desc">정부지원 R&amp;D 과제에서 학습 데이터를 점검·정리하고, 평가 조건을 근거와 함께 표준화했습니다.</p>
+        <dl class="sum-facts">
+          <div><dt>결과</dt><dd>유효 데이터 1,451건 정리 · 재현 가능한 평가 실행 문서</dd></div>
+          <div><dt>역할</dt><dd>실무 경험 · 데이터 전처리, 학습·평가 실행, 문서화</dd></div>
+        </dl>
+        <p class="summary-link"><a href="#spec">PROJECT 02 자세히 보기</a></p>
+      </li>
+      <li>
+        <h3>MAPLESSUNDAY 예측 서비스</h3>
+        <p class="sum-desc">흩어져 있던 이벤트 이력을 데이터로 정리하고, 백엔드·데이터베이스·배포를 담당해 서비스를 출시했습니다.</p>
+        <dl class="sum-facts">
+          <div><dt>결과</dt><dd>2026년 5월 출시 · 이벤트 이력 455건 구조화</dd></div>
+          <div><dt>역할</dt><dd>2인 팀 · 백엔드 API, 데이터베이스, 배포 담당</dd></div>
+        </dl>
+        <p class="summary-link"><a href="#sunday">PROJECT 03 자세히 보기</a></p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ══════════════ 대표 프로젝트 (흰 배경) ══════════════ -->
+<section class="section" id="projects" aria-labelledby="proj-h">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">SELECTED WORK</p>
+      <h2 class="section-title" id="proj-h">대표 프로젝트</h2>
+      <p class="section-lead">
+        데이터 검증, AI 모델 평가, 서비스 개발 경험 중
+        데이터·디지털 서비스 직무와 관련성이 높은 세 가지 프로젝트입니다.
+      </p>
+    </div>
+
+    <!-- ───── PROJECT 01 ───── -->
+    <article class="project" id="finance" aria-labelledby="finance-h">
+      <header class="project-head">
+        <p class="project-no">PROJECT 01<span class="project-kind">PERSONAL PROJECT</span></p>
+        <h3 class="project-title" id="finance-h">금융 데이터 통합과 정합성 검증</h3>
+        <p class="project-description">
+          84건의 모의 금융 데이터를 대사하고, 누락·중복·금액·건수 불일치 검증 규칙을 구현했습니다.
+        </p>
+        <p class="project-meta">개인 프로젝트 · 2026년 6월 – 7월 · 모의 금융 데이터</p>
+
+        <ul class="stats">
+          <li>
+            <p class="stat-num">84<span class="unit">건</span></p>
+            <p class="stat-cap">데이터 대사</p>
+            <p class="stat-sub">실제 금융회사 데이터가 아닌 모의 데이터</p>
+          </li>
+          <li>
+            <p class="stat-num">15<span class="unit">건</span></p>
+            <p class="stat-cap">오류 시나리오 검출</p>
+            <p class="stat-sub">의도적으로 구성한 오류 15건 기준</p>
+          </li>
+          <li>
+            <p class="stat-num">4<span class="unit">개</span></p>
+            <p class="stat-cap">정합성 검증 규칙</p>
+            <p class="stat-sub">누락 · 중복 · 금액 · 건수/잔액 불일치</p>
+          </li>
+        </ul>
+
+        <p class="project-links">
+          <a href="https://github.com/ssoju-kim/finance_betty" target="_blank" rel="noopener noreferrer">GitHub 저장소</a>
+        </p>
+      </header>
+
+      <!-- 대표 이미지 자리 (16:9). 준비되면 아래 주석을 풀어 사용합니다.
+      <figure class="shot">
+        <img class="img-16x9" src="./assets/img/finance-dashboard.png" alt="금융 데이터 검증 대시보드. 오류 유형별 건수와 오류 목록이 보인다." width="1600" height="900">
+        <figcaption>검증 결과와 오류 목록을 함께 보여주는 화면입니다.</figcaption>
+      </figure>
+      -->
+
+      <div class="project-body">
+        <div class="pcol">
+          <section class="context">
+            <h4>배경</h4>
+            <p>기관마다 형식이 다른 데이터를 하나로 모으면 통합 과정에서 생긴 누락·중복·금액 오류가 드러나지 않습니다. 통합 결과를 원천과 대사해 오류를 자동으로 찾는 것이 과제였습니다.</p>
+          </section>
+
+          <section class="role">
+            <h4>내가 맡은 역할</h4>
+            <p>개인 프로젝트로 데이터 수집, 형식 표준화, 통합, 검증 규칙, 결과 확인 화면까지 전 과정을 직접 구현했습니다.</p>
+          </section>
+        </div>
+
+        <section class="pcol">
+          <h4>수행 내용</h4>
+          <ol class="steps">
+            <li>은행·카드·증권 모의 제공기관 API에서 데이터를 수집해 원천 → 표준 → 운영 3개 계층으로 적재</li>
+            <li>기관마다 다른 필드명·날짜·금액 형식을 공통 스키마로 정규화하고, (원천, 원천레코드ID)를 키로 중복 병합</li>
+            <li>통합 결과를 원천·정답집합과 대사해 누락·중복·금액 불일치·건수/잔액 불일치 4개 규칙으로 검증</li>
+            <li>모든 운영 레코드에 원천·원천레코드ID·원본 링크를 남겨 역추적이 가능하도록 설계</li>
+          </ol>
+        </section>
+      </div>
+
+      <section class="outcome">
+        <h4>결과 및 산출물</h4>
+        <ul class="ticks">
+          <li>대사 대상 84건 중 의도적으로 삽입한 오류 15건 검출 (누락 12 · 중복 1 · 금액 불일치 1 · 건수·잔액 불일치 1)</li>
+          <li>오류 판정은 규칙 기반으로 처리하고, 생성형 AI는 결과 설명 보조 용도로만 사용</li>
+          <li>오류 발생 원인을 페이지 타임아웃 · 재전송 · 환율 반올림 등으로 구분해 기록</li>
+          <li>대사 결과를 확인하는 웹 대시보드, Supabase SQL 스키마 · 마이그레이션 · 감사 로그</li>
+        </ul>
+      </section>
+
+      <p class="tech"><span>기술</span> Python · SQL · Supabase(PostgreSQL) · Next.js</p>
     </article>
 
-    <article class="card">
-      <p class="project-meta">개인 프로젝트 · 실제 매장 운영 데이터</p>
-      <h3>달빛장어 운영 대시보드</h3>
-      <p>실제 매장의 운영 데이터를 관리하는 대시보드를 만들고, 데이터 입력과 운영 편의성을 개선했습니다.</p>
-      <dl class="sum-facts">
-        <div><dt>기능</dt><dd>매출·지출 입력 · 월별 보고서 · 마케팅 분석 · 메뉴 관리</dd></div>
-        <div><dt>역할</dt><dd>모바일 중심 UI 설계 · 개발 · 배포</dd></div>
-      </dl>
-      <p class="tech"><span>기술</span> React · Supabase · Vercel</p>
-      <p class="links">
-        <a href="https://github.com/ssoju-kim/moonlight" target="_blank" rel="noopener noreferrer">GitHub 저장소</a>
-      </p>
+    <!-- ───── PROJECT 02 ───── -->
+    <article class="project" id="spec" aria-labelledby="spec-h">
+      <header class="project-head">
+        <p class="project-no">PROJECT 02<span class="project-kind">WORK EXPERIENCE</span></p>
+        <h3 class="project-title" id="spec-h">3D 생성 AI 학습 데이터 검증과 모델 평가</h3>
+        <p class="project-description">
+          3D 학습 데이터 1,500건을 점검해 1,451건으로 정리하고, 학습·holdout 데이터의 누출 여부를 검증했습니다.
+          모델 성능 목표에는 도달하지 못했지만, 지표별 미달 원인과 평가 조건을 분리해 후속 담당자가 재현할 수 있는 실행 문서로 남겼습니다.
+        </p>
+        <p class="project-meta">
+          스팩스페이스 개발사업부 CV팀 · 2026년 1월 – 7월
+          <span class="meta-sub">1~2월 · 7월 프리랜서 / 3~6월 IPP 장기현장실습</span>
+        </p>
+
+        <ul class="stats">
+          <li>
+            <p class="stat-num">1,451<span class="unit">건</span></p>
+            <p class="stat-cap">정리한 유효 학습 데이터</p>
+            <p class="stat-sub">원본 1,500건 점검 후</p>
+          </li>
+          <li>
+            <p class="stat-num">1,268 / 143</p>
+            <p class="stat-cap">학습 · holdout 분할</p>
+            <p class="stat-sub">두 집합 간 데이터 누출 여부 점검</p>
+          </li>
+          <li>
+            <p class="stat-num">4<span class="unit">단계</span></p>
+            <p class="stat-cap">평가 조건 근거 분류</p>
+            <p class="stat-sub">논문 명시 · 공식 코드 · 후속 관행 · 미확인</p>
+          </li>
+        </ul>
+      </header>
+
+      <!-- 대표 이미지 자리 (16:9). 회사 내부 경로·서버 정보·API 키가 보이지 않는 자료만 사용합니다.
+      <figure class="shot">
+        <img class="img-16x9" src="./assets/img/spec-eval.png" alt="평가 조건 정리표. 조건마다 근거 수준이 함께 표시되어 있다." width="1600" height="900">
+        <figcaption>조건마다 근거 수준을 함께 표시한 정리표입니다.</figcaption>
+      </figure>
+      -->
+
+      <div class="project-body">
+        <div class="pcol">
+          <section class="context">
+            <h4>배경</h4>
+            <p>한국 문화 특화 3D 에셋 생성 정부지원 R&amp;D 과제에서, 학습 데이터의 품질과 평가 조건이 정리되어 있지 않아 결과를 신뢰하거나 재현하기 어려운 상태였습니다.</p>
+          </section>
+
+          <section class="role">
+            <h4>내가 맡은 역할</h4>
+            <p>학습 데이터 점검과 구성, LoRA 학습 실행과 체크포인트 비교, 정량평가 실행, 평가 조건 리서치와 문서화를 담당했습니다. 사업화 영역에서는 시장조사와 Relic 랜딩페이지 구현을 맡았습니다.</p>
+          </section>
+        </div>
+
+        <section class="pcol">
+          <h4>수행 내용</h4>
+          <ol class="steps">
+            <li>3D 학습 데이터 1,500건을 점검해 사용 불가 데이터를 분류하고 1,451건으로 정리</li>
+            <li>학습 1,268건 / holdout 143건으로 분할하고, 두 집합 간 데이터 누출 여부와 캡션·프롬프트 결측을 점검</li>
+            <li>TRELLIS2 기반 LoRA 학습을 실행하고 체크포인트별 생성 결과를 비교</li>
+            <li>정량평가 지표와 실행 조건을 조사해 실행하고, 평가 코드·렌더링·입력 조건이 의도대로 동작하는지 검증</li>
+            <li>논문·공식 코드·후속 연구 구현을 대조해 조건별 근거를 4단계로 분류</li>
+          </ol>
+        </section>
+      </div>
+
+      <section class="outcome">
+        <h4>결과 및 산출물</h4>
+        <ul class="ticks">
+          <li>과제 목표 성능에는 도달하지 못했습니다. 미달 원인을 데이터 · 전처리 · 평가 조건 · 체크포인트 관점으로 분리해 분석하고, 시도한 개선안과 그 결과를 기록했습니다.</li>
+          <li>후속 담당자와 시험기관이 같은 조건으로 재현할 수 있도록 데이터 구성, 평가 지표, 실행 환경, 실행 명령어를 실행 문서로 정리</li>
+          <li>확인된 사실과 미확인 사항을 구분해 표기한 인수인계 자료</li>
+          <li>사업계획서 시장조사 영역 담당(3D 생성 AI 시장·경쟁 서비스 조사), Relic 랜딩페이지 기획부터 구현까지 담당</li>
+        </ul>
+        <p class="callout">정성평가는 실행 전 단계에서 비교 대상, 평가 항목, 평가자 구성을 계획했습니다. 실제 평가는 진행하지 않았습니다.</p>
+      </section>
+
+      <p class="tech"><span>기술</span> Python · PyTorch · TRELLIS2 · LoRA · Linux</p>
+    </article>
+
+    <!-- ───── PROJECT 03 ───── -->
+    <article class="project" id="sunday" aria-labelledby="sunday-h">
+      <header class="project-head">
+        <p class="project-no">PROJECT 03<span class="project-kind">TEAM PROJECT</span></p>
+        <h3 class="project-title" id="sunday-h">MAPLESSUNDAY 이벤트 예측 서비스</h3>
+        <p class="project-description">
+          흩어져 있던 이벤트 이력 약 455건을 데이터로 구조화하고,
+          FastAPI 백엔드와 데이터베이스 설계, 외부 API 연동, 배포·운영을 담당했습니다.
+        </p>
+        <p class="project-meta">팀 프로젝트 · 2026년 3월 – 6월 · 2인 · 2026년 5월 출시</p>
+
+        <ul class="stats">
+          <li>
+            <p class="stat-num">10주 중 9주</p>
+            <p class="stat-cap">TOP3 적중</p>
+            <p class="stat-sub">팀 백테스트 결과</p>
+          </li>
+          <li>
+            <p class="stat-num">455<span class="unit">건</span></p>
+            <p class="stat-cap">구조화한 과거 이벤트 이력</p>
+            <p class="stat-sub">2017년 3월 – 2026년 5월</p>
+          </li>
+          <li>
+            <p class="stat-num">7.6<span class="unit">만 회</span></p>
+            <p class="stat-cap">인벤 홍보 게시글 조회수</p>
+            <p class="stat-sub">서비스 방문자 수와 별도 · 팀 결과</p>
+          </li>
+        </ul>
+
+        <p class="project-links">
+          <a href="https://github.com/yeonsik-choi/maplessunday-web" target="_blank" rel="noopener noreferrer">GitHub 저장소</a>
+          <span class="links-note">공동 저장소이며 백엔드가 본인 구현 범위입니다.</span>
+        </p>
+      </header>
+
+      <!-- 대표 이미지 자리 (16:9). 준비되면 아래 주석을 풀어 사용합니다.
+      <figure class="shot">
+        <img class="img-16x9" src="./assets/img/sunday-main.png" alt="MAPLESSUNDAY 메인 화면. 다음 이벤트 후보가 표시되어 있다." width="1600" height="900">
+        <figcaption>다음 이벤트 후보를 보여주는 화면입니다.</figcaption>
+      </figure>
+      -->
+
+      <div class="project-body">
+        <div class="pcol">
+          <section class="context">
+            <h4>배경</h4>
+            <p>커뮤니티에서 반복되던 “다음 이벤트는 언제인가”라는 질문을 서비스 문제로 정의하고, 예측·캘린더·캐릭터 조회·공지 조회를 하나의 웹서비스로 기획했습니다.</p>
+          </section>
+
+          <section class="role">
+            <h4>내가 맡은 역할</h4>
+            <div class="split">
+              <div>
+                <p class="split-head">본인</p>
+                <ul class="ticks">
+                  <li>백엔드 API 개발 (FastAPI)</li>
+                  <li>Supabase 데이터베이스 설계 및 연동</li>
+                  <li>넥슨 오픈 API 등 외부 API 연동</li>
+                  <li>Render 배포 및 운영</li>
+                  <li>이벤트 이력 수집 · 구조화</li>
+                </ul>
+              </div>
+              <div>
+                <p class="split-head">팀원</p>
+                <ul class="ticks">
+                  <li>예측 모델 구현</li>
+                  <li>프론트엔드 구현</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <section class="pcol">
+          <h4>수행 내용</h4>
+          <ol class="steps">
+            <li>2017년 3월 – 2026년 5월 이벤트 약 455건을 공지·커뮤니티·위키에서 수집해 날짜·이벤트명·혜택·태그로 구조화</li>
+            <li>캐릭터·공지·예측 API 엔드포인트를 구성하고, 넥슨 오픈 API 응답을 가공해 Supabase와 연동</li>
+            <li>외부 호출을 비동기로 처리하고 429·5xx·타임아웃에 지수 백오프 재시도, TTL 캐시(30분·1시간)와 GZip 압축, 헬스체크를 적용</li>
+            <li>API 키와 접속정보를 환경변수로 분리해 Render에 배포하고 운영</li>
+          </ol>
+        </section>
+      </div>
+
+      <section class="outcome">
+        <h4>결과 및 산출물</h4>
+        <ul class="ticks">
+          <li>2026년 5월 서비스 출시 — 이벤트 후보 예측, 과거 이벤트 캘린더, 캐릭터 조회, 공지 조회 기능</li>
+          <li>10주 백테스트 중 9주 TOP3 적중 (팀 백테스트 결과이며, 예측 모델 구현은 팀원이 담당했습니다)</li>
+          <li>2017년 이후 이벤트 이력 455건을 재사용 가능한 데이터셋으로 정리</li>
+        </ul>
+      </section>
+
+      <p class="tech"><span>기술</span> FastAPI · Supabase · 넥슨 오픈 API · Render</p>
     </article>
   </div>
 </section>
 
-<!-- ══════════════ 기술 ══════════════ -->
-<section class="band" id="skills" aria-labelledby="skills-h">
-  <h2 class="section-title" id="skills-h">기술</h2>
-  <p class="section-lead">실제 프로젝트에서 사용한 범위만 목적별로 정리했습니다.</p>
-  <dl class="stack">
-    <div>
-      <dt>데이터 처리 · 검증</dt>
-      <dd>Python · SQL · PostgreSQL</dd>
+<!-- ══════════════ 기타 프로젝트 (연회색 배경) ══════════════ -->
+<section class="section section-muted" id="other" aria-labelledby="other-h">
+  <div class="wrap">
+    <p class="eyebrow">OTHER WORK</p>
+    <h2 class="section-title" id="other-h">기타 프로젝트</h2>
+
+    <div class="other-grid">
+      <article class="card">
+        <h3>Withmarry — 모바일 청첩장 MVP</h3>
+        <p class="card-meta">팀 프로젝트 · 약 1개월 · 3인 (개발 2 · 마케팅 1)</p>
+        <p class="card-desc">개발 2명 중 한 명으로 FastAPI · Supabase 기반 백엔드와 청첩장·랜딩페이지를 구현하고 배포했습니다.</p>
+        <dl class="sum-facts">
+          <div><dt>역할</dt><dd>백엔드 · 청첩장 템플릿 · 배포 · 문의 대응</dd></div>
+          <div><dt>결과</dt><dd>실제 배포 · 사용자 문의 5건 · 첫 유료 결제 발생 <span class="tag-team">팀 결과</span></dd></div>
+        </dl>
+        <p class="tech"><span>기술</span> FastAPI · Supabase · Vite · Cloudflare Pages</p>
+      </article>
+
+      <article class="card">
+        <h3>달빛장어 운영 대시보드</h3>
+        <p class="card-meta">개인 프로젝트 · 실제 매장 운영 데이터</p>
+        <p class="card-desc">실제 매장의 운영 데이터를 관리하는 대시보드를 만들고, 데이터 입력과 운영 편의성을 개선했습니다.</p>
+        <dl class="sum-facts">
+          <div><dt>역할</dt><dd>모바일 중심 UI 설계 · 개발 · 배포</dd></div>
+          <div><dt>결과</dt><dd>매출·지출 입력 · 월별 보고서 · 마케팅 분석 · 메뉴 관리</dd></div>
+        </dl>
+        <p class="tech"><span>기술</span> React · Supabase · Vercel</p>
+        <p class="links">
+          <a href="https://github.com/ssoju-kim/moonlight" target="_blank" rel="noopener noreferrer">GitHub 저장소</a>
+        </p>
+      </article>
     </div>
-    <div>
-      <dt>백엔드 · API</dt>
-      <dd>FastAPI · Supabase · 외부 REST API 연동</dd>
-    </div>
-    <div>
-      <dt>AI · 모델 평가</dt>
-      <dd>PyTorch · TRELLIS2 · LoRA</dd>
-    </div>
-    <div>
-      <dt>통계 · 분석</dt>
-      <dd>R · Python</dd>
-    </div>
-    <div>
-      <dt>배포 · 개발 환경</dt>
-      <dd>Git · Linux · Render · Vercel · Cloudflare</dd>
-    </div>
-  </dl>
+  </div>
 </section>
 
-<!-- ══════════════ 학력 · 연락 ══════════════ -->
-<section class="band band-tight" id="contact" aria-labelledby="contact-h">
-  <h2 class="section-title" id="contact-h">학력 · 연락</h2>
+<!-- ══════════════ 프로필 (흰 배경) ══════════════ -->
+<section class="section" id="profile" aria-labelledby="profile-h">
+  <div class="wrap">
+    <p class="eyebrow">PROFILE</p>
+    <h2 class="section-title" id="profile-h">기술 · 학력 · 연락</h2>
 
-  <dl class="facts">
-    <div>
-      <dt>학력</dt>
-      <dd>동국대학교<span class="dim">통계학 주전공 · 소프트웨어 AI 연계전공</span><span class="dim">2027년 8월 졸업 예정</span></dd>
-    </div>
-    <div>
-      <dt>자격증</dt>
-      <dd>SQLD · ADsP · 컴퓨터활용능력 1급</dd>
-    </div>
-    <div>
-      <dt>연락</dt>
-      <dd>
+    <div class="profile-grid">
+      <div class="profile-col profile-col-wide">
+        <h3 class="profile-h">기술</h3>
+        <p class="profile-note">실제 프로젝트에서 사용한 범위만 목적별로 정리했습니다.</p>
+        <dl class="stack">
+          <div>
+            <dt>데이터 처리 · 검증</dt>
+            <dd>Python · SQL · PostgreSQL</dd>
+          </div>
+          <div>
+            <dt>백엔드 · API</dt>
+            <dd>FastAPI · Supabase · 외부 REST API 연동</dd>
+          </div>
+          <div>
+            <dt>AI · 모델 평가</dt>
+            <dd>PyTorch · TRELLIS2 · LoRA</dd>
+          </div>
+          <div>
+            <dt>분석 · 통계</dt>
+            <dd>R · Python</dd>
+          </div>
+          <div>
+            <dt>배포 · 개발 환경</dt>
+            <dd>Git · Linux · Render · Vercel · Cloudflare</dd>
+          </div>
+        </dl>
+      </div>
+
+      <div class="profile-col">
+        <h3 class="profile-h">학력 및 자격</h3>
+        <p class="profile-strong">동국대학교</p>
+        <p class="profile-line">통계학 주전공 · 소프트웨어 AI 연계전공</p>
+        <p class="profile-line">2027년 8월 졸업 예정</p>
+        <p class="profile-line profile-cert">SQLD · ADsP · 컴퓨터활용능력 1급</p>
+      </div>
+
+      <div class="profile-col">
+        <h3 class="profile-h">연락</h3>
         <ul class="contact-links">
           <li><a href="https://github.com/ssoju-kim" target="_blank" rel="noopener noreferrer">github.com/ssoju-kim</a></li>
           <li data-profile="email-item" hidden><a data-profile="email">이메일</a></li>
           <li data-profile="resume-item" hidden><a data-profile="resume">경력기술서 PDF</a></li>
         </ul>
-      </dd>
+      </div>
     </div>
-  </dl>
+  </div>
 </section>
 
 </main>
 
 <footer class="foot">
-  <p>© <span id="year">2026</span> 김소영</p>
+  <div class="wrap">
+    <p>© <span id="year">2026</span> 김소영</p>
+  </div>
 </footer>
 
 <script src="./assets/js/app.js" defer></script>

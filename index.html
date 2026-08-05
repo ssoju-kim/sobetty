@@ -28,10 +28,10 @@
     <a class="nav-name" href="#top">김소영</a>
     <nav aria-label="섹션 이동">
       <ul class="nav-list">
-        <li><a href="#summary">한눈에 보기</a></li>
-        <li><a href="#projects">대표 프로젝트</a></li>
+        <li><a href="#experience">실무 경험</a></li>
+        <li><a href="#projects">주요 프로젝트</a></li>
         <li><a href="#other">기타 프로젝트</a></li>
-        <li><a href="#profile">프로필 · 연락</a></li>
+        <li><a href="#profile">프로필</a></li>
       </ul>
     </nav>
   </div>
@@ -39,7 +39,9 @@
 
 <main id="main">
 
-<!-- ══════════════ Hero (흰 배경) ══════════════ -->
+<!-- ══════════════════════════════════════════════════════════════════════
+     HERO — 흰 배경
+     ══════════════════════════════════════════════════════════════════ -->
 <section class="section section-hero" id="top">
   <div class="wrap">
     <div class="hero-top">
@@ -63,7 +65,8 @@
         </ul>
 
         <div class="hero-actions">
-          <a class="btn btn-primary" href="#projects">대표 프로젝트 보기</a>
+          <a class="btn btn-primary" href="#experience">실무 경험 보기</a>
+          <a class="btn" href="#projects">주요 프로젝트</a>
           <a class="btn" href="https://github.com/ssoju-kim" target="_blank" rel="noopener noreferrer">GitHub</a>
           <!-- 이메일 · 경력기술서 버튼은 assets/js/app.js 의 PROFILE 값이 채워질 때만 나타납니다. -->
           <a class="btn" data-profile="email" href="#" hidden>이메일 보내기</a>
@@ -80,65 +83,147 @@
   </div>
 </section>
 
-<!-- ══════════════ 한눈에 보기 (연회색 배경) ══════════════ -->
-<section class="section section-muted" id="summary" aria-labelledby="summary-h">
+<!-- ══════════════════════════════════════════════════════════════════════
+     BAND 1 — WORK EXPERIENCE · 실무 경험 (연녹회색 배경 · 여백 최대)
+     ══════════════════════════════════════════════════════════════════ -->
+<section class="section band band-exp" id="experience" aria-labelledby="exp-h">
   <div class="wrap">
-    <p class="eyebrow">AT A GLANCE</p>
-    <h2 class="section-title" id="summary-h">한눈에 보기</h2>
+    <header class="band-head">
+      <p class="band-label">WORK EXPERIENCE</p>
+      <h2 class="band-title" id="exp-h">실무 경험</h2>
+      <p class="band-lead">회사 소속으로 정부지원 R&amp;D 과제를 수행한 경험입니다.</p>
+    </header>
 
-    <ul class="summary">
-      <li>
-        <h3>금융 데이터 정합성 검증</h3>
-        <p class="sum-desc">은행·카드·증권 모의 데이터를 하나의 형식으로 통합하고, 통합 결과를 원천과 대사하는 검증 규칙을 구현했습니다.</p>
-        <dl class="sum-facts">
-          <div><dt>결과</dt><dd>모의 데이터 84건 대사 · 오류 시나리오 15건 검출</dd></div>
-          <div><dt>역할</dt><dd>개인 프로젝트 · 수집부터 검증·대시보드까지 전 과정</dd></div>
-        </dl>
-        <p class="summary-link"><a href="#finance">PROJECT 01 자세히 보기</a></p>
-      </li>
-      <li>
-        <h3>3D 생성 AI 데이터 검증 · 모델 평가</h3>
-        <p class="sum-desc">정부지원 R&amp;D 과제에서 학습 데이터를 점검·정리하고, 평가 조건을 근거와 함께 표준화했습니다.</p>
-        <dl class="sum-facts">
-          <div><dt>결과</dt><dd>유효 데이터 1,451건 정리 · 재현 가능한 평가 실행 문서</dd></div>
-          <div><dt>역할</dt><dd>실무 경험 · 데이터 전처리, 학습·평가 실행, 문서화</dd></div>
-        </dl>
-        <p class="summary-link"><a href="#spec">PROJECT 02 자세히 보기</a></p>
-      </li>
-      <li>
-        <h3>MAPLESSUNDAY 예측 서비스</h3>
-        <p class="sum-desc">흩어져 있던 이벤트 이력을 데이터로 정리하고, 백엔드·데이터베이스·배포를 담당해 서비스를 출시했습니다.</p>
-        <dl class="sum-facts">
-          <div><dt>결과</dt><dd>2026년 5월 출시 · 이벤트 이력 455건 구조화</dd></div>
-          <div><dt>역할</dt><dd>2인 팀 · 백엔드 API, 데이터베이스, 배포 담당</dd></div>
-        </dl>
-        <p class="summary-link"><a href="#sunday">PROJECT 03 자세히 보기</a></p>
-      </li>
-    </ul>
+    <article class="project project-lead" id="spec" aria-labelledby="spec-h">
+      <header class="project-head">
+        <p class="project-no">스팩스페이스 개발사업부 CV팀<span class="project-kind">WORK EXPERIENCE</span></p>
+        <h3 class="project-title" id="spec-h">3D 생성 AI 학습 데이터 검증과 모델 평가</h3>
+
+        <ul class="keyfacts">
+          <li>
+            <p class="kf-label">역할</p>
+            <p class="kf-text">학습 데이터 점검·구성, LoRA 학습 실행, 정량평가 실행, 평가 조건 리서치와 문서화</p>
+          </li>
+          <li>
+            <p class="kf-label">핵심 결과</p>
+            <p class="kf-text">학습 데이터 1,500건을 점검해 1,451건으로 정리하고, 평가 조건을 근거 4단계로 분류해 재현 가능한 실행 문서로 인계</p>
+          </li>
+        </ul>
+
+        <p class="project-meta">
+          2026년 1월 – 7월
+          <span class="meta-sub">1~2월 · 7월 프리랜서 / 3~6월 IPP 장기현장실습</span>
+        </p>
+
+        <ul class="stats">
+          <li>
+            <p class="stat-num">1,451<span class="unit">건</span></p>
+            <p class="stat-cap">정리한 유효 학습 데이터</p>
+            <p class="stat-sub">원본 1,500건 점검 후</p>
+          </li>
+          <li>
+            <p class="stat-num">1,268 / 143</p>
+            <p class="stat-cap">학습 · holdout 분할</p>
+            <p class="stat-sub">두 집합 간 데이터 누출 여부 점검</p>
+          </li>
+          <li>
+            <p class="stat-num">4<span class="unit">단계</span></p>
+            <p class="stat-cap">평가 조건 근거 분류</p>
+            <p class="stat-sub">논문 명시 · 공식 코드 · 후속 관행 · 미확인</p>
+          </li>
+        </ul>
+      </header>
+
+      <!-- 대표 이미지 · 상세 이미지 모달. 이미지 목록은 assets/js/app.js 의 GALLERY.spec 에서 관리합니다.
+           목록이 비어 있으면 이 영역 전체가 자동으로 숨겨집니다.
+           회사 내부 경로·서버 정보·API 키가 보이지 않는 자료만 사용합니다. -->
+      <div class="media" hidden data-media="spec">
+        <figure class="shot" data-shot hidden>
+          <img class="img-16x9" alt="" width="1600" height="900" loading="lazy" decoding="async">
+          <figcaption data-caption></figcaption>
+        </figure>
+        <p class="media-actions"><button type="button" class="btn btn-sm" data-gallery="spec" hidden>상세 이미지 보기</button></p>
+      </div>
+
+      <div class="project-body">
+        <section class="pcol">
+          <h4>배경</h4>
+          <p class="lede">한국 문화 특화 3D 에셋 생성 정부지원 R&amp;D 과제였습니다. 학습 데이터 품질과 평가 조건이 정리되어 있지 않아 결과를 신뢰하거나 재현하기 어려운 상태였습니다.</p>
+        </section>
+
+        <section class="pcol">
+          <h4>수행 내용 · 핵심 3</h4>
+          <ol class="steps">
+            <li>3D 학습 데이터 1,500건을 점검해 사용 불가 데이터를 분류하고 1,451건으로 정리</li>
+            <li>학습 1,268건 / holdout 143건으로 분할하고, 두 집합 간 데이터 누출 여부와 캡션·프롬프트 결측을 점검</li>
+            <li>논문·공식 코드·후속 연구 구현을 대조해 평가 조건별 근거를 4단계로 분류</li>
+          </ol>
+        </section>
+      </div>
+
+      <section class="outcome">
+        <h4>결과</h4>
+        <ul class="ticks">
+          <li>과제 목표 성능에는 도달하지 못했습니다. 미달 원인을 데이터 · 전처리 · 평가 조건 · 체크포인트 관점으로 분리해 분석하고, 시도한 개선안과 그 결과를 기록했습니다.</li>
+          <li>후속 담당자와 시험기관이 같은 조건으로 재현할 수 있도록 데이터 구성, 평가 지표, 실행 환경, 실행 명령어를 실행 문서로 정리</li>
+        </ul>
+      </section>
+
+      <div class="project-foot">
+        <p class="tech"><span>기술</span> Python · PyTorch · TRELLIS2 · LoRA · Linux</p>
+        <p class="detail-actions"><button type="button" class="btn btn-detail" data-detail="spec-detail">상세 보기</button></p>
+      </div>
+
+      <!-- 상세 보기 모달 내용 (화면에서는 숨김 / 인쇄 시에는 그대로 출력) -->
+      <div class="detail" id="spec-detail" hidden data-detail-title="3D 생성 AI 학습 데이터 검증과 모델 평가 — 상세">
+        <h4>세부 수행 내용</h4>
+        <ol class="steps">
+          <li>TRELLIS2 기반 LoRA 학습을 실행하고 체크포인트별 생성 결과를 비교</li>
+          <li>정량평가 지표와 실행 조건을 조사해 실행하고, 평가 코드·렌더링·입력 조건이 의도대로 동작하는지 검증</li>
+        </ol>
+
+        <h4>추가 산출물</h4>
+        <ul class="ticks">
+          <li>확인된 사실과 미확인 사항을 구분해 표기한 인수인계 자료</li>
+          <li>사업계획서 시장조사 영역 담당(3D 생성 AI 시장·경쟁 서비스 조사)</li>
+          <li>Relic 랜딩페이지 기획부터 구현까지 담당</li>
+        </ul>
+
+        <p class="callout">정성평가는 실행 전 단계에서 비교 대상, 평가 항목, 평가자 구성을 계획했습니다. 실제 평가는 진행하지 않았습니다.</p>
+      </div>
+    </article>
   </div>
 </section>
 
-<!-- ══════════════ 대표 프로젝트 (흰 배경) ══════════════ -->
-<section class="section" id="projects" aria-labelledby="proj-h">
+<!-- ══════════════════════════════════════════════════════════════════════
+     BAND 2 — SELECTED PROJECTS · 주요 프로젝트 (흰 배경)
+     ══════════════════════════════════════════════════════════════════ -->
+<section class="section band band-selected" id="projects" aria-labelledby="proj-h">
   <div class="wrap">
-    <div class="section-head">
-      <p class="eyebrow">SELECTED WORK</p>
-      <h2 class="section-title" id="proj-h">대표 프로젝트</h2>
-      <p class="section-lead">
-        데이터 검증, AI 모델 평가, 서비스 개발 경험 중
-        데이터·디지털 서비스 직무와 관련성이 높은 세 가지 프로젝트입니다.
-      </p>
-    </div>
+    <header class="band-head">
+      <p class="band-label">SELECTED PROJECTS</p>
+      <h2 class="band-title" id="proj-h">주요 프로젝트</h2>
+      <p class="band-lead">데이터 검증과 서비스 개발 경험 중 데이터·디지털 서비스 직무와 관련성이 높은 두 가지입니다.</p>
+    </header>
 
     <!-- ───── PROJECT 01 ───── -->
-    <article class="project" id="finance" aria-labelledby="finance-h">
+    <article class="project project-lead" id="finance" aria-labelledby="finance-h">
       <header class="project-head">
         <p class="project-no">PROJECT 01<span class="project-kind">PERSONAL PROJECT</span></p>
         <h3 class="project-title" id="finance-h">금융 데이터 통합과 정합성 검증</h3>
-        <p class="project-description">
-          84건의 모의 금융 데이터를 대사하고, 누락·중복·금액·건수 불일치 검증 규칙을 구현했습니다.
-        </p>
-        <p class="project-meta">개인 프로젝트 · 2026년 6월 – 7월 · 모의 금융 데이터</p>
+
+        <ul class="keyfacts">
+          <li>
+            <p class="kf-label">역할</p>
+            <p class="kf-text">개인 프로젝트 · 데이터 수집, 형식 표준화, 통합, 검증 규칙, 결과 확인 화면까지 전 과정 직접 구현</p>
+          </li>
+          <li>
+            <p class="kf-label">핵심 결과</p>
+            <p class="kf-text">모의 데이터 84건을 대사해 의도적으로 삽입한 오류 15건을 4개 검증 규칙으로 검출</p>
+          </li>
+        </ul>
+
+        <p class="project-meta">2026년 6월 – 7월 · 모의 금융 데이터</p>
 
         <ul class="stats">
           <li>
@@ -163,139 +248,77 @@
         </p>
       </header>
 
-      <!-- 대표 이미지 자리 (16:9). 준비되면 아래 주석을 풀어 사용합니다.
-      <figure class="shot">
-        <img class="img-16x9" src="./assets/img/finance-dashboard.png" alt="금융 데이터 검증 대시보드. 오류 유형별 건수와 오류 목록이 보인다." width="1600" height="900">
-        <figcaption>검증 결과와 오류 목록을 함께 보여주는 화면입니다.</figcaption>
-      </figure>
-      -->
+      <!-- 이미지 목록은 assets/js/app.js 의 GALLERY.finance 에서 관리합니다. -->
+      <div class="media" hidden data-media="finance">
+        <figure class="shot" data-shot hidden>
+          <img class="img-16x9" alt="" width="1600" height="900" loading="lazy" decoding="async">
+          <figcaption data-caption></figcaption>
+        </figure>
+        <p class="media-actions"><button type="button" class="btn btn-sm" data-gallery="finance" hidden>상세 이미지 보기</button></p>
+      </div>
 
       <div class="project-body">
-        <div class="pcol">
-          <section class="context">
-            <h4>배경</h4>
-            <p>기관마다 형식이 다른 데이터를 하나로 모으면 통합 과정에서 생긴 누락·중복·금액 오류가 드러나지 않습니다. 통합 결과를 원천과 대사해 오류를 자동으로 찾는 것이 과제였습니다.</p>
-          </section>
-
-          <section class="role">
-            <h4>내가 맡은 역할</h4>
-            <p>개인 프로젝트로 데이터 수집, 형식 표준화, 통합, 검증 규칙, 결과 확인 화면까지 전 과정을 직접 구현했습니다.</p>
-          </section>
-        </div>
+        <section class="pcol">
+          <h4>배경</h4>
+          <p class="lede">기관마다 형식이 다른 데이터를 하나로 모으면 통합 과정에서 생긴 누락·중복·금액 오류가 드러나지 않습니다. 통합 결과를 원천과 대사해 오류를 자동으로 찾는 것이 과제였습니다.</p>
+        </section>
 
         <section class="pcol">
-          <h4>수행 내용</h4>
+          <h4>수행 내용 · 핵심 3</h4>
           <ol class="steps">
             <li>은행·카드·증권 모의 제공기관 API에서 데이터를 수집해 원천 → 표준 → 운영 3개 계층으로 적재</li>
             <li>기관마다 다른 필드명·날짜·금액 형식을 공통 스키마로 정규화하고, (원천, 원천레코드ID)를 키로 중복 병합</li>
             <li>통합 결과를 원천·정답집합과 대사해 누락·중복·금액 불일치·건수/잔액 불일치 4개 규칙으로 검증</li>
-            <li>모든 운영 레코드에 원천·원천레코드ID·원본 링크를 남겨 역추적이 가능하도록 설계</li>
           </ol>
         </section>
       </div>
 
       <section class="outcome">
-        <h4>결과 및 산출물</h4>
+        <h4>결과</h4>
         <ul class="ticks">
           <li>대사 대상 84건 중 의도적으로 삽입한 오류 15건 검출 (누락 12 · 중복 1 · 금액 불일치 1 · 건수·잔액 불일치 1)</li>
           <li>오류 판정은 규칙 기반으로 처리하고, 생성형 AI는 결과 설명 보조 용도로만 사용</li>
-          <li>오류 발생 원인을 페이지 타임아웃 · 재전송 · 환율 반올림 등으로 구분해 기록</li>
-          <li>대사 결과를 확인하는 웹 대시보드, Supabase SQL 스키마 · 마이그레이션 · 감사 로그</li>
         </ul>
       </section>
 
-      <p class="tech"><span>기술</span> Python · SQL · Supabase(PostgreSQL) · Next.js</p>
+      <div class="project-foot">
+        <p class="tech"><span>기술</span> Python · SQL · Supabase(PostgreSQL) · Next.js</p>
+        <p class="detail-actions"><button type="button" class="btn btn-detail" data-detail="finance-detail">상세 보기</button></p>
+      </div>
+
+      <div class="detail" id="finance-detail" hidden data-detail-title="금융 데이터 통합과 정합성 검증 — 상세">
+        <h4>세부 구현</h4>
+        <ul class="ticks">
+          <li>모든 운영 레코드에 원천·원천레코드ID·원본 링크를 남겨 역추적이 가능하도록 설계</li>
+          <li>오류 발생 원인을 페이지 타임아웃 · 재전송 · 환율 반올림 등으로 구분해 기록</li>
+        </ul>
+
+        <h4>추가 산출물</h4>
+        <ul class="ticks">
+          <li>대사 결과를 확인하는 웹 대시보드</li>
+          <li>Supabase SQL 스키마 · 마이그레이션 · 감사 로그</li>
+        </ul>
+      </div>
     </article>
 
     <!-- ───── PROJECT 02 ───── -->
-    <article class="project" id="spec" aria-labelledby="spec-h">
+    <article class="project project-lead" id="sunday" aria-labelledby="sunday-h">
       <header class="project-head">
-        <p class="project-no">PROJECT 02<span class="project-kind">WORK EXPERIENCE</span></p>
-        <h3 class="project-title" id="spec-h">3D 생성 AI 학습 데이터 검증과 모델 평가</h3>
-        <p class="project-description">
-          3D 학습 데이터 1,500건을 점검해 1,451건으로 정리하고, 학습·holdout 데이터의 누출 여부를 검증했습니다.
-          모델 성능 목표에는 도달하지 못했지만, 지표별 미달 원인과 평가 조건을 분리해 후속 담당자가 재현할 수 있는 실행 문서로 남겼습니다.
-        </p>
-        <p class="project-meta">
-          스팩스페이스 개발사업부 CV팀 · 2026년 1월 – 7월
-          <span class="meta-sub">1~2월 · 7월 프리랜서 / 3~6월 IPP 장기현장실습</span>
-        </p>
-
-        <ul class="stats">
-          <li>
-            <p class="stat-num">1,451<span class="unit">건</span></p>
-            <p class="stat-cap">정리한 유효 학습 데이터</p>
-            <p class="stat-sub">원본 1,500건 점검 후</p>
-          </li>
-          <li>
-            <p class="stat-num">1,268 / 143</p>
-            <p class="stat-cap">학습 · holdout 분할</p>
-            <p class="stat-sub">두 집합 간 데이터 누출 여부 점검</p>
-          </li>
-          <li>
-            <p class="stat-num">4<span class="unit">단계</span></p>
-            <p class="stat-cap">평가 조건 근거 분류</p>
-            <p class="stat-sub">논문 명시 · 공식 코드 · 후속 관행 · 미확인</p>
-          </li>
-        </ul>
-      </header>
-
-      <!-- 대표 이미지 자리 (16:9). 회사 내부 경로·서버 정보·API 키가 보이지 않는 자료만 사용합니다.
-      <figure class="shot">
-        <img class="img-16x9" src="./assets/img/spec-eval.png" alt="평가 조건 정리표. 조건마다 근거 수준이 함께 표시되어 있다." width="1600" height="900">
-        <figcaption>조건마다 근거 수준을 함께 표시한 정리표입니다.</figcaption>
-      </figure>
-      -->
-
-      <div class="project-body">
-        <div class="pcol">
-          <section class="context">
-            <h4>배경</h4>
-            <p>한국 문화 특화 3D 에셋 생성 정부지원 R&amp;D 과제에서, 학습 데이터의 품질과 평가 조건이 정리되어 있지 않아 결과를 신뢰하거나 재현하기 어려운 상태였습니다.</p>
-          </section>
-
-          <section class="role">
-            <h4>내가 맡은 역할</h4>
-            <p>학습 데이터 점검과 구성, LoRA 학습 실행과 체크포인트 비교, 정량평가 실행, 평가 조건 리서치와 문서화를 담당했습니다. 사업화 영역에서는 시장조사와 Relic 랜딩페이지 구현을 맡았습니다.</p>
-          </section>
-        </div>
-
-        <section class="pcol">
-          <h4>수행 내용</h4>
-          <ol class="steps">
-            <li>3D 학습 데이터 1,500건을 점검해 사용 불가 데이터를 분류하고 1,451건으로 정리</li>
-            <li>학습 1,268건 / holdout 143건으로 분할하고, 두 집합 간 데이터 누출 여부와 캡션·프롬프트 결측을 점검</li>
-            <li>TRELLIS2 기반 LoRA 학습을 실행하고 체크포인트별 생성 결과를 비교</li>
-            <li>정량평가 지표와 실행 조건을 조사해 실행하고, 평가 코드·렌더링·입력 조건이 의도대로 동작하는지 검증</li>
-            <li>논문·공식 코드·후속 연구 구현을 대조해 조건별 근거를 4단계로 분류</li>
-          </ol>
-        </section>
-      </div>
-
-      <section class="outcome">
-        <h4>결과 및 산출물</h4>
-        <ul class="ticks">
-          <li>과제 목표 성능에는 도달하지 못했습니다. 미달 원인을 데이터 · 전처리 · 평가 조건 · 체크포인트 관점으로 분리해 분석하고, 시도한 개선안과 그 결과를 기록했습니다.</li>
-          <li>후속 담당자와 시험기관이 같은 조건으로 재현할 수 있도록 데이터 구성, 평가 지표, 실행 환경, 실행 명령어를 실행 문서로 정리</li>
-          <li>확인된 사실과 미확인 사항을 구분해 표기한 인수인계 자료</li>
-          <li>사업계획서 시장조사 영역 담당(3D 생성 AI 시장·경쟁 서비스 조사), Relic 랜딩페이지 기획부터 구현까지 담당</li>
-        </ul>
-        <p class="callout">정성평가는 실행 전 단계에서 비교 대상, 평가 항목, 평가자 구성을 계획했습니다. 실제 평가는 진행하지 않았습니다.</p>
-      </section>
-
-      <p class="tech"><span>기술</span> Python · PyTorch · TRELLIS2 · LoRA · Linux</p>
-    </article>
-
-    <!-- ───── PROJECT 03 ───── -->
-    <article class="project" id="sunday" aria-labelledby="sunday-h">
-      <header class="project-head">
-        <p class="project-no">PROJECT 03<span class="project-kind">TEAM PROJECT</span></p>
+        <p class="project-no">PROJECT 02<span class="project-kind">TEAM PROJECT</span></p>
         <h3 class="project-title" id="sunday-h">MAPLESSUNDAY 이벤트 예측 서비스</h3>
-        <p class="project-description">
-          흩어져 있던 이벤트 이력 약 455건을 데이터로 구조화하고,
-          FastAPI 백엔드와 데이터베이스 설계, 외부 API 연동, 배포·운영을 담당했습니다.
-        </p>
-        <p class="project-meta">팀 프로젝트 · 2026년 3월 – 6월 · 2인 · 2026년 5월 출시</p>
+
+        <ul class="keyfacts">
+          <li>
+            <p class="kf-label">역할</p>
+            <p class="kf-text">2인 팀 · 백엔드 API(FastAPI), Supabase 데이터베이스 설계, 외부 API 연동, Render 배포·운영</p>
+          </li>
+          <li>
+            <p class="kf-label">핵심 결과</p>
+            <p class="kf-text">2026년 5월 서비스 출시 · 흩어져 있던 이벤트 이력 약 455건을 재사용 가능한 데이터로 구조화</p>
+          </li>
+        </ul>
+
+        <p class="project-meta">2026년 3월 – 6월 · 2인 · 2026년 5월 출시</p>
 
         <ul class="stats">
           <li>
@@ -321,81 +344,95 @@
         </p>
       </header>
 
-      <!-- 대표 이미지 자리 (16:9). 준비되면 아래 주석을 풀어 사용합니다.
-      <figure class="shot">
-        <img class="img-16x9" src="./assets/img/sunday-main.png" alt="MAPLESSUNDAY 메인 화면. 다음 이벤트 후보가 표시되어 있다." width="1600" height="900">
-        <figcaption>다음 이벤트 후보를 보여주는 화면입니다.</figcaption>
-      </figure>
-      -->
+      <!-- 이미지 목록은 assets/js/app.js 의 GALLERY.sunday 에서 관리합니다. -->
+      <div class="media" hidden data-media="sunday">
+        <figure class="shot" data-shot hidden>
+          <img class="img-16x9" alt="" width="1600" height="900" loading="lazy" decoding="async">
+          <figcaption data-caption></figcaption>
+        </figure>
+        <p class="media-actions"><button type="button" class="btn btn-sm" data-gallery="sunday" hidden>상세 이미지 보기</button></p>
+      </div>
 
       <div class="project-body">
-        <div class="pcol">
-          <section class="context">
-            <h4>배경</h4>
-            <p>커뮤니티에서 반복되던 “다음 이벤트는 언제인가”라는 질문을 서비스 문제로 정의하고, 예측·캘린더·캐릭터 조회·공지 조회를 하나의 웹서비스로 기획했습니다.</p>
-          </section>
-
-          <section class="role">
-            <h4>내가 맡은 역할</h4>
-            <div class="split">
-              <div>
-                <p class="split-head">본인</p>
-                <ul class="ticks">
-                  <li>백엔드 API 개발 (FastAPI)</li>
-                  <li>Supabase 데이터베이스 설계 및 연동</li>
-                  <li>넥슨 오픈 API 등 외부 API 연동</li>
-                  <li>Render 배포 및 운영</li>
-                  <li>이벤트 이력 수집 · 구조화</li>
-                </ul>
-              </div>
-              <div>
-                <p class="split-head">팀원</p>
-                <ul class="ticks">
-                  <li>예측 모델 구현</li>
-                  <li>프론트엔드 구현</li>
-                </ul>
-              </div>
-            </div>
-          </section>
-        </div>
+        <section class="pcol">
+          <h4>배경</h4>
+          <p class="lede">커뮤니티에서 반복되던 “다음 이벤트는 언제인가”라는 질문을 서비스 문제로 정의했습니다. 예측·캘린더·캐릭터 조회·공지 조회를 하나의 웹서비스로 기획했습니다.</p>
+        </section>
 
         <section class="pcol">
-          <h4>수행 내용</h4>
+          <h4>수행 내용 · 핵심 3</h4>
           <ol class="steps">
             <li>2017년 3월 – 2026년 5월 이벤트 약 455건을 공지·커뮤니티·위키에서 수집해 날짜·이벤트명·혜택·태그로 구조화</li>
             <li>캐릭터·공지·예측 API 엔드포인트를 구성하고, 넥슨 오픈 API 응답을 가공해 Supabase와 연동</li>
             <li>외부 호출을 비동기로 처리하고 429·5xx·타임아웃에 지수 백오프 재시도, TTL 캐시(30분·1시간)와 GZip 압축, 헬스체크를 적용</li>
-            <li>API 키와 접속정보를 환경변수로 분리해 Render에 배포하고 운영</li>
           </ol>
         </section>
       </div>
 
       <section class="outcome">
-        <h4>결과 및 산출물</h4>
+        <h4>결과</h4>
         <ul class="ticks">
           <li>2026년 5월 서비스 출시 — 이벤트 후보 예측, 과거 이벤트 캘린더, 캐릭터 조회, 공지 조회 기능</li>
           <li>10주 백테스트 중 9주 TOP3 적중 (팀 백테스트 결과이며, 예측 모델 구현은 팀원이 담당했습니다)</li>
-          <li>2017년 이후 이벤트 이력 455건을 재사용 가능한 데이터셋으로 정리</li>
         </ul>
       </section>
 
-      <p class="tech"><span>기술</span> FastAPI · Supabase · 넥슨 오픈 API · Render</p>
+      <div class="project-foot">
+        <p class="tech"><span>기술</span> FastAPI · Supabase · 넥슨 오픈 API · Render</p>
+        <p class="detail-actions"><button type="button" class="btn btn-detail" data-detail="sunday-detail">상세 보기</button></p>
+      </div>
+
+      <div class="detail" id="sunday-detail" hidden data-detail-title="MAPLESSUNDAY 이벤트 예측 서비스 — 상세">
+        <h4>역할 분담</h4>
+        <div class="split">
+          <div>
+            <p class="split-head">본인</p>
+            <ul class="ticks">
+              <li>백엔드 API 개발 (FastAPI)</li>
+              <li>Supabase 데이터베이스 설계 및 연동</li>
+              <li>넥슨 오픈 API 등 외부 API 연동</li>
+              <li>Render 배포 및 운영</li>
+              <li>이벤트 이력 수집 · 구조화</li>
+            </ul>
+          </div>
+          <div>
+            <p class="split-head">팀원</p>
+            <ul class="ticks">
+              <li>예측 모델 구현</li>
+              <li>프론트엔드 구현</li>
+            </ul>
+          </div>
+        </div>
+
+        <h4>세부 구현</h4>
+        <ul class="ticks">
+          <li>API 키와 접속정보를 환경변수로 분리해 Render에 배포하고 운영</li>
+        </ul>
+
+        <h4>추가 산출물</h4>
+        <ul class="ticks">
+          <li>2017년 이후 이벤트 이력 455건을 재사용 가능한 데이터셋으로 정리</li>
+        </ul>
+      </div>
     </article>
   </div>
 </section>
 
-<!-- ══════════════ 기타 프로젝트 (연회색 배경) ══════════════ -->
-<section class="section section-muted" id="other" aria-labelledby="other-h">
+<!-- ══════════════════════════════════════════════════════════════════════
+     BAND 3 — OTHER PROJECTS · 기타 프로젝트 (연회색 배경 · 작은 카드)
+     ══════════════════════════════════════════════════════════════════ -->
+<section class="section band band-other" id="other" aria-labelledby="other-h">
   <div class="wrap">
-    <p class="eyebrow">OTHER WORK</p>
-    <h2 class="section-title" id="other-h">기타 프로젝트</h2>
+    <header class="band-head band-head-sm">
+      <p class="band-label">OTHER PROJECTS</p>
+      <h2 class="band-title" id="other-h">기타 프로젝트</h2>
+    </header>
 
     <div class="other-grid">
       <article class="card">
         <h3>Withmarry — 모바일 청첩장 MVP</h3>
         <p class="card-meta">팀 프로젝트 · 약 1개월 · 3인 (개발 2 · 마케팅 1)</p>
-        <p class="card-desc">개발 2명 중 한 명으로 FastAPI · Supabase 기반 백엔드와 청첩장·랜딩페이지를 구현하고 배포했습니다.</p>
-        <dl class="sum-facts">
+        <dl class="card-facts">
           <div><dt>역할</dt><dd>백엔드 · 청첩장 템플릿 · 배포 · 문의 대응</dd></div>
           <div><dt>결과</dt><dd>실제 배포 · 사용자 문의 5건 · 첫 유료 결제 발생 <span class="tag-team">팀 결과</span></dd></div>
         </dl>
@@ -405,8 +442,7 @@
       <article class="card">
         <h3>달빛장어 운영 대시보드</h3>
         <p class="card-meta">개인 프로젝트 · 실제 매장 운영 데이터</p>
-        <p class="card-desc">실제 매장의 운영 데이터를 관리하는 대시보드를 만들고, 데이터 입력과 운영 편의성을 개선했습니다.</p>
-        <dl class="sum-facts">
+        <dl class="card-facts">
           <div><dt>역할</dt><dd>모바일 중심 UI 설계 · 개발 · 배포</dd></div>
           <div><dt>결과</dt><dd>매출·지출 입력 · 월별 보고서 · 마케팅 분석 · 메뉴 관리</dd></div>
         </dl>
@@ -419,11 +455,15 @@
   </div>
 </section>
 
-<!-- ══════════════ 프로필 (흰 배경) ══════════════ -->
-<section class="section" id="profile" aria-labelledby="profile-h">
+<!-- ══════════════════════════════════════════════════════════════════════
+     BAND 4 — PROFILE · 기술 · 학력 · 자격증 · 연락 (흰 배경)
+     ══════════════════════════════════════════════════════════════════ -->
+<section class="section band band-profile" id="profile" aria-labelledby="profile-h">
   <div class="wrap">
-    <p class="eyebrow">PROFILE</p>
-    <h2 class="section-title" id="profile-h">기술 · 학력 · 연락</h2>
+    <header class="band-head band-head-sm">
+      <p class="band-label">PROFILE</p>
+      <h2 class="band-title" id="profile-h">기술 · 학력 · 자격증 · 연락</h2>
+    </header>
 
     <div class="profile-grid">
       <div class="profile-col profile-col-wide">
@@ -454,7 +494,7 @@
       </div>
 
       <div class="profile-col">
-        <h3 class="profile-h">학력 및 자격</h3>
+        <h3 class="profile-h">학력 · 자격증</h3>
         <p class="profile-strong">동국대학교</p>
         <p class="profile-line">통계학 주전공 · 소프트웨어 AI 연계전공</p>
         <p class="profile-line">2027년 8월 졸업 예정</p>
@@ -480,6 +520,20 @@
     <p>© <span id="year">2026</span> 김소영</p>
   </div>
 </footer>
+
+<!-- ══════════════ 모달 (상세 보기 · 상세 이미지 보기 공용) ══════════════ -->
+<div class="modal" id="modal" hidden>
+  <div class="modal-backdrop" data-close></div>
+  <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modal-title" tabindex="-1">
+    <header class="modal-head">
+      <h2 class="modal-title" id="modal-title"></h2>
+      <button class="modal-close" type="button" data-close aria-label="닫기">
+        <span aria-hidden="true">✕</span>
+      </button>
+    </header>
+    <div class="modal-body" id="modal-body"></div>
+  </div>
+</div>
 
 <script src="./assets/js/app.js" defer></script>
 </body>

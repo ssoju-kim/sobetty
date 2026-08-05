@@ -3,8 +3,9 @@
    인쇄용은 assets/css/print.css
 
    1) 색은 3단계 명도 + 포인트 1개.  --ink / --body / --dim  +  --accent
-      배경은 흰색 / 연회색 두 가지를 대분류마다 번갈아 씁니다.
-   2) 글자 크기는 :root 의 --fs-* 로만 관리합니다.
+   2) 대분류(밴드)마다 배경 · 여백 · 구분선을 다르게 주어
+      실무 경험 → 주요 프로젝트 → 기타 프로젝트 → 프로필 순서로
+      영역의 시작과 끝이 눈에 띄도록 했습니다.
    3) 구조는 .section (화면 전체 폭 배경) > .wrap (읽기 너비) 두 겹입니다.
    ========================================================================= */
 
@@ -21,13 +22,14 @@
   --line-strong: #d3dae0;   /* 대분류·프로젝트 구분선 */
 
   --bg:       #ffffff;   /* 기본 배경 */
-  --muted:    #f7f8fa;   /* 대분류 교차 배경 */
+  --muted:    #f4f6f8;   /* 기타 프로젝트 배경 */
+  --tint:     #eef3f2;   /* 실무 경험 배경 (포인트색 계열) */
   --surface:  #f2f5f7;   /* 프로젝트 헤더 */
   --deep:     #eef2f5;   /* 푸터 */
 
   /* 글자 크기 */
   --fs-hero:    clamp(2rem, 3.3vw, 2.875rem);   /* 32 → 46px */
-  --fs-section: 1.875rem;   /* 30px 대분류 */
+  --fs-band:    clamp(1.875rem, 3.2vw, 2.625rem); /* 30 → 42px 대분류 */
   --fs-project: 1.9375rem;  /* 31px 프로젝트명 */
   --fs-h4:      .8125rem;   /* 13px 소제목 라벨 */
   --fs-body:    1.0625rem;  /* 17px */
@@ -66,6 +68,7 @@ body {
   overflow-wrap: break-word;
   -webkit-font-smoothing: antialiased;
 }
+body.is-locked { overflow: hidden; }
 
 img { max-width: 100%; height: auto; display: block; }
 p, ul, ol, dl, h1, h2, h3, h4 { margin: 0; }
@@ -75,7 +78,7 @@ h1, h2, h3, h4 { color: var(--ink); letter-spacing: -.02em; }
 
 a { color: var(--accent); text-underline-offset: .2em; }
 a:hover { color: var(--accent-deep); }
-a:focus-visible, .btn:focus-visible {
+a:focus-visible, .btn:focus-visible, button:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
   border-radius: 3px;
@@ -95,6 +98,7 @@ a:focus-visible, .btn:focus-visible {
   position: sticky; top: 0; z-index: 100;
   height: var(--nav-h);
   background: rgba(255,255,255,.94);
+  backdrop-filter: saturate(180%) blur(6px);
   border-bottom: 1px solid var(--line);
 }
 .nav-inner {
@@ -117,39 +121,74 @@ a:focus-visible, .btn:focus-visible {
 .nav-list a:hover { background: var(--muted); color: var(--ink); }
 .nav-list a.is-active { color: var(--accent); background: var(--accent-soft); font-weight: 600; }
 
-/* ── 대분류 · 공통 폭 ────────────────────────────────────────────────
-   배경은 화면 전체 폭(.section), 글은 읽기 너비(.wrap)에서 멈춥니다. */
+/* ── 대분류(밴드) · 공통 폭 ──────────────────────────────────────────
+   배경은 화면 전체 폭(.section), 글은 읽기 너비(.wrap)에서 멈춥니다.
+   밴드마다 배경색 · 위아래 여백 · 시작 구분선을 다르게 줍니다. */
 
 .wrap { width: min(100% - 3rem, var(--wrap)); margin-inline: auto; }
 
 .section { padding: 5.5rem 0; }
-.section-hero { padding: 4.5rem 0 5rem; }
-.section-muted { background: var(--muted); }
+.section-hero { padding: 4.5rem 0 4rem; }
+
+.band { border-top: 1px solid var(--line-strong); }
+
+/* 1) 실무 경험 — 포인트색 계열 배경, 가장 넓은 여백 */
+.band-exp {
+  background: var(--tint);
+  border-top: 3px solid var(--accent);
+  padding: 6.5rem 0 7rem;
+}
+/* 2) 주요 프로젝트 — 흰 배경, 넓은 여백 */
+.band-selected {
+  background: var(--bg);
+  padding: 6.5rem 0 7rem;
+}
+/* 3) 기타 프로젝트 — 회색 배경, 눈에 띄게 좁은 여백 */
+.band-other {
+  background: var(--muted);
+  padding: 4rem 0 4.25rem;
+}
+/* 4) 프로필 — 흰 배경 */
+.band-profile {
+  background: var(--bg);
+  padding: 4.5rem 0 5rem;
+}
 
 /* 제목류는 단어 중간에서 끊지 않고 줄 길이를 고르게, 본문은 넘칠 때만 끊습니다. */
-.section-title,
+.band-title,
 .project-title { word-break: keep-all; overflow-wrap: normal; text-wrap: balance; }
-.section-lead,
-.project-description,
-.sum-desc, .card-desc,
-.context p, .role p { word-break: keep-all; overflow-wrap: break-word; text-wrap: pretty; }
+.band-lead,
+.hero-description,
+.lede, .kf-text, .card-desc { word-break: keep-all; overflow-wrap: break-word; text-wrap: pretty; }
 
-/* 장식용 영문 라벨 — heading 이 아니라 단순 문단입니다. */
-.eyebrow {
-  margin-bottom: .55rem;
-  font-size: .75rem; font-weight: 700;
-  letter-spacing: .14em; text-transform: uppercase;
+/* ── 밴드 머리말 — 작은 영문 라벨 + 큰 한글 제목 ─────────────────────── */
+
+.band-head { margin-bottom: 3.5rem; }
+.band-label {
+  display: inline-flex; align-items: center; gap: .55rem;
+  font-size: .75rem; font-weight: 800;
+  letter-spacing: .18em; text-transform: uppercase;
   color: var(--accent);
 }
-.section-title {
-  font-size: var(--fs-section);
-  font-weight: 700;
-  line-height: 1.3;
-  margin-bottom: 2.25rem;
+.band-label::before {
+  content: ""; width: 1.75rem; height: 2px;
+  background: var(--accent); border-radius: 2px;
 }
-.section-head { margin-bottom: 3.5rem; }
-.section-head .section-title { margin-bottom: .9rem; }
-.section-lead { max-width: 40rem; font-size: var(--fs-small); color: var(--dim); }
+.band-title {
+  margin-top: .45rem;
+  font-size: var(--fs-band);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -.035em;
+}
+.band-lead { margin-top: .9rem; max-width: 42rem; font-size: var(--fs-small); color: var(--dim); }
+
+/* 기타 프로젝트 · 프로필은 머리말도 한 단계 작게 */
+.band-head-sm { margin-bottom: 2rem; }
+.band-head-sm .band-title { font-size: clamp(1.5rem, 2.2vw, 1.875rem); }
+
+/* 하위 호환용 (예전 클래스명) */
+.eyebrow { font-size: .75rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); }
 
 /* ── Hero ────────────────────────────────────────────────────────────── */
 
@@ -187,6 +226,8 @@ a:focus-visible, .btn:focus-visible {
   overflow-wrap: break-word;
   text-wrap: pretty;
 }
+
+/* 핵심 문장 3개 — 별도의 '한눈에 보기' 섹션 대신 여기서만 요약합니다. */
 .hero-points { display: flex; flex-wrap: wrap; gap: .5rem .75rem; margin-top: 1.5rem; }
 .hero-points li {
   padding: .35rem .8rem;
@@ -198,24 +239,38 @@ a:focus-visible, .btn:focus-visible {
 
 .hero-actions { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 2rem; }
 .btn {
-  display: inline-flex; align-items: center;
+  display: inline-flex; align-items: center; justify-content: center;
   min-height: 2.75rem;
   padding: .55rem 1.15rem;
   border: 1px solid var(--line-strong);
   border-radius: 6px;
   background: #fff; color: var(--ink);
+  font-family: inherit;
   font-size: .9375rem; font-weight: 600;
   text-decoration: none;
+  cursor: pointer;
 }
 .btn:hover { border-color: var(--ink); background: var(--muted); }
 .btn-primary { background: var(--accent); border-color: var(--accent); color: #fff; }
 .btn-primary:hover { background: var(--accent-deep); border-color: var(--accent-deep); color: #fff; }
+.btn-sm { min-height: 2.25rem; padding: .35rem .9rem; font-size: var(--fs-small); }
+
+/* '상세 보기' — 포인트색 테두리로 눈에 띄되 주 CTA 는 아님 */
+.btn-detail {
+  border-color: var(--accent);
+  color: var(--accent-deep);
+  background: #fff;
+}
+.btn-detail:hover { background: var(--accent-soft); border-color: var(--accent-deep); color: var(--accent-deep); }
+.btn-detail::after { content: "›"; margin-left: .45rem; font-size: 1.1em; line-height: 1; }
 
 /* ── 이미지 ──────────────────────────────────────────────────────────
-   이미지는 아직 없습니다. index.html 안에 <figure> 마크업이 주석으로
-   들어 있으니, 파일을 넣고 주석만 풀면 아래 비율이 그대로 적용됩니다. */
+   대표 이미지 1장만 본문에 두고, 나머지는 '상세 이미지 보기' 모달에서 봅니다.
+   이미지 목록은 assets/js/app.js 의 GALLERY 에서 관리하며,
+   목록이 비어 있으면 이 영역은 화면에 나타나지 않습니다. */
 
-.shot { margin: 2.5rem 0 0; }
+.media { margin-top: 2.25rem; }
+.shot { margin: 0; }
 .shot img { width: 100%; border: 1px solid var(--line); border-radius: 10px; background: var(--muted); }
 .shot .img-16x9 { aspect-ratio: 16 / 9; object-fit: cover; }
 .shot .img-4x3  { aspect-ratio: 4 / 3;  object-fit: contain; }
@@ -224,47 +279,29 @@ a:focus-visible, .btn:focus-visible {
   border: 1px solid var(--line); border-radius: 10px; background: var(--muted);
 }
 .shot figcaption { margin-top: .6rem; font-size: var(--fs-small); color: var(--dim); line-height: 1.55; }
-.shot-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; margin-top: 1.75rem; }
+.media-actions { margin-top: .9rem; }
 
-/* ── 한눈에 보기 ─────────────────────────────────────────────────────── */
+/* ── 프로젝트 ────────────────────────────────────────────────────────── */
 
-.summary { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem; }
-.summary > li {
-  display: flex; flex-direction: column;
-  padding: 1.75rem;
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  background: #fff;
+.project + .project {
+  margin-top: 5rem;
+  padding-top: 5rem;
+  border-top: 2px solid var(--line-strong);
 }
-.summary h3 { font-size: 1.125rem; font-weight: 700; margin-bottom: .5rem; line-height: 1.35; }
-.sum-desc { font-size: var(--fs-small); color: var(--body); }
-
-.sum-facts { margin-top: 1rem; display: grid; gap: .6rem; }
-.sum-facts > div { display: grid; grid-template-columns: 3rem 1fr; gap: .6rem; align-items: baseline; }
-.sum-facts dt { font-size: .75rem; font-weight: 700; letter-spacing: .04em; color: var(--dim); }
-.sum-facts dd { margin: 0; font-size: var(--fs-small); color: var(--ink); line-height: 1.55; }
-
-.summary-link { margin-top: auto; padding-top: 1.25rem; font-size: var(--fs-small); }
-.summary-link a { font-weight: 700; text-decoration: none; }
-.summary-link a:hover { text-decoration: underline; }
-
-/* ── 대표 프로젝트 ───────────────────────────────────────────────────── */
-
-.project { padding-block: 6rem; }
-.project:first-of-type { padding-top: 0; }
-.project:last-child { padding-bottom: 0; }
-.project + .project { border-top: 2px solid var(--line-strong); }
 
 /* 헤더만 묶습니다. 프로젝트 전체를 카드로 감싸지 않습니다. */
 .project-head {
   padding: 2rem 2.25rem 2.25rem;
   background: var(--surface);
+  border: 1px solid var(--line);
   border-radius: 14px;
 }
+.band-exp .project-head { background: #fff; }
+
 .project-no {
   display: flex; flex-wrap: wrap; align-items: baseline;
   font-size: .75rem; font-weight: 800;
-  letter-spacing: .14em; color: var(--accent);
+  letter-spacing: .12em; color: var(--accent);
 }
 .project-kind { font-weight: 700; letter-spacing: .1em; color: var(--dim); }
 .project-kind::before { content: "·"; margin: 0 .5rem; color: var(--line-strong); }
@@ -277,14 +314,29 @@ a:focus-visible, .btn:focus-visible {
   letter-spacing: -.03em;
   max-width: 22em;
 }
-.project-description { margin-top: .8rem; max-width: 44rem; font-size: var(--fs-body); color: var(--body); }
-.project-meta { margin-top: .9rem; font-size: .8125rem; color: var(--dim); }
+
+/* 역할 · 핵심 결과 — 프로젝트에서 가장 먼저 읽히는 자리 */
+.keyfacts {
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem 2rem;
+  margin-top: 1.5rem;
+  padding: 1.25rem 0 0;
+  border-top: 1px solid var(--line-strong);
+}
+.keyfacts > li { min-width: 0; padding-left: .9rem; border-left: 3px solid var(--accent); }
+.kf-label {
+  font-size: .75rem; font-weight: 800; letter-spacing: .08em;
+  color: var(--accent-deep);
+}
+.kf-text { margin-top: .3rem; font-size: .9375rem; color: var(--ink); line-height: 1.6; }
+
+.project-meta { margin-top: 1.25rem; font-size: .8125rem; color: var(--dim); }
 .meta-sub { display: block; }
 
 /* 핵심 지표 — 숫자 크게, 의미 중간, 조건 작게 */
 .stats {
   display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
-  margin-top: 1.75rem; padding-top: 1.5rem;
+  margin-top: 1.5rem; padding-top: 1.5rem;
   border-top: 1px solid var(--line-strong);
 }
 .stats > li { padding-right: 1.5rem; }
@@ -314,29 +366,18 @@ a:focus-visible, .btn:focus-visible {
 .project-links a:hover { text-decoration: underline; }
 .links-note { display: block; margin-top: .2rem; color: var(--dim); font-weight: 400; }
 
-/* 프로젝트 내부 — 배경(약) / 역할(강) / 수행 내용 / 결과 */
+/* 프로젝트 본문 — 배경 / 수행 내용 두 칸 */
 .project-body {
-  display: grid; grid-template-columns: 1fr 1.15fr; gap: 2rem 3.5rem;
+  display: grid; grid-template-columns: 1fr 1.35fr; gap: 2rem 3.5rem;
   margin-top: 2.5rem;
   align-items: start;
 }
-.pcol h4, .outcome h4 {
-  font-size: var(--fs-h4); font-weight: 700;
-  letter-spacing: .06em; color: var(--dim);
-  margin-bottom: .6rem;
+.pcol h4, .outcome h4, .detail h4 {
+  font-size: var(--fs-h4); font-weight: 800;
+  letter-spacing: .08em; color: var(--dim);
+  margin-bottom: .7rem;
 }
-
-/* 배경 — 가장 낮은 중요도 */
-.context p { font-size: .9375rem; color: var(--dim); }
-
-/* 내가 맡은 역할 — 포인트 컬러 세로선으로 강조 */
-.role {
-  margin-top: 1.75rem;
-  padding-left: 1.25rem;
-  border-left: 3px solid var(--accent);
-}
-.role h4 { color: var(--accent-deep); }
-.role p { font-size: .9375rem; color: var(--ink); }
+.lede { font-size: .9375rem; color: var(--dim); }
 
 /* 수행 내용 — 01 · 02 번호 목록 */
 .steps { counter-reset: s; }
@@ -347,6 +388,7 @@ a:focus-visible, .btn:focus-visible {
   margin-bottom: .7rem;
   font-size: .9375rem; color: var(--ink);
 }
+.steps li:last-child { margin-bottom: 0; }
 .steps li::before {
   content: counter(s, decimal-leading-zero);
   font-size: .75rem; font-weight: 800;
@@ -354,13 +396,14 @@ a:focus-visible, .btn:focus-visible {
 }
 
 .ticks li { position: relative; padding-left: .9rem; margin-bottom: .5rem; font-size: .9375rem; }
+.ticks li:last-child { margin-bottom: 0; }
 .ticks li::before {
   content: ""; position: absolute; left: 0; top: .68em;
   width: 4px; height: 4px; border-radius: 50%;
   background: #a9b4bd;
 }
 
-/* 본인 / 팀원 구분 */
+/* 본인 / 팀원 구분 (모달 안에서 사용) */
 .split { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-top: .5rem; }
 .split-head {
   font-size: .75rem; font-weight: 700; letter-spacing: .04em; color: var(--ink);
@@ -369,16 +412,15 @@ a:focus-visible, .btn:focus-visible {
 }
 .split .ticks li { font-size: var(--fs-small); }
 
-/* 결과 및 산출물 — 헤더(연회색)와 반대로 흰 배경 + 테두리 */
+/* 결과 — 흰 배경 + 테두리 */
 .outcome {
-  margin-top: 2.5rem;
+  margin-top: 2.25rem;
   padding: 1.75rem 2rem;
   background: #fff;
   border: 1px solid var(--line-strong);
   border-radius: 14px;
 }
 .outcome .ticks li { margin-bottom: .55rem; }
-.outcome .ticks li:last-child { margin-bottom: 0; }
 .callout {
   margin-top: 1.1rem;
   padding-left: .85rem;
@@ -387,31 +429,43 @@ a:focus-visible, .btn:focus-visible {
   color: var(--dim);
 }
 
-/* 사용 기술 — 한 줄로 간결하게 */
+/* 사용 기술 + 상세 보기 버튼 */
+.project-foot {
+  display: flex; flex-wrap: wrap; align-items: center;
+  justify-content: space-between; gap: 1rem;
+  margin-top: 1.75rem;
+}
 .tech { font-size: var(--fs-small); color: var(--dim); }
 .tech span { display: inline-block; min-width: 2.5rem; font-weight: 700; color: var(--ink); }
-.project > .tech { margin-top: 1.5rem; }
+.detail-actions { flex: 0 0 auto; }
 
 .links { font-size: var(--fs-small); }
 .links a { font-weight: 600; text-decoration: none; }
 .links a:hover { text-decoration: underline; }
 
-/* ── 기타 프로젝트 — 간결한 카드 ─────────────────────────────────────── */
+/* ── 기타 프로젝트 — 정보량과 크기를 확실히 줄인 작은 카드 ───────────── */
 
-.other-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; }
+.other-grid {
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+  max-width: 58rem;
+}
 .card {
   display: flex; flex-direction: column;
-  padding: 1.75rem;
+  padding: 1.375rem 1.5rem;
   background: #fff;
   border: 1px solid var(--line);
-  border-radius: 14px;
+  border-radius: 12px;
 }
-.card h3 { font-size: 1.1875rem; font-weight: 700; line-height: 1.35; }
-.card-meta { margin-top: .35rem; font-size: .8125rem; color: var(--dim); }
-.card-desc { margin-top: .8rem; font-size: var(--fs-small); color: var(--body); }
-.card .sum-facts { margin-top: 1rem; }
-.card .tech { margin-top: auto; padding-top: 1.25rem; }
-.card .links { margin-top: .4rem; }
+.card h3 { font-size: 1.0625rem; font-weight: 700; line-height: 1.4; }
+.card-meta { margin-top: .3rem; font-size: .78125rem; color: var(--dim); }
+.card-facts { margin-top: .9rem; display: grid; gap: .45rem; }
+.card-facts > div { display: grid; grid-template-columns: 2.75rem 1fr; gap: .6rem; align-items: baseline; }
+.card-facts dt { font-size: .6875rem; font-weight: 700; letter-spacing: .04em; color: var(--dim); }
+.card-facts dd { margin: 0; font-size: .8125rem; color: var(--ink); line-height: 1.55; }
+.card .tech { margin-top: auto; padding-top: 1rem; font-size: .78125rem; }
+.card .tech span { min-width: 2.2rem; }
+.card .links { margin-top: .35rem; font-size: .78125rem; }
 
 /* ── 프로필 ──────────────────────────────────────────────────────────── */
 
@@ -451,6 +505,87 @@ a:focus-visible, .btn:focus-visible {
   font-size: var(--fs-small); color: var(--dim);
 }
 
+/* ── 모달 (상세 보기 · 상세 이미지 보기 공용) ─────────────────────────
+   ESC · 배경 클릭 · 닫기 버튼으로 닫히고, 이미지 모드에서는
+   좌우 버튼 · 방향키 · 스와이프로 이동합니다. */
+
+.modal { position: fixed; inset: 0; z-index: 200; display: flex; }
+.modal-backdrop { position: absolute; inset: 0; background: rgba(12, 18, 22, .62); }
+.modal-panel {
+  position: relative;
+  margin: auto;
+  width: min(100% - 2rem, 56rem);
+  max-height: min(92vh, 56rem);
+  display: flex; flex-direction: column;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 18px 60px rgba(12, 18, 22, .3);
+  overflow: hidden;
+}
+.modal.is-gallery .modal-panel { width: min(100% - 2rem, 68rem); }
+.modal-head {
+  display: flex; align-items: flex-start; gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--line);
+  background: #fff;
+}
+.modal-title { flex: 1 1 auto; min-width: 0; font-size: 1.0625rem; font-weight: 700; line-height: 1.45; }
+.modal-close {
+  flex: 0 0 auto;
+  width: 2.25rem; height: 2.25rem;
+  display: inline-flex; align-items: center; justify-content: center;
+  border: 1px solid var(--line-strong); border-radius: 6px;
+  background: #fff; color: var(--ink);
+  font-size: 1rem; line-height: 1; cursor: pointer;
+}
+.modal-close:hover { background: var(--muted); border-color: var(--ink); }
+.modal-body { padding: 1.5rem; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+.modal-body h4:not(:first-child) { margin-top: 1.5rem; }
+.modal-body .split { margin-top: .25rem; }
+.modal-body .steps li,
+.modal-body .ticks li { color: var(--ink); }
+
+/* 이미지 모드 */
+.gallery { display: grid; gap: .9rem; }
+.gallery-stage {
+  position: relative;
+  background: #0d1216;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.gallery-stage img {
+  width: 100%;
+  max-height: min(62vh, 34rem);
+  object-fit: contain;
+  margin-inline: auto;
+  background: #0d1216;
+}
+.gallery-nav {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  width: 2.75rem; height: 2.75rem;
+  display: inline-flex; align-items: center; justify-content: center;
+  border: 0; border-radius: 999px;
+  background: rgba(255,255,255,.9); color: var(--ink);
+  font-size: 1.25rem; line-height: 1; cursor: pointer;
+}
+.gallery-nav:hover { background: #fff; }
+.gallery-prev { left: .6rem; }
+.gallery-next { right: .6rem; }
+.gallery-meta {
+  display: flex; align-items: baseline; gap: .9rem;
+  font-size: var(--fs-small); color: var(--dim);
+}
+.gallery-count { flex: 0 0 auto; font-weight: 700; color: var(--ink); font-variant-numeric: tabular-nums; }
+.gallery-caption { flex: 1 1 auto; min-width: 0; line-height: 1.55; }
+.gallery-thumbs { display: flex; flex-wrap: wrap; gap: .5rem; }
+.gallery-thumbs button {
+  width: 4.5rem; padding: 0;
+  border: 2px solid transparent; border-radius: 6px;
+  background: var(--muted); cursor: pointer; overflow: hidden;
+}
+.gallery-thumbs button[aria-current="true"] { border-color: var(--accent); }
+.gallery-thumbs img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; }
+
 /* ═══════════════ 반응형 ═══════════════ */
 
 /* 1280 */
@@ -460,12 +595,11 @@ a:focus-visible, .btn:focus-visible {
 
 /* 1024 */
 @media (max-width: 1024px) {
-  :root { --wrap: 64rem; --fs-project: 1.75rem; --fs-section: 1.625rem; }
+  :root { --wrap: 64rem; --fs-project: 1.75rem; }
   .hero-top { gap: 2.5rem; }
   .hero-photo { flex-basis: 11rem; }
-  .summary { grid-template-columns: 1fr; gap: 1rem; }
   .project-body { grid-template-columns: 1fr; gap: 2rem; }
-  .other-grid { grid-template-columns: 1fr; }
+  .other-grid { grid-template-columns: 1fr; max-width: 34rem; }
   .profile-grid { grid-template-columns: 1fr 1fr; }
   .profile-col-wide { grid-column: 1 / -1; }
   .stack > div { grid-template-columns: 10rem 1fr; }
@@ -473,18 +607,22 @@ a:focus-visible, .btn:focus-visible {
 
 /* 768 — 모바일 */
 @media (max-width: 768px) {
-  .section { padding: 3.5rem 0; }
-  .section-hero { padding: 2.5rem 0 3.25rem; }
-  .section-title { margin-bottom: 1.75rem; }
-  .section-head { margin-bottom: 2.5rem; }
+  .section-hero { padding: 2.5rem 0 2.75rem; }
+  .band-exp { padding: 3.5rem 0 3.75rem; }
+  .band-selected { padding: 3.5rem 0 3.75rem; }
+  .band-other { padding: 2.5rem 0 2.75rem; }
+  .band-profile { padding: 2.75rem 0 3rem; }
+  .band-head { margin-bottom: 2rem; }
+  .band-head-sm { margin-bottom: 1.5rem; }
 
   .hero-top { flex-direction: column; gap: 1.5rem; }
   .hero-photo { flex: 0 0 auto; width: 100%; max-width: 11.25rem; }
-  .hero-description { margin-top: 1.25rem; }
 
-  /* 프로젝트 사이 여백 64px + 굵은 구분선 */
-  .project { padding-block: 4rem; }
+  /* 프로젝트 사이 여백 + 굵은 구분선 */
+  .project + .project { margin-top: 3rem; padding-top: 3rem; }
   .project-head { padding: 1.5rem 1.5rem 1.75rem; }
+
+  .keyfacts { grid-template-columns: 1fr; gap: 1rem; }
 
   /* 지표는 세로 1열 — 좁은 3열로 찌그러지지 않게 */
   .stats { grid-template-columns: 1fr; }
@@ -495,26 +633,36 @@ a:focus-visible, .btn:focus-visible {
   }
 
   .outcome { padding: 1.5rem; }
-  .shot-grid { grid-template-columns: 1fr; gap: 1.25rem; }
+  .project-foot { align-items: stretch; }
+  .detail-actions { width: 100%; }
+  .detail-actions .btn { width: 100%; }
+
   .profile-grid { grid-template-columns: 1fr; gap: 2rem; }
   .stack > div { grid-template-columns: 1fr; gap: .15rem; padding: .7rem 0; }
+
+  /* 모달 — 모바일에서는 화면을 거의 가득 채웁니다 */
+  .modal-panel { width: 100%; max-width: none; max-height: 100%; height: 100%; border-radius: 0; margin: 0; }
+  .modal-head { padding: 1rem 1.1rem; }
+  .modal-body { padding: 1.1rem; }
+  .gallery-stage img { max-height: 52vh; }
+  .gallery-nav { width: 2.5rem; height: 2.5rem; }
 }
 
 /* 480 */
 @media (max-width: 480px) {
-  :root { --fs-project: 1.5rem; --fs-section: 1.5rem; --fs-body: 1rem; --fs-stat: 1.625rem; }
+  :root { --fs-project: 1.5rem; --fs-body: 1rem; --fs-stat: 1.625rem; }
   .wrap, .nav-inner { width: min(100% - 2rem, var(--wrap)); }
   .hero-photo { max-width: 9.5rem; }
-  .hero-actions .btn { flex: 1 1 100%; justify-content: center; }
+  .hero-actions .btn { flex: 1 1 100%; }
   .hero-points li { flex: 1 1 100%; }
 
   .project-head { padding: 1.25rem 1.25rem 1.5rem; }
-  /* 좁은 화면에서 세로선이 본문을 지나치게 밀지 않게 */
-  .role { padding-left: 1rem; }
+  .keyfacts > li { padding-left: .8rem; }
   .split { grid-template-columns: 1fr; gap: 1rem; }
   .steps li { grid-template-columns: 1.6rem 1fr; }
 
-  .summary > li, .card { padding: 1.25rem; }
+  .card { padding: 1.25rem; }
   .outcome { padding: 1.25rem; }
   .project-title { max-width: none; }
+  .gallery-thumbs button { width: 3.75rem; }
 }

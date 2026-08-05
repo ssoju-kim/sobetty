@@ -2,9 +2,10 @@
 .DS_Store
 ._*
 
-# 편집기
+# 편집기 · 도구
 .vscode/
 .idea/
+.serena/
 *.swp
 
 # 파이썬 (tools/ 스크립트 실행 시)

@@ -110,10 +110,10 @@ h1, h2, h3, h4, .section-title, .project-meta, .entry-meta { break-after: avoid;
 /* 이미지 · 자리표시자 — 인쇄에서는 높이를 줄여 페이지를 넘기지 않게 */
 .shot { margin-top: 5mm; }
 .shot figcaption { font-size: 7.6pt; margin-top: 1.2mm; }
-.ph { padding: 3mm; background: #f6f8f9 !important; border: 1px solid #e2e7eb !important; }
-.ph-ico { width: 7mm; height: 7mm; margin-bottom: 1mm; }
-.ph-label { font-size: 6.6pt; }
-.ph-name { font-size: 8pt; }
+.ph { background: none !important; border: 1px dashed #e2e7eb !important; }
+.ph-in { padding: 1.5mm 2.5mm; gap: 2mm; }
+.ph-ico { width: 3.5mm; height: 3.5mm; }
+.ph-name { font-size: 7.6pt; }
 .ph-meta { font-size: 6.6pt; }
 
 .shot-grid { display: flex !important; flex-direction: row; gap: 4mm; margin-top: 4mm; }

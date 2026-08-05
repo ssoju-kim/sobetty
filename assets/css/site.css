@@ -21,8 +21,11 @@
   --tint:      #f6f8f9;
   --bg:        #fff;
 
-  /* 글자 크기 — 데스크톱 */
-  --fs-hero:    2.75rem;   /* 44px */
+  /* 글자 크기
+     Hero 제목·이름은 clamp 로 연속 변화시킵니다. 중단점마다 값을 따로 주면
+     화면이 줄었는데 글자가 커지는 역전이 생기기 쉽습니다. */
+  --fs-hero:    clamp(2rem, 3.3vw, 2.875rem);           /* 32 → 46px */
+  --fs-name:    clamp(1.5rem, 1.1vw + .95rem, 1.75rem); /* 24 → 28px */
   --fs-project: 2.125rem;  /* 34px */
   --fs-section: 1.875rem;  /* 30px */
   --fs-h4:      .8125rem;  /* 13px 라벨 */
@@ -123,6 +126,15 @@ a:focus-visible, .btn:focus-visible {
 .band { padding: 4.5rem 0; border-top: 1px solid var(--line); }
 .band-tight { padding: 3rem 0; }
 
+/* 제목류는 단어 중간에서 끊지 않고 줄 길이를 고르게, 본문은 넘칠 때만 끊습니다. */
+.section-title,
+.entry-title,
+.project-title { word-break: keep-all; overflow-wrap: normal; text-wrap: balance; }
+.entry-lead,
+.project-description,
+.summary p,
+.pcol p { word-break: keep-all; overflow-wrap: break-word; text-wrap: pretty; }
+
 .section-title {
   font-size: var(--fs-section);
   font-weight: 700;
@@ -138,12 +150,12 @@ a:focus-visible, .btn:focus-visible {
 /* 데스크톱은 가로 2열, 모바일은 세로. flex 방향만 바뀝니다. */
 .hero-top { display: flex; gap: 3rem; align-items: flex-start; }
 .hero-head { flex: 1 1 auto; min-width: 0; }
-.hero-photo { flex: 0 0 15rem; }
+.hero-photo { flex: 0 0 12rem; }
 
 .hero-major { font-size: var(--fs-small); font-weight: 600; color: var(--accent); }
 .hero-name {
   margin-top: .6rem;
-  font-size: 1.375rem; font-weight: 700; color: var(--ink);
+  font-size: var(--fs-name); font-weight: 700; color: var(--ink);
   letter-spacing: -.02em;
 }
 .hero-title {
@@ -152,15 +164,19 @@ a:focus-visible, .btn:focus-visible {
   font-weight: 800;
   line-height: 1.2;
   letter-spacing: -.035em;
-  max-width: 21em;   /* 한글은 글자폭이 1em 에 가까워 em 기준이 정확합니다 */
+  /* 한글은 글자폭이 1em 에 가까워 ch 보다 em 기준이 정확합니다.
+     21em ≈ 한 줄 21자 → 40자 문장이 두 줄로 떨어집니다. */
+  max-width: 21em;
   word-break: keep-all;
+  overflow-wrap: normal;
   text-wrap: balance;
 }
 .hero-description {
   margin-top: 1.5rem;
-  max-width: 42rem;
+  max-width: 38rem;
   color: var(--body);
   word-break: keep-all;
+  overflow-wrap: break-word;
   text-wrap: pretty;
 }
 
@@ -241,6 +257,11 @@ a:focus-visible, .btn:focus-visible {
   margin-top: 1.75rem;
 }
 .shot-grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+/* 3장 그리드는 3열 → 2열 → 1열 순서로 내려갑니다.
+   2열에서 마지막 한 장은 다른 이미지와 같은 너비로 왼쪽에 남습니다. */
+@media (max-width: 1199px) {
+  .shot-grid-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
 
 /* ── 주요 경험 요약 ──────────────────────────────────────────────────── */
 
@@ -260,9 +281,7 @@ a:focus-visible, .btn:focus-visible {
   font-weight: 800;
   line-height: 1.25;
   letter-spacing: -.03em;
-  max-width: 24ch;
-  word-break: keep-all;
-  text-wrap: balance;
+  max-width: 22em;
 }
 .entry-lead {
   margin-top: .9rem; margin-bottom: 2.25rem;
@@ -272,8 +291,13 @@ a:focus-visible, .btn:focus-visible {
 }
 
 .duties {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2rem;
   margin-top: 2.25rem;
+  align-items: start;
+}
+/* 3열이 유지되지 않는 폭에서는 2+1 로 남기지 않고 바로 1열로 내립니다. */
+@media (max-width: 1199px) {
+  .duties { grid-template-columns: 1fr; gap: 1.75rem; }
 }
 .duty h4, .pcol h4 {
   font-size: var(--fs-h4); font-weight: 700;
@@ -324,15 +348,11 @@ a:focus-visible, .btn:focus-visible {
   font-weight: 800;
   line-height: 1.25;
   letter-spacing: -.03em;
-  max-width: 24ch;
-  word-break: keep-all;
-  text-wrap: balance;
+  max-width: 22em;
 }
 .project-description {
   margin-top: .9rem;
   max-width: 42rem;
-  word-break: keep-all;
-  text-wrap: pretty;
 }
 
 /* 핵심 결과 */
@@ -351,7 +371,7 @@ a:focus-visible, .btn:focus-visible {
 .stat-lead .stat-num { font-size: var(--fs-stat); color: var(--accent); }
 .unit { font-size: .55em; margin-left: .1em; }
 .stat-cap { margin-top: .25rem; font-size: var(--fs-small); color: var(--body); line-height: 1.5; }
-.stat-sub { color: var(--dim); }
+.stat-sub { display: block; color: var(--dim); }
 .tag-team {
   display: inline-block;
   padding: 0 .35rem;
@@ -438,7 +458,7 @@ a:focus-visible, .btn:focus-visible {
   margin-bottom: .45rem;
 }
 .facts dd { margin: 0; font-size: .9375rem; color: var(--ink); line-height: 1.6; }
-.dim { color: var(--dim); }
+.dim { display: block; color: var(--dim); }
 
 /* ── 연락 ────────────────────────────────────────────────────────────── */
 
@@ -457,22 +477,21 @@ a:focus-visible, .btn:focus-visible {
 
 /* 1280 */
 @media (max-width: 1280px) {
-  :root { --wrap: 64rem; --fs-hero: 3rem; }
+  :root { --wrap: 68rem; }
 }
 
 /* 1024 */
 @media (max-width: 1024px) {
-  :root { --fs-hero: 2.625rem; --fs-project: 1.875rem; --fs-section: 1.625rem; }
+  :root { --wrap: 64rem; --fs-project: 1.875rem; --fs-section: 1.625rem; }
   .hero-top { gap: 2.5rem; }
-  .hero-photo { flex-basis: 13rem; }
-  .duties { grid-template-columns: 1fr 1fr; }
+  .hero-photo { flex-basis: 11rem; }
   .project-body { grid-template-columns: 1fr; gap: 1.75rem; }
   .facts { grid-template-columns: repeat(2, 1fr); }
 }
 
 /* 768 */
 @media (max-width: 768px) {
-  :root { --fs-hero: 2.375rem; --fs-stat: 2rem; }
+  :root { --fs-stat: 2rem; }
   .band { padding: 3.25rem 0; }
   .band-tight { padding: 2.5rem 0; }
   .section-title { margin-bottom: 1.75rem; }
@@ -496,7 +515,7 @@ a:focus-visible, .btn:focus-visible {
 
 /* 390 */
 @media (max-width: 480px) {
-  :root { --fs-hero: 2rem; --fs-project: 1.625rem; --fs-section: 1.5rem; --fs-body: 1rem; }
+  :root { --fs-project: 1.625rem; --fs-section: 1.5rem; --fs-body: 1rem; }
   .hero, .band, .foot, .nav-inner { width: min(100% - 2rem, var(--wrap)); }
   .hero-photo { max-width: 9.5rem; }   /* 152px */
   .hero-actions .btn { flex: 1 1 100%; justify-content: center; }

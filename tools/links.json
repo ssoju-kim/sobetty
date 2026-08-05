@@ -1,0 +1,14 @@
+{
+  "_설명": "QR 코드로 만들 주소 목록입니다. 값을 채운 뒤 `python3 tools/make_qr.py` 를 실행하면 assets/qr/ 아래에 SVG가 만들어집니다. 값이 비어 있으면 '준비 중' 자리표시자 QR이 생성됩니다.",
+
+  "finance-demo": "",
+  "maple-demo": "",
+  "withmarry-demo": "",
+
+  "_참고용_이미_사용중인_주소": {
+    "site": "https://ssoju-kim.github.io/sobetty/",
+    "finance_betty": "https://github.com/ssoju-kim/finance_betty",
+    "maplessunday": "https://github.com/yeonsik-choi/maplessunday-web",
+    "moonlight": "https://github.com/ssoju-kim/moonlight"
+  }
+}

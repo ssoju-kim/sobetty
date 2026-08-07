@@ -259,27 +259,34 @@ var MEDIA = {
     var isCoarsePointer = !!(window.matchMedia && window.matchMedia("(pointer: coarse)").matches);
     var autoEnabled = !reduceMotion && !isCoarsePointer;
 
-    var SPEED = 20; /* 초당 px — 천천히 흐르는 정도 */
+    var SPEED = 16; /* 초당 px — 천천히, 존재감이 강하지 않게 흐르는 정도 */
     var direction = 1;
-    var paused = false;
+    var hovering = false;
+    var focused = false;
     var dragging = false;
+    var paused = false;
     var lastTime = null;
     var resumeTimer = null;
 
+    function isHeld() { return hovering || focused || dragging; }
+
+    /* 일정 시간 뒤 재개하되, 그사이 다시 hover · 포커스 · 드래그가
+       시작됐으면(isHeld()) 재개하지 않습니다 — 이전에는 이 확인이 없어서
+       hover 로 멈춘 직후 남아 있던 타이머가 도로 풀어버리는 문제가 있었습니다. */
     function pauseFor(ms) {
       paused = true;
       window.clearTimeout(resumeTimer);
       resumeTimer = window.setTimeout(function () {
-        if (!dragging) { paused = false; }
+        if (!isHeld()) { paused = false; }
       }, ms);
     }
 
     function step(now) {
-      if (autoEnabled && !paused && !dragging) {
+      if (autoEnabled && !paused) {
         if (lastTime !== null) {
           var dt = (now - lastTime) / 1000;
           var max = track.scrollWidth - track.clientWidth;
-          if (max > 0) {
+          if (max > 0 && dt < 0.25) {
             track.scrollLeft += direction * SPEED * dt;
             if (track.scrollLeft >= max) { track.scrollLeft = max; direction = -1; }
             else if (track.scrollLeft <= 0) { track.scrollLeft = 0; direction = 1; }
@@ -293,39 +300,72 @@ var MEDIA = {
     }
     if (autoEnabled) { window.requestAnimationFrame(step); }
 
-    root.addEventListener("mouseenter", function () { paused = true; });
-    root.addEventListener("mouseleave", function () { if (!dragging) { paused = false; } });
-    root.addEventListener("focusin", function () { paused = true; });
-    root.addEventListener("focusout", function () { if (!dragging) { paused = false; } });
+    /* hover · 포커스는 즉시, 무조건 멈춥니다 (대기 중인 재개 타이머가 있어도
+       취소). 벗어날 때는 다른 방식으로 여전히 붙잡혀 있지 않을 때만 풉니다. */
+    root.addEventListener("mouseenter", function () {
+      hovering = true;
+      paused = true;
+      window.clearTimeout(resumeTimer);
+    });
+    root.addEventListener("mouseleave", function () {
+      hovering = false;
+      if (!isHeld()) { paused = false; }
+    });
+    root.addEventListener("focusin", function () {
+      focused = true;
+      paused = true;
+      window.clearTimeout(resumeTimer);
+    });
+    root.addEventListener("focusout", function () {
+      focused = false;
+      if (!isHeld()) { paused = false; }
+    });
 
-    /* 드래그로 이동 (마우스 · 트랙패드 환경만. 터치는 네이티브 스와이프를 씁니다) */
+    /* 드래그로 이동 (마우스 · 트랙패드 환경만. 터치는 네이티브 스와이프를 씁니다).
+       pointerdown 시점에는 아직 "누른 것"인지 "끌기 시작"인지 알 수 없으므로
+       바로 캡처하지 않고, 실제로 임계값 이상 움직였을 때만 드래그로
+       전환합니다. 그렇지 않으면 단순 클릭까지 setPointerCapture 의
+       영향을 받아 카드의 클릭 리스너가 아예 못 받는 문제가 생깁니다. */
+    var pointerActive = false;
     var startX = 0;
     var startScroll = 0;
     var moved = 0;
+    var activePointerId = null;
+    var DRAG_THRESHOLD = 6;
 
     track.addEventListener("pointerdown", function (e) {
       if (e.pointerType === "touch") { return; }
-      dragging = true;
+      pointerActive = true;
+      dragging = false;
       moved = 0;
       startX = e.clientX;
       startScroll = track.scrollLeft;
-      track.classList.add("is-dragging");
-      if (track.setPointerCapture) { track.setPointerCapture(e.pointerId); }
+      activePointerId = e.pointerId;
     });
 
     track.addEventListener("pointermove", function (e) {
-      if (!dragging) { return; }
+      if (!pointerActive) { return; }
       var dx = e.clientX - startX;
       moved = Math.max(moved, Math.abs(dx));
-      track.scrollLeft = startScroll - dx;
+
+      if (!dragging && moved > DRAG_THRESHOLD) {
+        dragging = true;
+        paused = true;
+        track.classList.add("is-dragging");
+        if (track.setPointerCapture) { track.setPointerCapture(activePointerId); }
+      }
+      if (dragging) { track.scrollLeft = startScroll - dx; }
     });
 
     function endDrag() {
-      if (!dragging) { return; }
-      dragging = false;
-      track.classList.remove("is-dragging");
-      if (moved > 6) { track.dataset.dragged = "1"; }
-      pauseFor(2200);
+      if (!pointerActive) { return; }
+      pointerActive = false;
+      if (dragging) {
+        dragging = false;
+        track.classList.remove("is-dragging");
+        track.dataset.dragged = "1"; /* 뒤따라오는 클릭을 무시하기 위한 표시 */
+        pauseFor(1800);
+      }
     }
     track.addEventListener("pointerup", endDrag);
     track.addEventListener("pointercancel", endDrag);
@@ -339,17 +379,41 @@ var MEDIA = {
       }
     }, true);
 
-    /* 좌우 버튼 */
-    function slideBy(dir) {
+    /* 좌우 버튼 · 위치 점 */
+    var slides = Array.prototype.slice.call(track.querySelectorAll(".carousel-slide"));
+
+    function slideStep() {
       var slide = track.querySelector(".carousel-slide");
-      var amount = slide ? slide.getBoundingClientRect().width + 24 : track.clientWidth * 0.8;
-      track.scrollBy({ left: dir * amount, behavior: "smooth" });
-      pauseFor(2200);
+      return slide ? slide.getBoundingClientRect().width + 24 : track.clientWidth * 0.8;
+    }
+    function slideBy(dir) {
+      track.scrollBy({ left: dir * slideStep(), behavior: "smooth" });
+      pauseFor(1800);
     }
     var prevBtn = root.querySelector("[data-carousel-prev]");
     var nextBtn = root.querySelector("[data-carousel-next]");
     if (prevBtn) { prevBtn.addEventListener("click", function () { slideBy(-1); }); }
     if (nextBtn) { nextBtn.addEventListener("click", function () { slideBy(1); }); }
+
+    var dots = Array.prototype.slice.call(root.querySelectorAll("[data-carousel-dot]"));
+    if (dots.length) {
+      dots.forEach(function (dot, i) {
+        dot.addEventListener("click", function () {
+          track.scrollTo({ left: i * slideStep(), behavior: "smooth" });
+          pauseFor(1800);
+        });
+      });
+      var dotTimer = null;
+      track.addEventListener("scroll", function () {
+        window.clearTimeout(dotTimer);
+        dotTimer = window.setTimeout(function () {
+          var step2 = slideStep();
+          var index = step2 ? Math.round(track.scrollLeft / step2) : 0;
+          index = Math.max(0, Math.min(slides.length - 1, index));
+          dots.forEach(function (dot, i) { dot.classList.toggle("is-active", i === index); });
+        }, 80);
+      }, { passive: true });
+    }
 
     /* 대표 이미지가 있는 카드가 화면(트랙) 중앙 가까이 왔을 때 is-centered 를
        붙여, 호버하지 않아도 GIF 가 또렷하게 보이도록 합니다. */

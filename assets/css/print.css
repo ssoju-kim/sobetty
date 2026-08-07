@@ -119,15 +119,16 @@ h1, h2, h3, h4, .band-title, .project-meta, .project-no { break-after: avoid; pa
   gap: 4mm; margin: 3mm 0 0 !important; padding: 0 !important;
 }
 .carousel-slide { width: auto !important; flex: 1 1 100%; }
-.rd-card { height: auto !important; border: .3mm solid #e2e7eb !important; }
+.rd-card { height: auto !important; border: .3mm solid #e2e7eb !important; transform: none !important; box-shadow: none !important; }
 .rd-card-soon { display: none !important; }
 .rd-card-media { break-inside: avoid; }
 .rd-card-eyebrow { font-size: 7.4pt; color: #12655c !important; }
 .rd-card-title { font-size: 13pt !important; margin-top: 1.5mm; }
+.rd-card-subtitle { font-size: 8pt; margin-top: .8mm; }
 .rd-card-summary { font-size: 8.8pt; margin-top: 2mm; }
 .rd-card-tags { margin-top: 2.5mm; }
 .rd-card-tags li { font-size: 7.4pt; border: .3mm solid #d3dae0; }
-.rd-card-cta { display: none !important; }
+.rd-card-hint { display: none !important; }
 
 /* 상세 팝업 헤더 — 기간 · 핵심 수치 3개 */
 .dialog-period { font-size: 9pt; margin-top: 3mm; padding-top: 3mm; border-top: .3mm solid #d3dae0 !important; }
@@ -137,19 +138,20 @@ h1, h2, h3, h4, .band-title, .project-meta, .project-no { break-after: avoid; pa
 .stat-trio-num { font-size: 14pt; }
 .stat-trio-cap { font-size: 7.6pt; margin-top: 1mm; }
 
-/* 도식 · 문서 자리표시 — 인쇄물에는 안내 문구만 작게 남깁니다 */
+/* 도식 · 문서 자리표시 — 인쇄물에는 짧은 이름만 작게 남깁니다 */
 .diagram-placeholder, .doc-placeholder {
   min-height: 0 !important; aspect-ratio: auto !important; width: auto !important;
-  border: .3mm dashed #d3dae0 !important; padding: 3mm !important; margin-top: 2.5mm !important;
+  border: .3mm solid #e2e7eb !important; padding: 3mm !important; margin-top: 2.5mm !important;
 }
 .diagram-placeholder p, .doc-placeholder p { font-size: 7.6pt; }
+.placeholder-icon { display: none !important; }
 
 /* 한복 생성 사례 3단계 */
 .sample-flow { display: flex !important; flex-direction: row; gap: 4mm; margin-top: 3mm; break-inside: avoid; }
 .sample-step { flex: 1 1 0; min-width: 0; }
 .sample-step-media { border: .3mm solid #e2e7eb; }
-.sample-step-placeholder { border: .3mm dashed #d3dae0 !important; padding: 3mm; }
-.sample-step-placeholder > p:first-child { font-size: 7.6pt; }
+.sample-step-prompt { padding: 3mm; }
+.sample-step-prompt p { font-size: 7.6pt; }
 .sample-step-label { font-size: 7.8pt; margin-top: 1.5mm; }
 .sample-step-note { font-size: 7pt; margin-top: .5mm; }
 .sample-arrow { font-size: 9pt; align-self: center; }
@@ -158,7 +160,7 @@ h1, h2, h3, h4, .band-title, .project-meta, .project-no { break-after: avoid; pa
 .role-grid { display: flex !important; flex-wrap: nowrap; gap: 3mm; margin-top: 3mm; }
 .role-card { flex: 1 1 0; min-width: 0; padding: 2.5mm !important; border: .3mm solid #e2e7eb; break-inside: avoid; }
 .role-card-title { font-size: 7.8pt; margin-bottom: 1.5mm; }
-.role-card .ticks li { font-size: 7.6pt; }
+.role-card-desc { font-size: 7.6pt; margin-top: 1mm; }
 
 .flow-line { font-size: 8pt; padding: 2mm 2.5mm; margin-top: 2.5mm; white-space: normal; }
 .flow-line-process { font-weight: 700; }
@@ -168,6 +170,7 @@ h1, h2, h3, h4, .band-title, .project-meta, .project-no { break-after: avoid; pa
 .metric-grid li { flex: 1 1 0; min-width: 0; padding-top: 2mm !important; border-top: .3mm solid #d3dae0 !important; }
 .metric-num { font-size: 12pt; }
 .metric-cap { font-size: 7pt; }
+.metric-desc { font-size: 6.4pt; margin-top: .5mm; }
 
 .tag-list { display: flex !important; flex-wrap: wrap; gap: 2mm; margin-top: 2mm; }
 .tag-list li { font-size: 7.4pt; border: .3mm solid #d3dae0; padding: .8mm 2mm; }

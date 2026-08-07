@@ -381,20 +381,35 @@ a:focus-visible, .btn:focus-visible, button:focus-visible {
   scrollbar-width: none;
   cursor: grab;
   margin: -.25rem; padding: .25rem .25rem 1rem;
+  /* 자동 이동 중에는 스냅이 계속 끼어들지 않다가, 손을 떼고 멈추면
+     가장 가까운 카드에 자연스럽게 정렬됩니다. */
+  scroll-snap-type: x proximity;
 }
 .carousel-track::-webkit-scrollbar { display: none; }
-.carousel-track.is-dragging { cursor: grabbing; }
-.carousel-slide { flex: 0 0 auto; width: min(23rem, 84vw); }
+.carousel-track.is-dragging { cursor: grabbing; scroll-snap-type: none; }
+.carousel-slide { flex: 0 0 auto; width: min(23rem, 84vw); scroll-snap-align: start; }
 
-.carousel-nav { display: flex; gap: .5rem; margin-top: .25rem; }
+.carousel-nav { display: flex; align-items: center; justify-content: center; gap: 1rem; margin-top: .5rem; }
 .carousel-btn {
-  width: 2.5rem; height: 2.5rem;
+  width: 2.5rem; height: 2.5rem; flex: 0 0 auto;
   display: inline-flex; align-items: center; justify-content: center;
   border: 1px solid var(--line-strong); border-radius: 999px;
   background: #fff; color: var(--ink);
   font-size: 1.25rem; line-height: 1; cursor: pointer;
 }
 .carousel-btn:hover { background: var(--muted); border-color: var(--ink); }
+
+/* 현재 카드 위치 표시 — 클릭하면 해당 카드로 이동합니다 */
+.carousel-dots { display: flex; align-items: center; gap: .5rem; }
+.carousel-dot {
+  width: .5rem; height: .5rem; padding: 0;
+  border: 0; border-radius: 50%;
+  background: var(--line-strong);
+  cursor: pointer;
+  transition: background .2s ease, transform .2s ease;
+}
+.carousel-dot:hover { background: var(--dim); }
+.carousel-dot.is-active { background: var(--accent); transform: scale(1.3); }
 
 /* ── 실무 경험 카드 (rd-card) ──────────────────────────────────────────
    1번 카드(연구개발)는 대표 이미지 · 요약 · 태그 · 버튼을 갖춘 형태이고,
@@ -403,22 +418,29 @@ a:focus-visible, .btn:focus-visible, button:focus-visible {
 
 .rd-card {
   display: flex; flex-direction: column;
-  height: 30rem;
+  height: 27rem;
   background: #fff;
   border: 1px solid var(--line);
   border-radius: 14px;
   overflow: hidden;
   text-align: left;
 }
-.rd-card-featured { cursor: pointer; transition: border-color .2s ease, box-shadow .2s ease; }
+/* 카드 전체가 클릭 대상입니다 (assets/js/app.js 의 data-open-dialog).
+   별도 버튼 없이 포인터 커서 · 살짝 떠오르는 호버 반응 · 마우스를 올렸을
+   때만 나타나는 "자세히 보기" 표시로 클릭 가능함을 알립니다. */
+.rd-card-featured {
+  cursor: pointer;
+  transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease;
+}
 .rd-card-featured:hover,
 .rd-card-featured:focus-visible {
   border-color: var(--accent);
-  box-shadow: 0 10px 30px rgba(18, 101, 92, .12);
+  box-shadow: 0 16px 34px rgba(18, 101, 92, .16);
+  transform: translateY(-4px);
 }
 .rd-card-featured:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
-.rd-card-media { flex: 0 0 auto; aspect-ratio: 16 / 10; background: #14181c; overflow: hidden; }
+.rd-card-media { position: relative; flex: 0 0 auto; aspect-ratio: 16 / 10; background: #14181c; overflow: hidden; }
 .rd-card-media img {
   width: 100%; height: 100%; object-fit: cover;
   filter: saturate(.92) brightness(.96);
@@ -433,20 +455,31 @@ a:focus-visible, .btn:focus-visible, button:focus-visible {
   transform: scale(1.03);
 }
 
+/* "자세히 보기" — 평소엔 숨어 있다가 마우스를 올렸을 때만 나타납니다 */
+.rd-card-hint {
+  position: absolute; top: .75rem; right: .75rem;
+  padding: .35rem .75rem;
+  background: rgba(255, 255, 255, .95);
+  border-radius: 999px;
+  font-size: .75rem; font-weight: 700; color: var(--ink);
+  opacity: 0; transform: translateY(-4px);
+  transition: opacity .2s ease, transform .2s ease;
+}
+.rd-card-featured:hover .rd-card-hint,
+.rd-card-featured:focus-visible .rd-card-hint {
+  opacity: 1; transform: translateY(0);
+}
+
 .rd-card-body { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; padding: 1.5rem 1.5rem 1.75rem; }
 .rd-card-eyebrow { font-size: .75rem; font-weight: 800; letter-spacing: .1em; color: var(--accent); }
 .rd-card-title { margin-top: .5rem; font-size: 1.1875rem; font-weight: 800; line-height: 1.35; letter-spacing: -.02em; color: var(--ink); }
+.rd-card-subtitle { margin-top: .25rem; font-size: .8125rem; font-weight: 600; color: var(--accent-deep); }
 .rd-card-summary { margin-top: .6rem; font-size: .875rem; color: var(--dim); line-height: 1.6; }
 .rd-card-tags { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: 1rem; }
 .rd-card-tags li {
   padding: .25rem .6rem;
   border: 1px solid var(--line-strong); border-radius: 999px;
   font-size: .75rem; font-weight: 600; color: var(--ink);
-}
-.rd-card-cta {
-  display: inline-flex; align-items: center; gap: .3rem;
-  margin-top: auto; padding-top: 1.25rem;
-  font-size: .875rem; font-weight: 700; color: var(--accent-deep);
 }
 
 .rd-card-soon {
@@ -729,16 +762,18 @@ dialog.detail-dialog::backdrop { background: rgba(12, 18, 22, .62); }
 .stat-trio-num { font-size: clamp(1.5rem, 2.4vw, 1.875rem); font-weight: 800; color: var(--ink); letter-spacing: -.02em; line-height: 1.15; white-space: nowrap; }
 .stat-trio-cap { margin-top: .3rem; font-size: .8125rem; color: var(--dim); }
 
-/* ── 도식 자리표시 — 추후 실제 도식 이미지로 교체할 자리만 잡아 둡니다 ── */
+/* ── 도식 자리표시 — 추후 실제 도식 이미지로 교체할 자리만 잡아 둡니다.
+   "삽입 예정" 같은 작업 중 문구 대신 아이콘 + 짧은 이름만 두어, 공개
+   화면에서도 미완성보다는 의도한 여백처럼 보이게 합니다. */
 
 .diagram-placeholder {
   margin-top: 1.1rem;
-  display: flex; align-items: center; justify-content: center;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .5rem;
   min-height: 9rem;
-  border: 1px dashed var(--line-strong); border-radius: 12px;
-  background: var(--muted);
+  border: 1px solid var(--line); border-radius: 12px;
+  background: var(--surface);
 }
-.diagram-placeholder p { font-size: .8125rem; color: var(--dim); }
+.diagram-placeholder p { font-size: .8125rem; font-weight: 600; color: var(--dim); }
 .diagram-placeholder-wide { min-height: 7rem; overflow-x: auto; }
 
 /* 작은 문서 카드 자리표시 (평가 조건 문서화) */
@@ -746,11 +781,13 @@ dialog.detail-dialog::backdrop { background: rgba(12, 18, 22, .62); }
   margin-top: 1.1rem;
   width: 10rem; max-width: 100%;
   aspect-ratio: 3 / 4;
-  display: flex; align-items: center; justify-content: center;
-  border: 1px dashed var(--line-strong); border-radius: 10px;
-  background: var(--muted);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .5rem;
+  border: 1px solid var(--line); border-radius: 10px;
+  background: var(--surface);
 }
-.doc-placeholder p { padding: 0 .75rem; font-size: .75rem; color: var(--dim); text-align: center; }
+.doc-placeholder p { padding: 0 .75rem; font-size: .75rem; font-weight: 600; color: var(--dim); text-align: center; }
+
+.placeholder-icon { width: 1.75rem; height: 1.75rem; color: var(--dim); }
 
 /* ── 한복 3D 에셋 생성 사례 — 텍스트 → Klein 이미지 → TRELLIS2 3D 결과 ── */
 
@@ -764,18 +801,19 @@ dialog.detail-dialog::backdrop { background: rgba(12, 18, 22, .62); }
 }
 .sample-step-media img { width: 100%; height: 100%; object-fit: contain; }
 .sample-step-media-dark { background: #14181c; }
-.sample-step-placeholder { border: 1px dashed var(--line-strong); padding: 1rem; text-align: center; }
-.sample-step-placeholder > p:first-child { font-size: .875rem; font-weight: 600; color: var(--ink); }
+/* Text Prompt 칸 — 실제 프롬프트 문장을 담는 텍스트 카드 (자리표시 아님) */
+.sample-step-prompt { background: var(--surface); padding: 1.1rem; }
+.sample-step-prompt p { font-size: .8125rem; color: var(--ink); line-height: 1.6; text-align: center; }
 .sample-step-label { margin-top: .6rem; font-size: .875rem; font-weight: 700; color: var(--ink); text-align: center; }
 .sample-step-note { margin-top: .3rem; font-size: .75rem; color: var(--dim); text-align: center; }
 .sample-arrow { flex: 0 0 auto; align-self: center; font-size: 1.25rem; color: var(--line-strong); }
 
-/* ── 주요 담당 역할 — 작은 카드 4개 ───────────────────────────────────── */
+/* ── 주요 담당 역할 — 작은 카드 4개, 한 줄 요약 ───────────────────────── */
 
 .role-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; margin-top: 1.1rem; }
 .role-card { padding: 1.1rem 1.1rem 1.25rem; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; }
-.role-card-title { font-size: .875rem; font-weight: 800; color: var(--accent-deep); margin-bottom: .7rem; }
-.role-card .ticks li { font-size: .8125rem; }
+.role-card-title { font-size: .875rem; font-weight: 800; color: var(--accent-deep); }
+.role-card-desc { margin-top: .4rem; font-size: .8125rem; color: var(--ink); line-height: 1.5; }
 
 /* ── 흐름 한 줄 (데이터 구성 · LoRA 파인튜닝 단계) ───────────────────── */
 
@@ -795,6 +833,7 @@ dialog.detail-dialog::backdrop { background: rgba(12, 18, 22, .62); }
 .metric-grid li { padding-top: 1rem; border-top: 1px solid var(--line-strong); }
 .metric-num { font-size: 1.375rem; font-weight: 800; color: var(--ink); letter-spacing: -.02em; }
 .metric-cap { margin-top: .25rem; font-size: .75rem; color: var(--dim); }
+.metric-desc { margin-top: .3rem; font-size: .6875rem; color: var(--dim); line-height: 1.4; }
 
 /* ── 기술 스택 작은 태그 ───────────────────────────────────────────── */
 
@@ -854,7 +893,7 @@ dialog.detail-dialog::backdrop { background: rgba(12, 18, 22, .62); }
   .timeline li::before { top: 2px; left: -4px; }
 
   /* 실무 경험 카드 — 슬라이더는 그대로 두고 카드 높이만 살짝 줄입니다 */
-  .rd-card { height: 28rem; }
+  .rd-card { height: 25rem; }
   .stat-trio { grid-template-columns: 1fr; gap: 1rem; }
   .role-grid,
   .metric-grid { grid-template-columns: repeat(2, 1fr); }

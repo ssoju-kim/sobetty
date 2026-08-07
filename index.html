@@ -83,7 +83,7 @@
     <header class="band-head">
       <p class="band-label">WORK EXPERIENCE</p>
       <h2 class="band-title" id="exp-h">실무 경험</h2>
-      <p class="band-lead">3D 생성 AI의 학습 데이터 구성, LoRA 파인튜닝, 정량평가 환경 정리를 수행했습니다.</p>
+      <p class="band-lead">3D 생성 AI 연구개발부터 시장조사, 서비스 소개 페이지 기획·구현까지 참여했습니다.</p>
     </header>
 
     <p class="project-no">스팩스페이스 개발사업부 CV팀<span class="project-kind">WORK EXPERIENCE</span></p>
@@ -98,17 +98,18 @@
           <article class="rd-card rd-card-featured" data-open-dialog="spec-detail" tabindex="0" role="button" aria-labelledby="spec-h">
             <div class="rd-card-media">
               <img src="./assets/img/specspace/hanbok-trellis2.gif" alt="TRELLIS2로 생성한 한복 3D 에셋이 회전하는 모습" loading="lazy" decoding="async">
+              <span class="rd-card-hint" aria-hidden="true">자세히 보기 →</span>
             </div>
             <div class="rd-card-body">
               <p class="rd-card-eyebrow">3D AI R&amp;D</p>
-              <h3 class="rd-card-title" id="spec-h">Text-to-Image-to-3D 생성 파이프라인 연구개발</h3>
-              <p class="rd-card-summary">한국 문화 특화 3D 에셋 생성을 위해 학습 데이터를 검증하고, TRELLIS2 기반 LoRA 파인튜닝과 정량평가를 수행했습니다.</p>
+              <h3 class="rd-card-title" id="spec-h">3D 생성 AI 연구개발</h3>
+              <p class="rd-card-subtitle">Text-to-Image-to-3D 생성 파이프라인</p>
+              <p class="rd-card-summary">학습 데이터 검증, TRELLIS2 기반 LoRA 파인튜닝, 정량평가를 수행했습니다.</p>
               <ul class="rd-card-tags">
                 <li>데이터 1,500건 점검</li>
                 <li>LoRA 파인튜닝</li>
                 <li>모델 정량평가</li>
               </ul>
-              <span class="rd-card-cta">상세 경험 보기 <span aria-hidden="true">→</span></span>
             </div>
           </article>
         </li>
@@ -132,6 +133,11 @@
 
       <div class="carousel-nav">
         <button type="button" class="carousel-btn" data-carousel-prev aria-label="이전 카드"><span aria-hidden="true">‹</span></button>
+        <div class="carousel-dots" data-carousel-dots role="tablist" aria-label="카드 위치">
+          <button type="button" class="carousel-dot is-active" data-carousel-dot aria-label="1번째 카드로 이동"></button>
+          <button type="button" class="carousel-dot" data-carousel-dot aria-label="2번째 카드로 이동"></button>
+          <button type="button" class="carousel-dot" data-carousel-dot aria-label="3번째 카드로 이동"></button>
+        </div>
         <button type="button" class="carousel-btn" data-carousel-next aria-label="다음 카드"><span aria-hidden="true">›</span></button>
       </div>
     </div>
@@ -149,8 +155,7 @@
       <p class="lede">Text-to-Image-to-3D 생성 과정에서 학습 데이터를 검증하고, TRELLIS2 기반 LoRA 파인튜닝과 모델 평가를 수행했습니다.</p>
 
       <p class="dialog-period">
-        2026.01 – 2026.07
-        <span class="dialog-period-sub">1–2월 프리랜서 · 3–6월 IPP 현장실습 · 7월 계약 연장</span>
+        2026.06 – 2026.07
       </p>
 
       <ul class="stat-trio">
@@ -175,7 +180,13 @@
       <!-- 추후 Text Prompt → FLUX.2 Klein → Generated Image → TRELLIS2 → 3D Asset
            흐름 도식으로 교체합니다. 지금은 자리만 넓게 잡아 둡니다. -->
       <div class="diagram-placeholder diagram-placeholder-wide">
-        <p>파이프라인 도식 삽입 예정</p>
+        <svg class="placeholder-icon" viewBox="0 0 32 32" aria-hidden="true">
+          <circle cx="5" cy="16" r="3" fill="none" stroke="currentColor" stroke-width="1.5" />
+          <circle cx="16" cy="8" r="3" fill="none" stroke="currentColor" stroke-width="1.5" />
+          <circle cx="27" cy="16" r="3" fill="none" stroke="currentColor" stroke-width="1.5" />
+          <path d="M8 14.5 L13 9.5 M19 9.5 L24 14.5" fill="none" stroke="currentColor" stroke-width="1.5" />
+        </svg>
+        <p>파이프라인 도식</p>
       </div>
     </section>
 
@@ -183,9 +194,8 @@
       <h4>한복 3D 에셋 생성 사례</h4>
       <div class="sample-flow">
         <div class="sample-step">
-          <div class="sample-step-media sample-step-placeholder">
-            <p>한복 관련 텍스트 프롬프트</p>
-            <p class="sample-step-note">실제 프롬프트 추후 입력</p>
+          <div class="sample-step-media sample-step-prompt">
+            <p>연둣빛 저고리와 청람색 치마의 비단 한복을 입고 흰 가면과 비녀를 착용한 인물이 단색 스튜디오 배경에서 두 손을 배 앞에 모은 채 정면을 향해 전신으로 곧게 서 있는 모습.</p>
           </div>
           <p class="sample-step-label">Text Prompt</p>
         </div>
@@ -218,37 +228,19 @@
       <div class="role-grid">
         <div class="role-card">
           <p class="role-card-title">데이터 검증</p>
-          <ul class="ticks">
-            <li>3D 학습 데이터 1,500건 점검</li>
-            <li>사용 불가 데이터 분류</li>
-            <li>학습 · Holdout 데이터 구성</li>
-            <li>누출 및 결측 여부 확인</li>
-          </ul>
+          <p class="role-card-desc">1,500건 검수 · Train/Holdout 구성</p>
         </div>
         <div class="role-card">
           <p class="role-card-title">모델 학습</p>
-          <ul class="ticks">
-            <li>TRELLIS2 기반 LoRA 학습 실행</li>
-            <li>학습 설정과 데이터 구성 점검</li>
-            <li>생성 결과 확인</li>
-          </ul>
+          <p class="role-card-desc">TRELLIS2 LoRA 파인튜닝</p>
         </div>
         <div class="role-card">
           <p class="role-card-title">모델 평가</p>
-          <ul class="ticks">
-            <li>정량평가 지표 조사 및 실행</li>
-            <li>평가 코드 · 렌더링 · 입력 조건 검증</li>
-            <li>성능 미달 원인 분석</li>
-          </ul>
+          <p class="role-card-desc">정량지표 · 평가 조건 검증</p>
         </div>
         <div class="role-card">
           <p class="role-card-title">문서화</p>
-          <ul class="ticks">
-            <li>데이터 구성과 제외 기준 정리</li>
-            <li>평가 조건별 근거 구분</li>
-            <li>실행 환경과 명령어 문서화</li>
-            <li>인수인계 자료 작성</li>
-          </ul>
+          <p class="role-card-desc">실행환경 · 근거 구분 · 인수인계</p>
         </div>
       </div>
     </section>
@@ -257,7 +249,13 @@
       <h4>학습 데이터 검증 및 구성</h4>
       <!-- 추후 데이터 처리 흐름도로 교체합니다. -->
       <div class="diagram-placeholder">
-        <p>데이터 처리 흐름도 삽입 예정</p>
+        <svg class="placeholder-icon" viewBox="0 0 32 32" aria-hidden="true">
+          <circle cx="5" cy="16" r="3" fill="none" stroke="currentColor" stroke-width="1.5" />
+          <circle cx="16" cy="8" r="3" fill="none" stroke="currentColor" stroke-width="1.5" />
+          <circle cx="27" cy="16" r="3" fill="none" stroke="currentColor" stroke-width="1.5" />
+          <path d="M8 14.5 L13 9.5 M19 9.5 L24 14.5" fill="none" stroke="currentColor" stroke-width="1.5" />
+        </svg>
+        <p>데이터 구성 흐름</p>
       </div>
       <p class="flow-line">원본 1,500건 → 사용 불가 49건 제외 → 유효 데이터 1,451건 → 학습 1,268건 / Holdout 143건</p>
       <ul class="ticks">
@@ -285,18 +283,22 @@
         <li>
           <p class="metric-num">27.24</p>
           <p class="metric-cap">CLIP ×100</p>
+          <p class="metric-desc">이미지-텍스트 의미 유사도</p>
         </li>
         <li>
           <p class="metric-num">20.23</p>
           <p class="metric-cap">FD Inception</p>
+          <p class="metric-desc">이미지 분포 차이</p>
         </li>
         <li>
           <p class="metric-num">243.72</p>
           <p class="metric-cap">FD DINOv2</p>
+          <p class="metric-desc">시각 특징 분포 차이</p>
         </li>
         <li>
           <p class="metric-num">5.4951</p>
           <p class="metric-cap">FD Point</p>
+          <p class="metric-desc">3D 포인트 특징 차이</p>
         </li>
       </ul>
       <p class="callout">과제 목표 기준에는 도달하지 못했습니다.</p>
@@ -321,7 +323,13 @@
       </ul>
       <!-- 추후 실행 문서 캡처로 교체합니다. -->
       <div class="doc-placeholder">
-        <p>문서 이미지 삽입 예정</p>
+        <svg class="placeholder-icon" viewBox="0 0 32 32" aria-hidden="true">
+          <rect x="8" y="4" width="16" height="24" rx="2" fill="none" stroke="currentColor" stroke-width="1.5" />
+          <line x1="12" y1="11" x2="20" y2="11" stroke="currentColor" stroke-width="1.5" />
+          <line x1="12" y1="16" x2="20" y2="16" stroke="currentColor" stroke-width="1.5" />
+          <line x1="12" y1="21" x2="17" y2="21" stroke="currentColor" stroke-width="1.5" />
+        </svg>
+        <p>문서화 산출물</p>
       </div>
     </section>
 

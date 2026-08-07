@@ -15,7 +15,7 @@
       연락처가 비어 있는 파일을 연결하지 마세요.
    ───────────────────────────────────────────────────────────────────────── */
 var PROFILE = {
-  email: "",
+  email: "withkyu4045@naver.com",
   resumeUrl: ""
 };
 
@@ -40,17 +40,6 @@ var PROFILE = {
    도식이라 이 객체에서 관리하지 않습니다.
    ───────────────────────────────────────────────────────────────────────── */
 var MEDIA = {
-  spec: {
-    // 03 — 체크포인트별 생성 결과 비교
-    // 정부지원 R&D 산출물이라 공개 승인 확인 전에는 srcWebp 를 비워 둡니다.
-    // (QUESTIONS.md — "IMG-03 공개 승인 여부" 참고)
-    checkpointShot: {
-      srcWebp: "",
-      srcFallback: "",
-      alt: "체크포인트별로 생성된 3D 결과물을 나열해 비교한 화면",
-      caption: "체크포인트별 생성 결과 비교 — 목표 성능 미달 원인을 데이터 · 전처리 · 평가 조건 관점으로 분리해 분석"
-    }
-  },
   finance: {
     // 04 — 카드 썸네일
     cover: {
@@ -223,6 +212,17 @@ var MEDIA = {
         doc.body.classList.add("is-locked");
         dialog.showModal();
       });
+
+      /* 버튼 · 링크가 아닌 요소(카드 전체 클릭용)는 Enter · Space 로도
+         열 수 있도록 클릭을 대신 발생시킵니다. */
+      if (btn.tagName !== "BUTTON" && btn.tagName !== "A") {
+        btn.addEventListener("keydown", function (e) {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            btn.click();
+          }
+        });
+      }
     });
 
     openDialogs.push(dialog);
@@ -238,6 +238,132 @@ var MEDIA = {
     var printQuery = window.matchMedia("print");
     if (printQuery.addEventListener) { printQuery.addEventListener("change", closeAllDialogs); }
   }
+
+  /* ═══════════════════════════════════════════════════════════════════════
+     가로 카드 슬라이더 (실무 경험)
+
+     · 데스크톱 · 마우스 환경에서만 천천히 자동으로 흐릅니다.
+     · 마우스를 올리거나 카드 안에 포커스가 있으면 멈춥니다.
+     · 드래그로 직접 옮길 수 있고, 드래그 후에는 클릭이 카드를 열지 않도록
+       막습니다 (드래그 릴리즈가 클릭으로 오인되는 것을 방지).
+     · 좌우 버튼은 카드 한 장 너비만큼 부드럽게 이동합니다.
+     · 모바일 · 터치 환경에서는 자동 이동 없이 네이티브 스와이프만 씁니다.
+     · prefers-reduced-motion 에서는 자동 이동을 아예 켜지 않습니다.
+     ═══════════════════════════════════════════════════════════════════ */
+
+  Array.prototype.forEach.call(doc.querySelectorAll("[data-carousel]"), function (root) {
+    var track = root.querySelector("[data-carousel-track]");
+    if (!track) { return; }
+
+    var reduceMotion = !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+    var isCoarsePointer = !!(window.matchMedia && window.matchMedia("(pointer: coarse)").matches);
+    var autoEnabled = !reduceMotion && !isCoarsePointer;
+
+    var SPEED = 20; /* 초당 px — 천천히 흐르는 정도 */
+    var direction = 1;
+    var paused = false;
+    var dragging = false;
+    var lastTime = null;
+    var resumeTimer = null;
+
+    function pauseFor(ms) {
+      paused = true;
+      window.clearTimeout(resumeTimer);
+      resumeTimer = window.setTimeout(function () {
+        if (!dragging) { paused = false; }
+      }, ms);
+    }
+
+    function step(now) {
+      if (autoEnabled && !paused && !dragging) {
+        if (lastTime !== null) {
+          var dt = (now - lastTime) / 1000;
+          var max = track.scrollWidth - track.clientWidth;
+          if (max > 0) {
+            track.scrollLeft += direction * SPEED * dt;
+            if (track.scrollLeft >= max) { track.scrollLeft = max; direction = -1; }
+            else if (track.scrollLeft <= 0) { track.scrollLeft = 0; direction = 1; }
+          }
+        }
+        lastTime = now;
+      } else {
+        lastTime = null;
+      }
+      window.requestAnimationFrame(step);
+    }
+    if (autoEnabled) { window.requestAnimationFrame(step); }
+
+    root.addEventListener("mouseenter", function () { paused = true; });
+    root.addEventListener("mouseleave", function () { if (!dragging) { paused = false; } });
+    root.addEventListener("focusin", function () { paused = true; });
+    root.addEventListener("focusout", function () { if (!dragging) { paused = false; } });
+
+    /* 드래그로 이동 (마우스 · 트랙패드 환경만. 터치는 네이티브 스와이프를 씁니다) */
+    var startX = 0;
+    var startScroll = 0;
+    var moved = 0;
+
+    track.addEventListener("pointerdown", function (e) {
+      if (e.pointerType === "touch") { return; }
+      dragging = true;
+      moved = 0;
+      startX = e.clientX;
+      startScroll = track.scrollLeft;
+      track.classList.add("is-dragging");
+      if (track.setPointerCapture) { track.setPointerCapture(e.pointerId); }
+    });
+
+    track.addEventListener("pointermove", function (e) {
+      if (!dragging) { return; }
+      var dx = e.clientX - startX;
+      moved = Math.max(moved, Math.abs(dx));
+      track.scrollLeft = startScroll - dx;
+    });
+
+    function endDrag() {
+      if (!dragging) { return; }
+      dragging = false;
+      track.classList.remove("is-dragging");
+      if (moved > 6) { track.dataset.dragged = "1"; }
+      pauseFor(2200);
+    }
+    track.addEventListener("pointerup", endDrag);
+    track.addEventListener("pointercancel", endDrag);
+
+    /* 드래그 직후 발생하는 클릭은 카드를 여는 대신 무시합니다.
+       캡처 단계에서 가로채 카드 자체의 클릭 리스너까지 도달하지 못하게 합니다. */
+    track.addEventListener("click", function (e) {
+      if (track.dataset.dragged === "1") {
+        e.stopPropagation();
+        delete track.dataset.dragged;
+      }
+    }, true);
+
+    /* 좌우 버튼 */
+    function slideBy(dir) {
+      var slide = track.querySelector(".carousel-slide");
+      var amount = slide ? slide.getBoundingClientRect().width + 24 : track.clientWidth * 0.8;
+      track.scrollBy({ left: dir * amount, behavior: "smooth" });
+      pauseFor(2200);
+    }
+    var prevBtn = root.querySelector("[data-carousel-prev]");
+    var nextBtn = root.querySelector("[data-carousel-next]");
+    if (prevBtn) { prevBtn.addEventListener("click", function () { slideBy(-1); }); }
+    if (nextBtn) { nextBtn.addEventListener("click", function () { slideBy(1); }); }
+
+    /* 대표 이미지가 있는 카드가 화면(트랙) 중앙 가까이 왔을 때 is-centered 를
+       붙여, 호버하지 않아도 GIF 가 또렷하게 보이도록 합니다. */
+    if ("IntersectionObserver" in window) {
+      var centerObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          entry.target.classList.toggle("is-centered", entry.intersectionRatio >= 0.6);
+        });
+      }, { root: track, threshold: [0, 0.6, 1] });
+      Array.prototype.forEach.call(track.querySelectorAll(".rd-card-featured"), function (card) {
+        centerObserver.observe(card);
+      });
+    }
+  });
 
   /* ═══════════════════════════════════════════════════════════════════════
      현재 섹션 표시

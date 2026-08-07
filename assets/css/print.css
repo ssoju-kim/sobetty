@@ -68,7 +68,8 @@ dialog.detail-dialog:not([open]) {
 
 /* 페이지 나눔 */
 h1, h2, h3, h4, .band-title, .project-meta, .project-no { break-after: avoid; page-break-after: avoid; }
-.shot, figure, .stats, .card, .split, .kf-block, .project-head {
+.shot, figure, .stats, .card, .split, .kf-block, .project-head, .timeline,
+.rd-card, .stat-trio, .role-card, .metric-grid, .sample-flow {
   break-inside: avoid; page-break-inside: avoid;
 }
 .band { break-before: page; page-break-before: always; }
@@ -103,6 +104,73 @@ h1, h2, h3, h4, .band-title, .project-meta, .project-no { break-after: avoid; pa
 .lede { font-size: 8.8pt; margin-top: 2mm; max-width: none; }
 
 .project-meta { font-size: 8.2pt; margin-top: 2.5mm; }
+
+.timeline { display: flex !important; flex-wrap: nowrap; margin-top: 3mm; }
+.timeline li { padding: 3mm 3mm 0 0 !important; border-top: .3mm solid #d3dae0 !important; }
+.timeline li::before { width: 1.6mm !important; height: 1.6mm !important; top: -.8mm !important; background: #12655c !important; }
+.timeline-period { font-size: 7.6pt; }
+.timeline-label { font-size: 8pt; margin-top: .8mm; }
+
+/* 실무 경험 카드 슬라이더 — 자동 이동 · 버튼은 의미가 없어 정적으로 펼칩니다.
+   내용이 없는 자리표시 카드(시장조사 · 랜딩페이지)는 인쇄에서 생략합니다. */
+.carousel-nav { display: none !important; }
+.carousel-track {
+  display: flex !important; flex-wrap: wrap; overflow: visible !important;
+  gap: 4mm; margin: 3mm 0 0 !important; padding: 0 !important;
+}
+.carousel-slide { width: auto !important; flex: 1 1 100%; }
+.rd-card { height: auto !important; border: .3mm solid #e2e7eb !important; }
+.rd-card-soon { display: none !important; }
+.rd-card-media { break-inside: avoid; }
+.rd-card-eyebrow { font-size: 7.4pt; color: #12655c !important; }
+.rd-card-title { font-size: 13pt !important; margin-top: 1.5mm; }
+.rd-card-summary { font-size: 8.8pt; margin-top: 2mm; }
+.rd-card-tags { margin-top: 2.5mm; }
+.rd-card-tags li { font-size: 7.4pt; border: .3mm solid #d3dae0; }
+.rd-card-cta { display: none !important; }
+
+/* 상세 팝업 헤더 — 기간 · 핵심 수치 3개 */
+.dialog-period { font-size: 9pt; margin-top: 3mm; padding-top: 3mm; border-top: .3mm solid #d3dae0 !important; }
+.dialog-period-sub { font-size: 7.6pt; margin-top: .8mm; }
+.stat-trio { display: flex !important; gap: 6mm; margin-top: 3.5mm; }
+.stat-trio li { flex: 1 1 0; min-width: 0; }
+.stat-trio-num { font-size: 14pt; }
+.stat-trio-cap { font-size: 7.6pt; margin-top: 1mm; }
+
+/* 도식 · 문서 자리표시 — 인쇄물에는 안내 문구만 작게 남깁니다 */
+.diagram-placeholder, .doc-placeholder {
+  min-height: 0 !important; aspect-ratio: auto !important; width: auto !important;
+  border: .3mm dashed #d3dae0 !important; padding: 3mm !important; margin-top: 2.5mm !important;
+}
+.diagram-placeholder p, .doc-placeholder p { font-size: 7.6pt; }
+
+/* 한복 생성 사례 3단계 */
+.sample-flow { display: flex !important; flex-direction: row; gap: 4mm; margin-top: 3mm; break-inside: avoid; }
+.sample-step { flex: 1 1 0; min-width: 0; }
+.sample-step-media { border: .3mm solid #e2e7eb; }
+.sample-step-placeholder { border: .3mm dashed #d3dae0 !important; padding: 3mm; }
+.sample-step-placeholder > p:first-child { font-size: 7.6pt; }
+.sample-step-label { font-size: 7.8pt; margin-top: 1.5mm; }
+.sample-step-note { font-size: 7pt; margin-top: .5mm; }
+.sample-arrow { font-size: 9pt; align-self: center; }
+
+/* 담당 역할 4개 */
+.role-grid { display: flex !important; flex-wrap: nowrap; gap: 3mm; margin-top: 3mm; }
+.role-card { flex: 1 1 0; min-width: 0; padding: 2.5mm !important; border: .3mm solid #e2e7eb; break-inside: avoid; }
+.role-card-title { font-size: 7.8pt; margin-bottom: 1.5mm; }
+.role-card .ticks li { font-size: 7.6pt; }
+
+.flow-line { font-size: 8pt; padding: 2mm 2.5mm; margin-top: 2.5mm; white-space: normal; }
+.flow-line-process { font-weight: 700; }
+
+/* 정량평가 지표 4개 */
+.metric-grid { display: flex !important; flex-wrap: nowrap; gap: 5mm; margin-top: 3mm; }
+.metric-grid li { flex: 1 1 0; min-width: 0; padding-top: 2mm !important; border-top: .3mm solid #d3dae0 !important; }
+.metric-num { font-size: 12pt; }
+.metric-cap { font-size: 7pt; }
+
+.tag-list { display: flex !important; flex-wrap: wrap; gap: 2mm; margin-top: 2mm; }
+.tag-list li { font-size: 7.4pt; border: .3mm solid #d3dae0; padding: .8mm 2mm; }
 
 .stats {
   display: flex !important; flex-wrap: nowrap;

@@ -53,8 +53,8 @@
         </p>
 
         <ul class="hero-points">
-          <li>금융 데이터 정합성 검증</li>
           <li>AI 학습 데이터 전처리 · 평가</li>
+          <li>금융 데이터 정합성 검증</li>
           <li>FastAPI · Supabase 서비스 구현</li>
         </ul>
 
@@ -62,7 +62,7 @@
           <!-- 포트폴리오 PDF · 연락 버튼은 assets/js/app.js 의 PROFILE 값이 채워질 때만 나타납니다. -->
           <a class="btn" data-profile="resume" href="#" hidden>포트폴리오 PDF</a>
           <a class="btn" href="https://github.com/ssoju-kim" target="_blank" rel="noopener noreferrer">GitHub</a>
-          <a class="btn btn-primary" data-profile="email" href="#" hidden>연락하기</a>
+          <a class="btn btn-primary" data-profile="email" href="#" hidden>Contact</a>
         </div>
       </div>
 
@@ -86,195 +86,279 @@
       <p class="band-lead">3D 생성 AI의 학습 데이터 구성, LoRA 파인튜닝, 정량평가 환경 정리를 수행했습니다.</p>
     </header>
 
-    <article class="project project-lead" id="spec" aria-labelledby="spec-h">
-      <header class="project-head">
-        <p class="project-no">스팩스페이스 개발사업부 CV팀<span class="project-kind">WORK EXPERIENCE</span></p>
-        <h3 class="project-title" id="spec-h">3D 생성 AI 학습 데이터 검증과 모델 평가</h3>
+    <p class="project-no">스팩스페이스 개발사업부 CV팀<span class="project-kind">WORK EXPERIENCE</span></p>
 
-        <p class="project-meta">
-          2026년 1월 – 7월
-          <span class="meta-sub">1~2월 · 7월 프리랜서 / 3~6월 IPP 장기현장실습</span>
-        </p>
+    <!-- 가로 카드 슬라이더 — 데스크톱은 천천히 자동으로 흐르다 마우스를 올리면
+         멈추고, 드래그·버튼으로도 이동합니다. 모바일은 자동 이동 없이 네이티브
+         스와이프만 사용합니다. prefers-reduced-motion 에서는 자동 이동을 끕니다.
+         (assets/js/app.js 참고) -->
+    <div class="carousel" data-carousel>
+      <ul class="carousel-track" data-carousel-track>
+        <li class="carousel-slide">
+          <article class="rd-card rd-card-featured" data-open-dialog="spec-detail" tabindex="0" role="button" aria-labelledby="spec-h">
+            <div class="rd-card-media">
+              <img src="./assets/img/specspace/hanbok-trellis2.gif" alt="TRELLIS2로 생성한 한복 3D 에셋이 회전하는 모습" loading="lazy" decoding="async">
+            </div>
+            <div class="rd-card-body">
+              <p class="rd-card-eyebrow">3D AI R&amp;D</p>
+              <h3 class="rd-card-title" id="spec-h">Text-to-Image-to-3D 생성 파이프라인 연구개발</h3>
+              <p class="rd-card-summary">한국 문화 특화 3D 에셋 생성을 위해 학습 데이터를 검증하고, TRELLIS2 기반 LoRA 파인튜닝과 정량평가를 수행했습니다.</p>
+              <ul class="rd-card-tags">
+                <li>데이터 1,500건 점검</li>
+                <li>LoRA 파인튜닝</li>
+                <li>모델 정량평가</li>
+              </ul>
+              <span class="rd-card-cta">상세 경험 보기 <span aria-hidden="true">→</span></span>
+            </div>
+          </article>
+        </li>
 
-        <div class="kf-block">
-          <p class="kf-label">주요 담당 역할</p>
-          <ul class="ticks">
-            <li>학습 데이터 점검 · 구성</li>
-            <li>LoRA 파인튜닝 및 정량평가 수행</li>
-            <li>평가 조건 근거 4단계 분류와 실행 절차 문서화</li>
-          </ul>
-        </div>
+        <li class="carousel-slide">
+          <article class="rd-card rd-card-soon">
+            <p class="rd-card-eyebrow">3D AI MARKET</p>
+            <h3 class="rd-card-title">3D 생성 AI 시장조사</h3>
+            <p class="rd-card-soon-note">상세 내용 준비 중</p>
+          </article>
+        </li>
 
-        <div class="stat-highlight">
-          <div class="stat-hero">
-            <p class="stat-hero-num">1,451<span class="unit">건</span></p>
-            <p class="stat-hero-cap">전처리한 유효 학습 데이터</p>
-            <p class="stat-hero-sub">원본 1,500건 점검 후</p>
-          </div>
-          <ul class="stat-secondary">
-            <li>
-              <p class="stat-sec-num">1,268 / 143</p>
-              <p class="stat-sec-cap">학습 · holdout 구성</p>
-            </li>
-          </ul>
-        </div>
-      </header>
+        <li class="carousel-slide">
+          <article class="rd-card rd-card-soon">
+            <p class="rd-card-eyebrow">LANDING PAGE</p>
+            <h3 class="rd-card-title">Relic 랜딩페이지 기획·구현</h3>
+            <p class="rd-card-soon-note">상세 내용 준비 중</p>
+          </article>
+        </li>
+      </ul>
 
-      <figure class="diagram diagram-scroll diagram-card">
-        <svg class="diagram-svg" viewBox="0 0 800 450" role="img" aria-labelledby="dgm01-title dgm01-desc" xmlns="http://www.w3.org/2000/svg">
-          <title id="dgm01-title">학습 데이터를 원본 1,500건에서 학습 · holdout으로 분할하는 과정을 나타낸 도식</title>
-          <desc id="dgm01-desc">원본 1,500건을 점검해 사용 불가 49건을 제외한 유효 1,451건을 정리하고, 학습 1,268건과 holdout 143건으로 분할합니다. 두 집합 간 데이터 누출 여부를 점검하고, holdout 중 전각 holdout 10건을 별도로 구성합니다.</desc>
-          <defs>
-            <marker id="dgm01-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-              <path d="M0,0 L10,5 L0,10 Z" fill="currentColor" />
-            </marker>
-          </defs>
-
-          <rect x="30" y="190" width="140" height="70" fill="none" stroke="currentColor" stroke-width="1" opacity="0.25" />
-          <text x="100" y="230" font-family="Pretendard, sans-serif" font-size="15" text-anchor="middle" fill="currentColor">원본 1,500건</text>
-
-          <line x1="172" y1="225" x2="278" y2="225" stroke="currentColor" stroke-width="1" marker-end="url(#dgm01-arrow)" />
-          <line x1="225" y1="225" x2="225" y2="296" stroke="currentColor" stroke-width="1" marker-end="url(#dgm01-arrow)" />
-          <text x="225" y="316" font-family="Pretendard, sans-serif" font-size="11" text-anchor="middle" fill="currentColor">사용 불가 49건</text>
-
-          <rect x="280" y="190" width="150" height="70" fill="#E6F1FB" stroke="currentColor" stroke-width="1" />
-          <text x="355" y="230" font-family="Pretendard, sans-serif" font-size="15" text-anchor="middle" fill="#0C447C">유효 1,451건</text>
-
-          <path d="M432,215 L516,148" fill="none" stroke="currentColor" stroke-width="1" marker-end="url(#dgm01-arrow)" />
-          <path d="M432,235 L516,300" fill="none" stroke="currentColor" stroke-width="1" marker-end="url(#dgm01-arrow)" />
-
-          <rect x="520" y="110" width="220" height="70" fill="none" stroke="currentColor" stroke-width="1" opacity="0.25" />
-          <text x="630" y="152" font-family="Pretendard, sans-serif" font-size="15" text-anchor="middle" fill="currentColor">학습 1,268건</text>
-
-          <rect x="520" y="270" width="220" height="70" fill="none" stroke="currentColor" stroke-width="1" opacity="0.25" />
-          <text x="630" y="312" font-family="Pretendard, sans-serif" font-size="15" text-anchor="middle" fill="currentColor">holdout 143건</text>
-
-          <line x1="640" y1="180" x2="640" y2="270" stroke="currentColor" stroke-width="1" stroke-dasharray="4 4" marker-start="url(#dgm01-arrow)" marker-end="url(#dgm01-arrow)" />
-          <text x="655" y="220" font-family="Pretendard, sans-serif" font-size="13" fill="currentColor">
-            <tspan x="655" y="216">데이터</tspan>
-            <tspan x="655" y="234">누출 여부 점검</tspan>
-          </text>
-
-          <line x1="630" y1="340" x2="630" y2="376" stroke="currentColor" stroke-width="1" marker-end="url(#dgm01-arrow)" />
-          <rect x="560" y="380" width="140" height="38" fill="none" stroke="currentColor" stroke-width="1" opacity="0.25" />
-          <text x="630" y="404" font-family="Pretendard, sans-serif" font-size="13" text-anchor="middle" fill="currentColor">전각 holdout 10건</text>
-
-          <text x="400" y="440" font-family="Pretendard, sans-serif" font-size="11" text-anchor="middle" fill="currentColor">캡션 · 프롬프트 결측 여부를 함께 점검</text>
-        </svg>
-        <figcaption>원본 1,500건 점검 후 학습 1,268건 · holdout 143건으로 분할</figcaption>
-      </figure>
-
-      <div class="project-foot project-foot-solo">
-        <p class="detail-actions"><button type="button" class="btn btn-detail" data-open-dialog="spec-detail">상세 경험 보기</button></p>
+      <div class="carousel-nav">
+        <button type="button" class="carousel-btn" data-carousel-prev aria-label="이전 카드"><span aria-hidden="true">‹</span></button>
+        <button type="button" class="carousel-btn" data-carousel-next aria-label="다음 카드"><span aria-hidden="true">›</span></button>
       </div>
-    </article>
+    </div>
   </div>
 </section>
 
-<!-- ══════════════ 실무 경험 상세 팝업 ══════════════ -->
+<!-- ══════════════ 3D 생성 AI 연구개발 상세 팝업 ══════════════ -->
 <dialog class="detail-dialog" id="spec-detail" aria-labelledby="spec-detail-title">
   <header class="dialog-head">
-    <h2 class="dialog-title" id="spec-detail-title">3D 생성 AI 학습 데이터 검증과 모델 평가 — 상세</h2>
+    <h2 class="dialog-title" id="spec-detail-title">3D 생성 AI 파이프라인 학습·평가</h2>
     <button type="button" class="dialog-close" data-dialog-close aria-label="닫기"><span aria-hidden="true">✕</span></button>
   </header>
   <div class="dialog-body">
     <section>
-      <h4>문제 또는 배경</h4>
-      <p class="lede">스팩스페이스 개발사업부 CV팀 소속으로 한국 문화 특화 3D 에셋 생성 정부지원 R&amp;D 과제에 참여했습니다.</p>
-      <p class="lede">학습 데이터 품질과 평가 조건이 정리되어 있지 않아 결과를 신뢰하거나 재현하기 어려운 상태였습니다. 데이터를 점검해 사용 가능한 범위를 확정하고, 평가 조건의 근거를 구분하는 것이 과제였습니다.</p>
-    </section>
+      <p class="lede">Text-to-Image-to-3D 생성 과정에서 학습 데이터를 검증하고, TRELLIS2 기반 LoRA 파인튜닝과 모델 평가를 수행했습니다.</p>
 
-    <section>
-      <h4>내가 맡은 역할</h4>
-      <ul class="ticks">
-        <li>3D 학습 데이터 1,500건 점검과 사용 가능 데이터 분류</li>
-        <li>TRELLIS2 기반 LoRA 학습 실행과 체크포인트별 결과 비교</li>
-        <li>정량평가 지표 조사와 실행, 평가 코드 · 렌더링 · 입력 조건 검증</li>
-        <li>평가 조건 근거 리서치와 인수인계 문서화</li>
-        <li>사업계획서 시장조사 영역 담당 (3D 생성 AI 시장 · 경쟁 서비스 조사)</li>
-        <li>Relic 랜딩페이지 기획부터 구현까지 담당</li>
+      <p class="dialog-period">
+        2026.01 – 2026.07
+        <span class="dialog-period-sub">1–2월 프리랜서 · 3–6월 IPP 현장실습 · 7월 계약 연장</span>
+      </p>
+
+      <ul class="stat-trio">
+        <li>
+          <p class="stat-trio-num">1,500<span class="unit">건</span></p>
+          <p class="stat-trio-cap">원본 데이터 점검</p>
+        </li>
+        <li>
+          <p class="stat-trio-num">1,451<span class="unit">건</span></p>
+          <p class="stat-trio-cap">유효 데이터 확정</p>
+        </li>
+        <li>
+          <p class="stat-trio-num">1,268 / 143</p>
+          <p class="stat-trio-cap">학습 · Holdout 구성</p>
+        </li>
       </ul>
     </section>
 
     <section>
-      <h4>수행 과정</h4>
+      <h4>Text-to-Image-to-3D 파이프라인</h4>
+      <p class="lede">텍스트 프롬프트로 2D 이미지를 생성하고, 해당 이미지를 입력으로 3D 에셋을 생성하는 파이프라인을 다뤘습니다.</p>
+      <!-- 추후 Text Prompt → FLUX.2 Klein → Generated Image → TRELLIS2 → 3D Asset
+           흐름 도식으로 교체합니다. 지금은 자리만 넓게 잡아 둡니다. -->
+      <div class="diagram-placeholder diagram-placeholder-wide">
+        <p>파이프라인 도식 삽입 예정</p>
+      </div>
+    </section>
+
+    <section class="section-sample">
+      <h4>한복 3D 에셋 생성 사례</h4>
+      <div class="sample-flow">
+        <div class="sample-step">
+          <div class="sample-step-media sample-step-placeholder">
+            <p>한복 관련 텍스트 프롬프트</p>
+            <p class="sample-step-note">실제 프롬프트 추후 입력</p>
+          </div>
+          <p class="sample-step-label">Text Prompt</p>
+        </div>
+
+        <span class="sample-arrow" aria-hidden="true">→</span>
+
+        <div class="sample-step">
+          <div class="sample-step-media">
+            <img src="./assets/img/specspace/hanbok-klein.png" alt="FLUX.2 Klein으로 생성한 한복 2D 이미지" loading="lazy" decoding="async">
+          </div>
+          <p class="sample-step-label">FLUX.2 Klein</p>
+          <p class="sample-step-note">텍스트 기반 2D 이미지 생성</p>
+        </div>
+
+        <span class="sample-arrow" aria-hidden="true">→</span>
+
+        <div class="sample-step">
+          <div class="sample-step-media sample-step-media-dark">
+            <img src="./assets/img/specspace/hanbok-trellis2.gif" alt="TRELLIS2로 생성한 한복 3D 에셋이 회전하는 모습" loading="lazy" decoding="async">
+          </div>
+          <p class="sample-step-label">TRELLIS2</p>
+          <p class="sample-step-note">이미지 기반 3D 에셋 생성</p>
+        </div>
+      </div>
+      <p class="lede">텍스트 프롬프트를 기반으로 Klein에서 한복 이미지를 생성하고, 생성 이미지를 TRELLIS2의 입력으로 사용해 3D 에셋으로 변환했습니다.</p>
+    </section>
+
+    <section>
+      <h4>주요 담당 역할</h4>
+      <div class="role-grid">
+        <div class="role-card">
+          <p class="role-card-title">데이터 검증</p>
+          <ul class="ticks">
+            <li>3D 학습 데이터 1,500건 점검</li>
+            <li>사용 불가 데이터 분류</li>
+            <li>학습 · Holdout 데이터 구성</li>
+            <li>누출 및 결측 여부 확인</li>
+          </ul>
+        </div>
+        <div class="role-card">
+          <p class="role-card-title">모델 학습</p>
+          <ul class="ticks">
+            <li>TRELLIS2 기반 LoRA 학습 실행</li>
+            <li>학습 설정과 데이터 구성 점검</li>
+            <li>생성 결과 확인</li>
+          </ul>
+        </div>
+        <div class="role-card">
+          <p class="role-card-title">모델 평가</p>
+          <ul class="ticks">
+            <li>정량평가 지표 조사 및 실행</li>
+            <li>평가 코드 · 렌더링 · 입력 조건 검증</li>
+            <li>성능 미달 원인 분석</li>
+          </ul>
+        </div>
+        <div class="role-card">
+          <p class="role-card-title">문서화</p>
+          <ul class="ticks">
+            <li>데이터 구성과 제외 기준 정리</li>
+            <li>평가 조건별 근거 구분</li>
+            <li>실행 환경과 명령어 문서화</li>
+            <li>인수인계 자료 작성</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h4>학습 데이터 검증 및 구성</h4>
+      <!-- 추후 데이터 처리 흐름도로 교체합니다. -->
+      <div class="diagram-placeholder">
+        <p>데이터 처리 흐름도 삽입 예정</p>
+      </div>
+      <p class="flow-line">원본 1,500건 → 사용 불가 49건 제외 → 유효 데이터 1,451건 → 학습 1,268건 / Holdout 143건</p>
+      <ul class="ticks">
+        <li>학습 · Holdout 간 데이터 누출 여부</li>
+        <li>캡션 결측 여부</li>
+        <li>프롬프트 결측 여부</li>
+        <li>데이터 파일 구성과 사용 가능 여부</li>
+      </ul>
+    </section>
+
+    <section>
+      <h4>TRELLIS2 LoRA 파인튜닝 및 평가</h4>
+      <p class="flow-line flow-line-process">데이터 구성 → LoRA 학습 → 생성 결과 확인 → 정량평가</p>
+      <ul class="ticks">
+        <li>검수한 데이터를 기반으로 TRELLIS2 LoRA 학습 실행</li>
+        <li>학습 · 평가 데이터 구성 확인</li>
+        <li>생성 결과와 평가 실행 조건 점검</li>
+        <li>성능 미달 가능 원인 분석 및 개선 조건 검토</li>
+      </ul>
+    </section>
+
+    <section>
+      <h4>정량평가 결과</h4>
+      <ul class="metric-grid">
+        <li>
+          <p class="metric-num">27.24</p>
+          <p class="metric-cap">CLIP ×100</p>
+        </li>
+        <li>
+          <p class="metric-num">20.23</p>
+          <p class="metric-cap">FD Inception</p>
+        </li>
+        <li>
+          <p class="metric-num">243.72</p>
+          <p class="metric-cap">FD DINOv2</p>
+        </li>
+        <li>
+          <p class="metric-num">5.4951</p>
+          <p class="metric-cap">FD Point</p>
+        </li>
+      </ul>
+      <p class="callout">과제 목표 기준에는 도달하지 못했습니다.</p>
+      <p class="lede">정량평가를 통해 현재 모델의 성능 수준을 확인하고, 데이터 구성과 평가 코드, 렌더링 및 입력 조건을 다시 점검했습니다. 확인된 문제와 적용한 개선 조건은 후속 실행이 가능하도록 문서화했습니다.</p>
+    </section>
+
+    <section>
+      <h4>재현 가능한 평가 절차 정리</h4>
+      <p class="lede">논문, 공식 코드, 후속 연구 구현을 대조해 평가 조건의 근거를 구분하고, 확인되지 않은 조건은 별도 항목으로 분리했습니다.</p>
       <ol class="steps">
-        <li>3D 학습 데이터 1,500건을 점검해 사용 불가 데이터를 분류하고 1,451건으로 정리</li>
-        <li>학습 1,268건 / holdout 143건으로 분할하고, 두 집합 간 데이터 누출 여부와 캡션 · 프롬프트 결측을 점검</li>
-        <li>논문 · 공식 코드 · 후속 연구 구현을 대조해 평가 조건별 근거를 4단계로 분류</li>
-        <li>TRELLIS2 기반 LoRA 학습을 실행하고 체크포인트별 생성 결과를 비교</li>
-        <li>정량평가 지표와 실행 조건을 조사해 실행하고, 평가 코드 · 렌더링 · 입력 조건이 의도대로 동작하는지 검증</li>
+        <li>논문에 명시된 조건</li>
+        <li>공식 코드로 확인한 조건</li>
+        <li>후속 연구에서 공통으로 사용된 조건</li>
+        <li>출처를 확인하지 못한 조건</li>
       </ol>
-
-      <figure class="diagram diagram-scroll">
-        <svg class="diagram-svg" viewBox="0 0 800 400" role="img" aria-labelledby="dgm02-title dgm02-desc" xmlns="http://www.w3.org/2000/svg">
-          <title id="dgm02-title">평가 조건별 근거 수준을 4단계로 분류한 표</title>
-          <desc id="dgm02-desc">근거 수준을 논문 명시, 공식 코드 확인, 후속 연구 관행, 근거 없음 네 단계로 나누고, 아래로 갈수록 재현 가능성이 낮아짐을 나타낸다.</desc>
-          <defs>
-            <marker id="dgm02-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-              <path d="M0,0 L10,5 L0,10 Z" fill="currentColor" />
-            </marker>
-          </defs>
-
-          <text x="130" y="45" font-family="Pretendard, sans-serif" font-size="15" text-anchor="middle" fill="currentColor">근거 수준</text>
-          <text x="410" y="45" font-family="Pretendard, sans-serif" font-size="15" text-anchor="middle" fill="currentColor">판단 기준</text>
-
-          <rect x="60" y="255" width="560" height="65" fill="#E6F1FB" />
-
-          <rect x="60" y="60" width="560" height="260" fill="none" stroke="currentColor" stroke-width="1" opacity="0.25" />
-          <line x1="200" y1="60" x2="200" y2="320" stroke="currentColor" stroke-width="1" opacity="0.25" />
-          <line x1="60" y1="125" x2="620" y2="125" stroke="currentColor" stroke-width="1" opacity="0.25" />
-          <line x1="60" y1="190" x2="620" y2="190" stroke="currentColor" stroke-width="1" opacity="0.25" />
-          <line x1="60" y1="255" x2="620" y2="255" stroke="currentColor" stroke-width="1" opacity="0.25" />
-
-          <text x="76" y="97" font-family="Pretendard, sans-serif" font-size="13" fill="currentColor">1 · 논문 명시</text>
-          <text x="216" y="97" font-family="Pretendard, sans-serif" font-size="13" fill="currentColor">논문에 조건이 서술됨</text>
-
-          <text x="76" y="162" font-family="Pretendard, sans-serif" font-size="13" fill="currentColor">2 · 공식 코드 확인</text>
-          <text x="216" y="162" font-family="Pretendard, sans-serif" font-size="13" fill="currentColor">공식 구현 코드로 조건을 확인함</text>
-
-          <text x="76" y="227" font-family="Pretendard, sans-serif" font-size="13" fill="currentColor">3 · 후속 연구 관행</text>
-          <text x="216" y="227" font-family="Pretendard, sans-serif" font-size="13" fill="currentColor">후속 연구들이 공통으로 따른 조건</text>
-
-          <text x="76" y="292" font-family="Pretendard, sans-serif" font-size="13" fill="#0C447C">4 · 근거 없음</text>
-          <text x="216" y="292" font-family="Pretendard, sans-serif" font-size="13" fill="#0C447C">출처를 확인하지 못한 조건</text>
-
-          <line x1="680" y1="60" x2="680" y2="320" stroke="currentColor" stroke-width="1" marker-end="url(#dgm02-arrow)" />
-          <text x="680" y="48" font-family="Pretendard, sans-serif" font-size="13" text-anchor="middle" fill="currentColor">재현 가능</text>
-          <text x="680" y="338" font-family="Pretendard, sans-serif" font-size="13" text-anchor="middle" fill="currentColor">재현 불가</text>
-        </svg>
-        <figcaption>평가 조건별로 근거 출처를 구분해 미확인 항목을 분리</figcaption>
-      </figure>
-    </section>
-
-    <section class="section-result">
-      <h4>결과</h4>
       <ul class="ticks">
-        <li>데이터 구성, 전처리 조건, 체크포인트별 결과를 비교하고 성능 미달 원인과 적용한 개선 조건을 문서화했습니다.</li>
-        <li>후속 담당자와 시험기관이 같은 조건으로 재현할 수 있도록 데이터 구성, 평가 지표, 실행 환경, 실행 명령어를 실행 문서로 정리했습니다.</li>
-        <li>확인된 사실과 미확인 사항을 구분해 표기한 인수인계 자료를 남겼습니다.</li>
+        <li>데이터 구성 및 제외 기준</li>
+        <li>정량평가 지표 정의</li>
+        <li>평가 환경과 실행 명령어</li>
+        <li>렌더링 및 입력 조건</li>
+        <li>후속 담당자용 실행 절차</li>
       </ul>
-
-      <!-- 정부지원 R&D 산출물이라 공개 승인 확인 전에는 assets/js/app.js 의
-           MEDIA.spec.checkpointShot.srcWebp 를 비워 둡니다. (QUESTIONS.md 참고) -->
-      <figure class="dialog-shot" data-media-slot="spec.checkpointShot" hidden>
-        <picture>
-          <source type="image/webp">
-          <img alt="" loading="lazy" decoding="async">
-        </picture>
-        <figcaption data-caption></figcaption>
-      </figure>
+      <!-- 추후 실행 문서 캡처로 교체합니다. -->
+      <div class="doc-placeholder">
+        <p>문서 이미지 삽입 예정</p>
+      </div>
     </section>
 
     <section>
-      <h4>한계 및 개선 사항</h4>
-      <p class="lede">과제 목표 성능에는 도달하지 못했습니다.</p>
-      <p class="callout">정성평가는 실행 전 단계에서 비교 대상, 평가 항목, 평가자 구성을 계획하는 데까지 진행했습니다. 실제 평가는 진행하지 않았습니다.</p>
+      <h4>결과 및 한계</h4>
+      <div class="split">
+        <div>
+          <p class="split-head">수행 결과</p>
+          <ul class="ticks">
+            <li>원본 1,500건을 점검해 유효 데이터 1,451건 확정</li>
+            <li>학습 1,268건과 Holdout 143건 구성</li>
+            <li>Text-to-Image-to-3D 생성 과정 실행</li>
+            <li>TRELLIS2 기반 LoRA 학습 및 정량평가 수행</li>
+            <li>평가 조건과 실행 절차 문서화</li>
+          </ul>
+        </div>
+        <div>
+          <p class="split-head">한계</p>
+          <ul class="ticks">
+            <li>과제 목표 성능에는 도달하지 못함</li>
+            <li>정성평가는 비교 대상, 평가 항목, 평가자 구성 계획까지만 진행</li>
+            <li>실제 정성평가는 수행하지 않음</li>
+          </ul>
+        </div>
+      </div>
     </section>
 
     <section>
       <h4>기술 스택</h4>
-      <p class="tech"><span>기술</span> Python · PyTorch · TRELLIS2 · LoRA · Linux</p>
+      <ul class="tag-list">
+        <li>Python</li>
+        <li>PyTorch</li>
+        <li>TRELLIS2</li>
+        <li>LoRA</li>
+        <li>FLUX.2 Klein</li>
+        <li>Linux</li>
+      </ul>
     </section>
   </div>
 </dialog>

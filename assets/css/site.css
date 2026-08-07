@@ -343,7 +343,121 @@ a:focus-visible, .btn:focus-visible, button:focus-visible {
 .project-title + .lede { margin-top: .75rem; }
 
 .project-meta { margin-top: 1.25rem; font-size: .8125rem; color: var(--dim); }
-.meta-sub { display: block; }
+
+/* 근무 기간을 단계별로 나눠 보여주는 타임라인 (실무 경험) —
+   가로로 이어진 얇은 선 위에 각 단계 시작점을 점으로 표시합니다. */
+.timeline {
+  display: flex;
+  margin-top: 1rem;
+}
+.timeline li {
+  position: relative;
+  flex: 1 1 0;
+  min-width: 0;
+  padding: 1.25rem 1.25rem 0 0;
+  border-top: 1px solid var(--line-strong);
+}
+.timeline li:last-child { padding-right: 0; }
+.timeline li::before {
+  content: "";
+  position: absolute; top: -4px; left: 0;
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+.timeline-period { font-size: .8125rem; font-weight: 700; color: var(--accent-deep); }
+.timeline-label { margin-top: .3rem; font-size: .875rem; color: var(--ink); line-height: 1.45; }
+
+/* ── 가로 카드 슬라이더 (실무 경험) ────────────────────────────────────
+   데스크톱 · 마우스 환경에서는 assets/js/app.js 가 천천히 자동으로
+   scrollLeft 를 움직입니다. 트랙 자체는 평범한 가로 스크롤 컨테이너라
+   터치에서는 네이티브 스와이프가 그대로 동작합니다. */
+
+.carousel { position: relative; margin-top: 1.75rem; }
+.carousel-track {
+  display: flex; gap: 1.5rem;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  cursor: grab;
+  margin: -.25rem; padding: .25rem .25rem 1rem;
+}
+.carousel-track::-webkit-scrollbar { display: none; }
+.carousel-track.is-dragging { cursor: grabbing; }
+.carousel-slide { flex: 0 0 auto; width: min(23rem, 84vw); }
+
+.carousel-nav { display: flex; gap: .5rem; margin-top: .25rem; }
+.carousel-btn {
+  width: 2.5rem; height: 2.5rem;
+  display: inline-flex; align-items: center; justify-content: center;
+  border: 1px solid var(--line-strong); border-radius: 999px;
+  background: #fff; color: var(--ink);
+  font-size: 1.25rem; line-height: 1; cursor: pointer;
+}
+.carousel-btn:hover { background: var(--muted); border-color: var(--ink); }
+
+/* ── 실무 경험 카드 (rd-card) ──────────────────────────────────────────
+   1번 카드(연구개발)는 대표 이미지 · 요약 · 태그 · 버튼을 갖춘 형태이고,
+   2 · 3번(시장조사 · 랜딩페이지)은 상세 내용이 준비될 때까지 같은 크기의
+   자리표시 카드로 둡니다. */
+
+.rd-card {
+  display: flex; flex-direction: column;
+  height: 30rem;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+  text-align: left;
+}
+.rd-card-featured { cursor: pointer; transition: border-color .2s ease, box-shadow .2s ease; }
+.rd-card-featured:hover,
+.rd-card-featured:focus-visible {
+  border-color: var(--accent);
+  box-shadow: 0 10px 30px rgba(18, 101, 92, .12);
+}
+.rd-card-featured:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.rd-card-media { flex: 0 0 auto; aspect-ratio: 16 / 10; background: #14181c; overflow: hidden; }
+.rd-card-media img {
+  width: 100%; height: 100%; object-fit: cover;
+  filter: saturate(.92) brightness(.96);
+  transition: filter .25s ease, transform .3s ease;
+}
+/* 카드가 화면 중앙(is-centered, IntersectionObserver 로 표시)에 있거나
+   마우스를 올렸을 때만 GIF 가 또렷하게 — 그 외엔 은은하게 가라앉힙니다. */
+.rd-card-featured:hover .rd-card-media img,
+.rd-card-featured:focus-visible .rd-card-media img,
+.rd-card-featured.is-centered .rd-card-media img {
+  filter: none;
+  transform: scale(1.03);
+}
+
+.rd-card-body { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; padding: 1.5rem 1.5rem 1.75rem; }
+.rd-card-eyebrow { font-size: .75rem; font-weight: 800; letter-spacing: .1em; color: var(--accent); }
+.rd-card-title { margin-top: .5rem; font-size: 1.1875rem; font-weight: 800; line-height: 1.35; letter-spacing: -.02em; color: var(--ink); }
+.rd-card-summary { margin-top: .6rem; font-size: .875rem; color: var(--dim); line-height: 1.6; }
+.rd-card-tags { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: 1rem; }
+.rd-card-tags li {
+  padding: .25rem .6rem;
+  border: 1px solid var(--line-strong); border-radius: 999px;
+  font-size: .75rem; font-weight: 600; color: var(--ink);
+}
+.rd-card-cta {
+  display: inline-flex; align-items: center; gap: .3rem;
+  margin-top: auto; padding-top: 1.25rem;
+  font-size: .875rem; font-weight: 700; color: var(--accent-deep);
+}
+
+.rd-card-soon {
+  align-items: center; justify-content: center; text-align: center;
+  padding: 2.5rem 2rem;
+  background: var(--muted);
+  border-style: dashed;
+}
+.rd-card-soon .rd-card-eyebrow { color: var(--dim); }
+.rd-card-soon .rd-card-title { margin-top: .6rem; font-size: 1.125rem; }
+.rd-card-soon-note { margin-top: 1rem; font-size: .8125rem; color: var(--dim); }
 
 /* 핵심 지표 — 대표 성과 1개만 크게, 보조 정보는 옆에 작게.
    숫자를 전부 같은 크기로 나열하지 않기 위한 카드 공통 패턴입니다. */
@@ -600,6 +714,97 @@ dialog.detail-dialog::backdrop { background: rgba(12, 18, 22, .62); }
   .dialog-body .section-result { padding: 1.1rem; border-radius: 10px; }
 }
 
+/* ── 기간 (상세 팝업 헤더) ─────────────────────────────────────────── */
+
+.dialog-period {
+  margin-top: 1.25rem; padding-top: 1.25rem;
+  border-top: 1px solid var(--line-strong);
+  font-size: .9375rem; font-weight: 700; color: var(--ink);
+}
+.dialog-period-sub { display: block; margin-top: .3rem; font-size: .8125rem; font-weight: 500; color: var(--dim); }
+
+/* ── 핵심 수치 3개 (상세 팝업 헤더) ───────────────────────────────────── */
+
+.stat-trio { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 1.5rem; }
+.stat-trio-num { font-size: clamp(1.5rem, 2.4vw, 1.875rem); font-weight: 800; color: var(--ink); letter-spacing: -.02em; line-height: 1.15; white-space: nowrap; }
+.stat-trio-cap { margin-top: .3rem; font-size: .8125rem; color: var(--dim); }
+
+/* ── 도식 자리표시 — 추후 실제 도식 이미지로 교체할 자리만 잡아 둡니다 ── */
+
+.diagram-placeholder {
+  margin-top: 1.1rem;
+  display: flex; align-items: center; justify-content: center;
+  min-height: 9rem;
+  border: 1px dashed var(--line-strong); border-radius: 12px;
+  background: var(--muted);
+}
+.diagram-placeholder p { font-size: .8125rem; color: var(--dim); }
+.diagram-placeholder-wide { min-height: 7rem; overflow-x: auto; }
+
+/* 작은 문서 카드 자리표시 (평가 조건 문서화) */
+.doc-placeholder {
+  margin-top: 1.1rem;
+  width: 10rem; max-width: 100%;
+  aspect-ratio: 3 / 4;
+  display: flex; align-items: center; justify-content: center;
+  border: 1px dashed var(--line-strong); border-radius: 10px;
+  background: var(--muted);
+}
+.doc-placeholder p { padding: 0 .75rem; font-size: .75rem; color: var(--dim); text-align: center; }
+
+/* ── 한복 3D 에셋 생성 사례 — 텍스트 → Klein 이미지 → TRELLIS2 3D 결과 ── */
+
+.sample-flow { display: flex; align-items: stretch; gap: 1rem; margin-top: 1.1rem; overflow-x: auto; }
+.sample-step { flex: 1 1 0; min-width: 9rem; }
+.sample-step-media {
+  aspect-ratio: 1 / 1;
+  border-radius: 10px; overflow: hidden;
+  background: var(--muted);
+  display: flex; align-items: center; justify-content: center;
+}
+.sample-step-media img { width: 100%; height: 100%; object-fit: contain; }
+.sample-step-media-dark { background: #14181c; }
+.sample-step-placeholder { border: 1px dashed var(--line-strong); padding: 1rem; text-align: center; }
+.sample-step-placeholder > p:first-child { font-size: .875rem; font-weight: 600; color: var(--ink); }
+.sample-step-label { margin-top: .6rem; font-size: .875rem; font-weight: 700; color: var(--ink); text-align: center; }
+.sample-step-note { margin-top: .3rem; font-size: .75rem; color: var(--dim); text-align: center; }
+.sample-arrow { flex: 0 0 auto; align-self: center; font-size: 1.25rem; color: var(--line-strong); }
+
+/* ── 주요 담당 역할 — 작은 카드 4개 ───────────────────────────────────── */
+
+.role-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; margin-top: 1.1rem; }
+.role-card { padding: 1.1rem 1.1rem 1.25rem; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; }
+.role-card-title { font-size: .875rem; font-weight: 800; color: var(--accent-deep); margin-bottom: .7rem; }
+.role-card .ticks li { font-size: .8125rem; }
+
+/* ── 흐름 한 줄 (데이터 구성 · LoRA 파인튜닝 단계) ───────────────────── */
+
+.flow-line {
+  margin-top: 1rem;
+  padding: .9rem 1.1rem;
+  background: var(--surface);
+  border-radius: 10px;
+  font-size: .875rem; font-weight: 600; color: var(--ink);
+  overflow-x: auto; white-space: nowrap;
+}
+.flow-line-process { color: var(--accent-deep); }
+
+/* ── 정량평가 지표 4개 ─────────────────────────────────────────────── */
+
+.metric-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; margin-top: 1.1rem; }
+.metric-grid li { padding-top: 1rem; border-top: 1px solid var(--line-strong); }
+.metric-num { font-size: 1.375rem; font-weight: 800; color: var(--ink); letter-spacing: -.02em; }
+.metric-cap { margin-top: .25rem; font-size: .75rem; color: var(--dim); }
+
+/* ── 기술 스택 작은 태그 ───────────────────────────────────────────── */
+
+.tag-list { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .75rem; }
+.tag-list li {
+  padding: .3rem .75rem;
+  border: 1px solid var(--line-strong); border-radius: 999px;
+  font-size: .8125rem; font-weight: 600; color: var(--ink);
+}
+
 /* ═══════════════ 반응형 ═══════════════ */
 
 /* 1280 */
@@ -643,6 +848,17 @@ dialog.detail-dialog::backdrop { background: rgba(12, 18, 22, .62); }
     border-left: 0; border-top: 1px solid var(--line-strong);
   }
 
+  /* 타임라인 — 가로 3단 대신 세로로 쌓고, 선은 위쪽 대신 왼쪽으로 */
+  .timeline { flex-direction: column; gap: 1rem; }
+  .timeline li { padding: 0 0 0 1.25rem; border-top: 0; border-left: 1px solid var(--line-strong); }
+  .timeline li::before { top: 2px; left: -4px; }
+
+  /* 실무 경험 카드 — 슬라이더는 그대로 두고 카드 높이만 살짝 줄입니다 */
+  .rd-card { height: 28rem; }
+  .stat-trio { grid-template-columns: 1fr; gap: 1rem; }
+  .role-grid,
+  .metric-grid { grid-template-columns: repeat(2, 1fr); }
+
   .project-foot { align-items: stretch; }
   .project-foot:not(.project-foot-solo) { flex-direction: column; align-items: flex-start; }
   .detail-actions .btn { width: 100%; }
@@ -672,6 +888,9 @@ dialog.detail-dialog::backdrop { background: rgba(12, 18, 22, .62); }
   .kf-block { padding-left: .8rem; }
   .split { grid-template-columns: 1fr; gap: 1rem; }
   .steps li { grid-template-columns: 1.6rem 1fr; }
+
+  .role-grid { grid-template-columns: 1fr; }
+  .sample-step { min-width: 7.5rem; }
 
   .card { padding: 1.25rem; }
   .project-title { max-width: none; }

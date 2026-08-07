@@ -69,7 +69,7 @@ dialog.detail-dialog:not([open]) {
 /* 페이지 나눔 */
 h1, h2, h3, h4, .band-title, .project-meta, .project-no { break-after: avoid; page-break-after: avoid; }
 .shot, figure, .stats, .card, .split, .kf-block, .project-head, .timeline,
-.rd-card, .stat-trio, .role-card, .metric-grid, .sample-flow {
+.rd-card, .role-card, .metric-grid, .sample-flow {
   break-inside: avoid; page-break-inside: avoid;
 }
 .band { break-before: page; page-break-before: always; }
@@ -130,13 +130,9 @@ h1, h2, h3, h4, .band-title, .project-meta, .project-no { break-after: avoid; pa
 .rd-card-tags li { font-size: 7.4pt; border: .3mm solid #d3dae0; }
 .rd-card-hint { display: none !important; }
 
-/* 상세 팝업 헤더 — 기간 · 핵심 수치 3개 */
+/* 상세 팝업 헤더 — 기간 */
 .dialog-period { font-size: 9pt; margin-top: 3mm; padding-top: 3mm; border-top: .3mm solid #d3dae0 !important; }
 .dialog-period-sub { font-size: 7.6pt; margin-top: .8mm; }
-.stat-trio { display: flex !important; gap: 6mm; margin-top: 3.5mm; }
-.stat-trio li { flex: 1 1 0; min-width: 0; }
-.stat-trio-num { font-size: 14pt; }
-.stat-trio-cap { font-size: 7.6pt; margin-top: 1mm; }
 
 /* 도식 자리표시 — 인쇄물에는 흐름 문구만 작게 남깁니다 */
 .diagram-placeholder {
@@ -146,37 +142,38 @@ h1, h2, h3, h4, .band-title, .project-meta, .project-no { break-after: avoid; pa
 .diagram-placeholder p { font-size: 7.6pt; }
 .placeholder-icon { display: none !important; }
 
-/* 한복 생성 사례 3단계 */
+/* 파이프라인 적용 결과 3단계 */
+.sample-result { font-size: 9pt; font-weight: 700; margin-top: 1mm; }
 .sample-flow { display: flex !important; flex-direction: row; gap: 4mm; margin-top: 3mm; break-inside: avoid; }
 .sample-step { flex: 1 1 0; min-width: 0; }
 .sample-step-media { border: .3mm solid #e2e7eb; }
 .sample-step-prompt { padding: 3mm; }
-.sample-step-prompt-label { font-size: 6.6pt; margin-bottom: 1mm; }
 .sample-step-prompt p { font-size: 7.6pt; }
 .sample-step-label { font-size: 7.8pt; margin-top: 1.5mm; }
 .sample-step-note { font-size: 7pt; margin-top: .5mm; }
 .sample-arrow { font-size: 9pt; align-self: center; }
 
-/* 담당 역할 4개 · 평가 조건 검증 4개 */
+/* 담당 역할 4개 · 평가 조건 검증 3개 */
 .role-grid { display: flex !important; flex-wrap: nowrap; gap: 3mm; margin-top: 3mm; }
 .role-card { flex: 1 1 0; min-width: 0; padding: 2.5mm !important; border: .3mm solid #e2e7eb; break-inside: avoid; }
 .role-card-title { font-size: 7.8pt; margin-bottom: 1.5mm; }
 .role-card-desc { font-size: 7.6pt; margin-top: 1mm; }
-.role-grid-evidence .role-card:last-child { border-style: dashed !important; }
-
-.flow-line { font-size: 8pt; padding: 2mm 2.5mm; margin-top: 2.5mm; white-space: normal; }
-.flow-line-process { font-weight: 700; }
-.flow-num { font-weight: 700; }
 
 /* 정량평가 지표 4개 */
 .metric-grid { display: flex !important; flex-wrap: nowrap; gap: 5mm; margin-top: 3mm; }
 .metric-grid li { flex: 1 1 0; min-width: 0; padding-top: 2mm !important; border-top: .3mm solid #d3dae0 !important; }
 .metric-num { font-size: 12pt; }
 .metric-cap { font-size: 7pt; }
-.metric-desc { font-size: 6.4pt; margin-top: .5mm; }
+
+.tag-list-label { margin-top: 3mm; font-size: 7.6pt; font-weight: 700; }
+.tag-list-label + .tag-list { margin-top: 1.5mm; }
 
 .tag-list { display: flex !important; flex-wrap: wrap; gap: 2mm; margin-top: 2mm; }
 .tag-list li { font-size: 7.4pt; border: .3mm solid #d3dae0; padding: .8mm 2mm; }
+
+.tag-groups { margin-top: 3mm; display: flex !important; flex-direction: column; gap: 2.5mm; }
+.tag-group-title { font-size: 7.6pt; font-weight: 700; }
+.tag-group .tag-list { margin-top: 1.5mm; }
 
 .stats {
   display: flex !important; flex-wrap: nowrap;
@@ -209,6 +206,7 @@ h1, h2, h3, h4, .band-title, .project-meta, .project-no { break-after: avoid; pa
 .split > div { flex: 1 1 0; min-width: 0; }
 .split-head { font-size: 7.6pt; margin-bottom: 1.5mm; padding-bottom: 1mm; }
 .split .ticks li { font-size: 8pt; }
+.split-tinted > div { padding: 2.5mm 3mm !important; border-radius: 2mm; }
 
 .callout { font-size: 8.2pt; margin-top: 2.5mm; padding-left: 2.5mm; }
 

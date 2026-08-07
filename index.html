@@ -83,7 +83,6 @@
     <header class="band-head">
       <p class="band-label">WORK EXPERIENCE</p>
       <h2 class="band-title" id="exp-h">실무 경험</h2>
-      <p class="band-lead">3D 생성 AI 연구개발부터 시장조사, 서비스 소개 페이지 기획·구현까지 참여했습니다.</p>
     </header>
     <p class="project-no">스팩스페이스 개발사업부 CV팀</p>
 
@@ -100,14 +99,12 @@
               <span class="rd-card-hint" aria-hidden="true">자세히 보기 →</span>
             </div>
             <div class="rd-card-body">
-              <p class="rd-card-eyebrow">3D AI 연구개발</p>
-              <h3 class="rd-card-title" id="spec-h">3D 생성 AI 연구개발</h3>
-              <p class="rd-card-subtitle">Text-to-Image-to-3D 생성 파이프라인</p>
-              <p class="rd-card-summary">학습 데이터 검증, TRELLIS2 기반 LoRA 파인튜닝, 정량평가를 수행했습니다.</p>
+              <p class="rd-card-eyebrow">3D AI R&amp;D</p>
+              <h3 class="rd-card-title" id="spec-h">Text-to-3D 파이프라인 연구개발</h3>
               <ul class="rd-card-tags">
-                <li>데이터 1,500건 점검</li>
+                <li>한국 데이터셋</li>
                 <li>LoRA 파인튜닝</li>
-                <li>모델 정량평가</li>
+                <li>정량평가</li>
               </ul>
             </div>
           </article>
@@ -148,89 +145,63 @@
     <button type="button" class="dialog-close" data-dialog-close aria-label="닫기"><span aria-hidden="true">✕</span></button>
   </header>
   <div class="dialog-body">
-    <!-- 1. 경험 요약 -->
+    <!-- 1. 팝업 헤더 — 경험 요약. 핵심 수치 3개는 삭제, 같은 숫자가
+         5번 섹션 데이터 흐름 도식에 이미 있어 반복하지 않습니다. -->
     <section>
-      <p class="lede">Text-to-Image-to-3D 생성 과정에서 학습 데이터를 검증하고, TRELLIS2 기반 LoRA 파인튜닝과 모델 평가를 수행했습니다.</p>
-
-      <p class="dialog-period">
-        2026.06 – 2026.07
-      </p>
-
-      <!-- 핵심 수치 — 이 3개는 아래 "데이터 구성" 흐름 한 줄 외에는 다시 반복하지 않습니다. -->
-      <ul class="stat-trio">
-        <li>
-          <p class="stat-trio-num">1,500<span class="unit">건</span></p>
-          <p class="stat-trio-cap">원본 데이터 점검</p>
-        </li>
-        <li>
-          <p class="stat-trio-num">1,451<span class="unit">건</span></p>
-          <p class="stat-trio-cap">유효 데이터 확정</p>
-        </li>
-        <li>
-          <p class="stat-trio-num">1,268 / 143</p>
-          <p class="stat-trio-cap">학습 · Holdout 구성</p>
-        </li>
-      </ul>
+      <p class="lede">한국 데이터셋을 활용해 TRELLIS.2를 LoRA 파인튜닝하고, FLUX.2 [klein]과 연결한 Text-to-3D 생성 파이프라인을 다뤘습니다.</p>
+      <p class="dialog-period">2026.06 – 2026.07</p>
     </section>
 
-    <!-- 2. Text-to-Image-to-3D 파이프라인 -->
+    <!-- 2. Text-to-Image-to-3D 파이프라인 — 설명 없이 도식만 -->
     <section>
       <h4>Text-to-Image-to-3D 파이프라인</h4>
-      <p class="lede">텍스트로 2D 이미지를 생성하고, 해당 이미지를 입력으로 3D 에셋을 생성하는 파이프라인을 다뤘습니다.</p>
-      <!-- 추후 실제 도식 이미지로 교체합니다. 지금은 흐름만 텍스트로 보여줍니다. -->
-      <div class="diagram-placeholder diagram-placeholder-wide">
-        <svg class="placeholder-icon" viewBox="0 0 32 32" aria-hidden="true">
-          <circle cx="5" cy="16" r="3" fill="none" stroke="currentColor" stroke-width="1.5" />
-          <circle cx="16" cy="8" r="3" fill="none" stroke="currentColor" stroke-width="1.5" />
-          <circle cx="27" cy="16" r="3" fill="none" stroke="currentColor" stroke-width="1.5" />
-          <path d="M8 14.5 L13 9.5 M19 9.5 L24 14.5" fill="none" stroke="currentColor" stroke-width="1.5" />
-        </svg>
-        <p>Text Prompt → FLUX.2 Klein → 2D Image → TRELLIS2 → 3D Asset</p>
-      </div>
+      <figure class="diagram">
+        <img class="diagram-img" src="./assets/img/specspace/pipeline-diagram.png" alt="Text Prompt에서 FLUX.2 Klein으로 2D 이미지를 생성하고, TRELLIS2로 3D 에셋을 만드는 파이프라인 흐름도" loading="lazy" decoding="async">
+      </figure>
     </section>
 
-    <!-- 3. 실제 한복 생성 사례 -->
+    <!-- 3. 파이프라인 적용 결과 — 앞 섹션의 파이프라인 구조가 실제로
+         이어지는 흐름처럼, 프롬프트 · 이미지 · GIF 로만 보여줍니다. -->
     <section class="section-sample">
-      <h4>한복 3D 에셋 생성 사례</h4>
+      <h4>파이프라인 적용 결과</h4>
+      <p class="sample-result">한복 3D 에셋 생성</p>
       <div class="sample-flow">
         <div class="sample-step">
           <div class="sample-step-media sample-step-prompt">
-            <span class="sample-step-prompt-label">TEXT PROMPT</span>
-            <p>연둣빛 저고리와 청람색 치마의 비단 한복을 입고 흰 가면과 비녀를 착용한 인물이 단색 스튜디오 배경에서 두 손을 배 앞에 모은 채 정면을 향해 전신으로 곧게 서 있는 모습.</p>
+            <p>연둣빛 저고리와 청람색 치마의 한복을 입고 흰 가면과 비녀를 착용한 인물</p>
           </div>
-          <p class="sample-step-label">Text Prompt</p>
+          <p class="sample-step-label">Prompt</p>
         </div>
 
         <span class="sample-arrow" aria-hidden="true">→</span>
 
         <div class="sample-step">
           <div class="sample-step-media">
-            <img src="./assets/img/specspace/hanbok-klein.png" alt="FLUX.2 Klein으로 생성한 한복 2D 이미지" loading="lazy" decoding="async">
+            <img src="./assets/img/specspace/hanbok-klein.png" alt="FLUX.2 [klein]으로 생성한 한복 2D 이미지" loading="lazy" decoding="async">
           </div>
-          <p class="sample-step-label">FLUX.2 Klein</p>
-          <p class="sample-step-note">텍스트 기반 2D 이미지 생성</p>
+          <p class="sample-step-label">FLUX.2 [klein]</p>
+          <p class="sample-step-note">2D 이미지 생성</p>
         </div>
 
         <span class="sample-arrow" aria-hidden="true">→</span>
 
         <div class="sample-step">
           <div class="sample-step-media sample-step-media-dark">
-            <img src="./assets/img/specspace/hanbok-trellis2.gif" alt="TRELLIS2로 생성한 한복 3D 에셋이 회전하는 모습" loading="lazy" decoding="async">
+            <img src="./assets/img/specspace/hanbok-trellis2.gif" alt="TRELLIS.2로 생성한 한복 3D 에셋이 회전하는 모습" loading="lazy" decoding="async">
           </div>
-          <p class="sample-step-label">TRELLIS2</p>
-          <p class="sample-step-note">이미지 기반 3D 에셋 생성</p>
+          <p class="sample-step-label">TRELLIS.2</p>
+          <p class="sample-step-note">3D 에셋 생성</p>
         </div>
       </div>
-      <p class="lede">텍스트 프롬프트를 기반으로 Klein에서 한복 이미지를 생성하고, 생성 이미지를 TRELLIS2의 입력으로 사용해 3D 에셋으로 변환했습니다.</p>
     </section>
 
-    <!-- 4. 주요 담당 역할 — 상세 설명 없이 담당 범위만 빠르게 -->
+    <!-- 4. 주요 담당 역할 -->
     <section>
-      <h4>주요 담당 역할</h4>
+      <h4>프로젝트 내 담당 역할</h4>
       <div class="role-grid">
         <div class="role-card">
-          <p class="role-card-title">데이터 검증</p>
-          <p class="role-card-desc">1,500건 검수 · 누출/결측 점검</p>
+          <p class="role-card-title">데이터</p>
+          <p class="role-card-desc">전처리·검수 · Train/Holdout 구성</p>
         </div>
         <div class="role-card">
           <p class="role-card-title">모델 학습</p>
@@ -238,116 +209,111 @@
         </div>
         <div class="role-card">
           <p class="role-card-title">모델 평가</p>
-          <p class="role-card-desc">정량지표 실행 · 평가 조건 검증</p>
+          <p class="role-card-desc">정량평가 · 평가 조건 검증</p>
         </div>
         <div class="role-card">
-          <p class="role-card-title">문서화</p>
-          <p class="role-card-desc">실행 절차 · 근거 구분 · 인수인계</p>
+          <p class="role-card-title">인수인계</p>
+          <p class="role-card-desc">평가 기준 · 실행 절차 정리</p>
         </div>
       </div>
     </section>
 
-    <!-- 5. 학습 데이터 검증 및 모델 학습 (기존 두 섹션 통합) -->
+    <!-- 5. 학습 데이터 전처리·구성 — 도식이 숫자를 전부 보여주므로
+         본문에는 점검 항목만 짧은 chip 으로 둡니다. -->
     <section>
-      <h4>학습 데이터 검증 및 모델 학습</h4>
-
-      <p class="flow-line">
-        <strong class="flow-num">원본 1,500건</strong><span class="sample-arrow" aria-hidden="true">→</span><span class="flow-muted">사용 불가 49건 제외</span><span class="sample-arrow" aria-hidden="true">→</span><strong class="flow-num">유효 1,451건</strong><span class="sample-arrow" aria-hidden="true">→</span><strong class="flow-num">학습 1,268건 / Holdout 143건</strong>
-      </p>
-      <ul class="ticks">
-        <li>학습 · Holdout 간 데이터 누출 여부</li>
-        <li>캡션 결측 여부</li>
-        <li>프롬프트 결측 여부</li>
-        <li>데이터 파일 구성과 사용 가능 여부</li>
-      </ul>
-
-      <p class="flow-line flow-line-process">데이터 구성 → LoRA 학습 → 생성 결과 확인</p>
-      <ul class="ticks">
-        <li>검수한 데이터를 기반으로 TRELLIS2 LoRA 학습 실행</li>
-        <li>학습 · 평가 데이터 구성 확인</li>
-        <li>생성 결과 및 학습 조건 점검</li>
+      <h4>학습 데이터 전처리·구성</h4>
+      <figure class="diagram">
+        <img class="diagram-img" src="./assets/img/specspace/data-flow-diagram.png" alt="원본 데이터 1,500건을 전처리·검수해 제외 데이터 49건을 걸러내고, 유효 데이터 1,451건을 Train Set 1,268건과 Holdout 143건으로 분할하는 흐름도" loading="lazy" decoding="async">
+      </figure>
+      <p class="tag-list-label">데이터 검수 항목 : </p>
+      <ul class="tag-list">
+        <li>Train/Holdout 누출 점검</li>
+        <li>캡션 결측</li>
+        <li>프롬프트 결측</li>
+        <li>데이터 사용 가능 여부</li>
       </ul>
     </section>
 
-    <!-- 6. 정량평가 결과 -->
+    <!-- 6. 정량평가 결과 — LoRA 학습 과정은 4번 역할 카드에서 이미
+         드러나므로 별도 섹션 없이 바로 결과로 넘어갑니다. -->
     <section>
       <h4>정량평가 결과</h4>
       <ul class="metric-grid">
         <li>
           <p class="metric-num">27.24</p>
           <p class="metric-cap">CLIP ×100</p>
-          <p class="metric-desc">이미지-텍스트 의미 유사도</p>
         </li>
         <li>
           <p class="metric-num">20.23</p>
           <p class="metric-cap">FD Inception</p>
-          <p class="metric-desc">이미지 분포 차이</p>
         </li>
         <li>
           <p class="metric-num">243.72</p>
           <p class="metric-cap">FD DINOv2</p>
-          <p class="metric-desc">시각 특징 분포 차이</p>
         </li>
         <li>
           <p class="metric-num">5.4951</p>
           <p class="metric-cap">FD Point</p>
-          <p class="metric-desc">3D 포인트 특징 차이</p>
         </li>
       </ul>
-      <p class="callout">과제 목표 기준에는 도달하지 못했습니다.</p>
+      <p class="callout">정량평가 결과를 바탕으로 목표 대비 차이를 확인하고, 데이터 구성과 평가 조건을 재점검했습니다.</p>
     </section>
 
-    <!-- 6-2. 평가 조건 검증 -->
+    <!-- 7. 평가 조건 검증 — 근거가 확인된 조건만 표시합니다 -->
     <section>
       <h4>평가 조건 검증</h4>
-      <p class="lede">정량평가 결과를 동일한 조건에서 비교할 수 있도록 논문, 공식 코드, 후속 연구를 대조해 평가 조건의 근거를 구분했습니다.</p>
+      <p class="lede">논문, 공식 코드, 후속 연구를 교차 확인해 평가 조건의 근거를 정리했습니다.</p>
       <div class="role-grid role-grid-evidence">
         <div class="role-card">
-          <p class="role-card-title">논문 명시</p>
-          <p class="role-card-desc">논문에서 직접 확인</p>
+          <p class="role-card-title">논문</p>
+          <p class="role-card-desc">명시된 조건 확인</p>
         </div>
         <div class="role-card">
           <p class="role-card-title">공식 코드</p>
-          <p class="role-card-desc">공식 구현에서 확인</p>
+          <p class="role-card-desc">실제 구현 확인</p>
         </div>
         <div class="role-card">
-          <p class="role-card-title">후속 연구 관행</p>
-          <p class="role-card-desc">후속 연구의 공통 조건</p>
-        </div>
-        <div class="role-card">
-          <p class="role-card-title">근거 미확인</p>
-          <p class="role-card-desc">출처 확인 불가</p>
+          <p class="role-card-title">후속 연구</p>
+          <p class="role-card-desc">공통 적용 조건 확인</p>
         </div>
       </div>
-      <p class="split-head">인수인계</p>
-      <p class="lede">데이터 구성, 평가 조건, 실행 환경과 평가 절차를 정리해 후속 담당자가 동일한 조건에서 연구개발을 이어갈 수 있도록 인계했습니다.</p>
     </section>
 
-    <!-- 7. 평가 결과 및 후속 진행 -->
+    <!-- 8. 평가 이후 진행 — 인수인계 · 평가 결과 · 후속 진행을 하나로 통합 -->
     <section>
-      <h4>평가 결과 및 후속 진행</h4>
-      <div class="split">
+      <h4>평가 이후 진행</h4>
+      <div class="split split-tinted">
         <div>
-          <p class="split-head">평가 결과</p>
-          <p class="lede"><strong>정량평가</strong> 결과 과제 목표 기준에는 도달하지 못해 데이터 구성, 평가 코드, 렌더링·입력 조건을 <strong>재점검</strong>하고 성능 미달 원인과 <strong>개선 조건을 검토</strong>했습니다.</p>
+          <p class="split-head">성능 점검</p>
+          <p class="lede">정량평가 결과를 바탕으로 데이터 구성, 평가 코드, 렌더링·입력 조건을 재점검하고 원인과 개선 조건을 검토했습니다.</p>
         </div>
         <div>
-          <p class="split-head">후속 진행</p>
-          <p class="lede"><strong>정성평가</strong>는 비교 대상, 평가 항목, 평가자 구성까지 설계했으며, 실제 평가는 후속 연구개발에서 이어갈 수 있도록 관련 기준과 실행 절차를 <strong>인수인계</strong>했습니다.</p>
+          <p class="split-head">후속 인계</p>
+          <p class="lede">평가 기준과 실행 절차를 정리해 후속 담당자에게 인계했으며, 정성평가는 비교 대상·평가 항목·평가자 구성까지 설계했습니다.</p>
         </div>
       </div>
     </section>
 
     <section>
-      <h4>기술 스택</h4>
-      <ul class="tag-list">
-        <li>Python</li>
-        <li>PyTorch</li>
-        <li>TRELLIS2</li>
-        <li>LoRA</li>
-        <li>FLUX.2 Klein</li>
-        <li>Linux</li>
-      </ul>
+      <h4>기술 및 모델</h4>
+      <div class="tag-groups">
+        <div class="tag-group">
+          <p class="tag-group-title">개발·학습 환경</p>
+          <ul class="tag-list">
+            <li>Python</li>
+            <li>PyTorch</li>
+            <li>Linux</li>
+          </ul>
+        </div>
+        <div class="tag-group">
+          <p class="tag-group-title">모델·기법</p>
+          <ul class="tag-list">
+            <li>TRELLIS.2</li>
+            <li>FLUX.2 [klein]</li>
+            <li>LoRA</li>
+          </ul>
+        </div>
+      </div>
     </section>
   </div>
 </dialog>

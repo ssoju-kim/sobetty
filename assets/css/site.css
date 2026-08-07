@@ -262,11 +262,46 @@ a:focus-visible, .btn:focus-visible, button:focus-visible {
 .shot { margin: 0; }
 .shot img { width: 100%; border: 1px solid var(--line); border-radius: 10px; background: var(--muted); }
 .shot .img-16x9 { aspect-ratio: 16 / 9; object-fit: cover; }
+.shot.is-portrait img { aspect-ratio: 9 / 16; object-fit: cover; }
 .hero-photo img {
   width: 100%; aspect-ratio: 4 / 5; object-fit: cover;
   border: 1px solid var(--line); border-radius: 10px; background: var(--muted);
 }
-.shot figcaption { margin-top: .6rem; font-size: var(--fs-small); color: var(--dim); line-height: 1.55; }
+.shot figcaption { margin-top: .5rem; font-size: .75rem; color: var(--dim); line-height: 1.5; }
+
+/* ── 인라인 SVG 도식 (실무 경험 · 주요 프로젝트 팝업) ──────────────────
+   캡처가 아니라 코드로 그린 도식입니다. currentColor 를 써서 svg 자체는
+   글자색(--ink)을 그대로 물려받고, 별도 다크모드 대응은 필요 없습니다
+   (사이트가 라이트 테마 고정이라 color-scheme 도 light 하나만 둡니다). */
+
+.diagram { margin-top: 1.75rem; color: var(--ink); }
+.diagram-card { margin-top: 1.75rem; }
+.diagram-scroll { overflow-x: auto; }
+.diagram-svg { display: block; width: 100%; min-width: 50rem; height: auto; }
+.diagram figcaption { margin-top: .5rem; font-size: .75rem; color: var(--dim); line-height: 1.5; }
+
+/* ── 팝업 안에 바로 넣는 캡처 이미지 — 모달 폭 100%, 좌우 여백 없음 ──── */
+
+.dialog-shot { margin: 1.1rem -1.75rem 0; }
+.dialog-shot img {
+  width: 100%; display: block; aspect-ratio: 16 / 9; object-fit: cover;
+  border: 0; border-radius: 0; background: var(--muted);
+}
+.dialog-shot.is-4x3 img { aspect-ratio: 4 / 3; }
+.dialog-shot figcaption { padding: 0 1.75rem; margin-top: .5rem; font-size: .75rem; color: var(--dim); line-height: 1.5; }
+
+@media (max-width: 768px) {
+  .dialog-shot { margin: 1.1rem -1.1rem 0; }
+  .dialog-shot figcaption { padding: 0 1.1rem; }
+}
+
+/* ── Withmarry 카드 안 작은 세로 이미지 — 카드 폭 40% 이하 ────────────── */
+
+.card-shot-portrait { width: 40%; max-width: 8rem; margin: 0 0 1rem; }
+.card-shot-portrait img {
+  width: 100%; aspect-ratio: 9 / 16; object-fit: cover;
+  border: 1px solid var(--line); border-radius: 8px; background: var(--muted);
+}
 
 /* ── 프로젝트 (실무 경험 · 주요 프로젝트 공용) ──────────────────────────
    메인 화면에는 회사/유형 · 제목 · 한 줄 설명 · 수치 · 역할 · 버튼만 둡니다.
@@ -534,23 +569,6 @@ dialog.detail-dialog::backdrop { background: rgba(12, 18, 22, .62); }
 .dialog-body .steps li,
 .dialog-body .ticks li { color: var(--ink); }
 
-/* 이미지 · 영상 (상세 팝업) — 항목이 있을 때만 나타나는 단순 그리드 */
-.media-gallery {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
-  gap: 1rem;
-  margin-top: .25rem;
-}
-.media-item { margin: 0; }
-.media-item img,
-.media-item video {
-  width: 100%; border: 1px solid var(--line); border-radius: 10px;
-  background: var(--muted);
-  aspect-ratio: 16 / 9; object-fit: cover;
-}
-.media-item.is-portrait img { aspect-ratio: 4 / 5; }
-.media-item-video video { background: #0d1216; object-fit: contain; }
-.media-item figcaption { margin-top: .5rem; font-size: var(--fs-small); color: var(--dim); line-height: 1.5; }
-
 /* ═══════════════ 반응형 ═══════════════ */
 
 /* 1280 */
@@ -611,7 +629,6 @@ dialog.detail-dialog::backdrop { background: rgba(12, 18, 22, .62); }
   }
   .dialog-head { padding: 1rem 1.1rem; position: sticky; top: 0; z-index: 1; }
   .dialog-body { padding: 1.1rem 1.1rem 1.5rem; }
-  .media-gallery { grid-template-columns: 1fr; }
 }
 
 /* 480 */

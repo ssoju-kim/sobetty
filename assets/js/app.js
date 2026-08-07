@@ -20,77 +20,73 @@ var PROFILE = {
 };
 
 /* ─────────────────────────────────────────────────────────────────────────
-   2) 이미지 · 영상 설정
+   2) 이미지 설정 — 슬롯 9개 (작업 지시 4장)
 
-   프로젝트별로 두 종류를 관리합니다.
+   슬롯마다 정해진 위치(카드 썸네일 · 팝업 특정 문단 아래)가 index.html 에
+   data-media-slot="프로젝트.슬롯이름" 으로 이미 표시되어 있습니다.
+   여기서는 그 슬롯에 채울 파일 경로 · 대체 텍스트 · 캡션만 관리합니다.
 
-     cover  메인 화면 카드에 나오는 대표 이미지 1장 (16:9). 없으면 null.
-            실무 경험 · 기타 프로젝트 카드에는 대표 이미지 영역이 없습니다.
-     items  상세 팝업의 "이미지 · 영상" 영역에 순서대로 나오는 목록.
-            항목별로 미리 정해 둔 자리(label)가 있고, src 를 채운 항목만
-            화면에 나타납니다. 전부 비어 있으면 "이미지 · 영상" 제목과
-            영역 전체가 화면에서 사라집니다. (빈 박스나 안내 문구 없음)
+     srcWebp     WebP 원본 경로.       예: "./assets/img/img-04.webp"
+     srcFallback PNG 폴백 경로.        예: "./assets/img/img-04.png"
+     alt         화면을 그대로 서술하는 대체 텍스트 (캡션과 다른 문장)
+     caption     화면 아래 짧은 설명 (해석 · 맥락)
+     portrait    세로 촬영본이면 true (9:16 비율)
 
-   이미지 항목:
-     { type: "image", label: "화면 이름", src: "./assets/img/파일명.png",
-       alt: "화면을 설명하는 대체 텍스트", caption: "화면 아래 짧은 설명",
-       portrait: false }   // 세로 촬영본이면 true (4:5 비율로 표시)
+   srcWebp 가 비어 있으면 해당 슬롯은 화면에 나타나지 않습니다.
+   파일 경로를 채워도 실제 파일이 없으면(404) 자동으로 다시 숨겨집니다.
+   (빈 박스나 "이미지 준비 중" 같은 안내 문구는 쓰지 않습니다)
 
-   영상 항목 (자동재생 없음 · 컨트롤 · 포스터 이미지 지원):
-     { type: "video", label: "영상 이름", src: "./assets/video/파일명.mp4",
-       poster: "./assets/img/파일명-poster.png", caption: "영상 아래 짧은 설명" }
-
-   권장 파일명 · 비율:
-     대표 이미지(cover)      16:9, 가로 1600px 이상   예) finance-cover.png
-     상세 팝업 이미지        16:9 기본, 세로 촬영본은 portrait:true 로 4:5
-     영상                    mp4, 포스터 이미지 별도 준비
-
-   넣기 전에 회사 내부 경로 · 서버 정보 · API 키 · 고객 정보가 보이지 않는지
-   확인하고, alt 는 반드시 채웁니다.
+   01 · 02 · 05 · 08 은 캡처가 아니라 index.html 에 직접 그린 인라인 SVG
+   도식이라 이 객체에서 관리하지 않습니다.
    ───────────────────────────────────────────────────────────────────────── */
 var MEDIA = {
   spec: {
-    cover: null,
-    items: [
-      { type: "image", label: "데이터 · 평가 흐름도", src: "", alt: "", caption: "" },
-      { type: "image", label: "평가 조건 정리표", src: "", alt: "", caption: "" },
-      { type: "image", label: "3D 생성 결과", src: "", alt: "", caption: "" },
-      { type: "video", label: "Relic 랜딩페이지 영상", src: "", poster: "", caption: "" }
-    ]
+    // 03 — 체크포인트별 생성 결과 비교
+    // 정부지원 R&D 산출물이라 공개 승인 확인 전에는 srcWebp 를 비워 둡니다.
+    // (QUESTIONS.md — "IMG-03 공개 승인 여부" 참고)
+    checkpointShot: {
+      srcWebp: "",
+      srcFallback: "",
+      alt: "체크포인트별로 생성된 3D 결과물을 나열해 비교한 화면",
+      caption: "체크포인트별 생성 결과 비교 — 목표 성능 미달 원인을 데이터 · 전처리 · 평가 조건 관점으로 분리해 분석"
+    }
   },
   finance: {
-    cover: { src: "", alt: "", caption: "" },
-    items: [
-      { type: "image", label: "전체 대시보드", src: "", alt: "", caption: "" },
-      { type: "image", label: "오류 상세 화면", src: "", alt: "", caption: "" },
-      { type: "image", label: "데이터 처리 흐름도", src: "", alt: "", caption: "" },
-      { type: "image", label: "감사 로그 · 역추적 화면", src: "", alt: "", caption: "" }
-    ]
+    // 04 — 카드 썸네일
+    cover: {
+      srcWebp: "./assets/img/img-04.webp",
+      srcFallback: "./assets/img/img-04.png",
+      alt: "정합성 검증 대사 결과에서 오류 항목이 표시된 화면",
+      caption: "대사 대상 84건 중 오류 15건 검출"
+    },
+    // 06 — 결과와 한계 아래
+    ruleResultShot: {
+      srcWebp: "./assets/img/img-06.webp",
+      srcFallback: "./assets/img/img-06.png",
+      alt: "검증 규칙별 검출 내역을 표로 정리한 화면",
+      caption: "규칙별 검출 내역 — 판정은 규칙 기반, 생성형 AI는 결과 설명 보조로만 사용"
+    }
   },
   sunday: {
-    cover: { src: "", alt: "", caption: "" },
-    items: [
-      { type: "image", label: "예측 화면", src: "", alt: "", caption: "" },
-      { type: "image", label: "이벤트 캘린더", src: "", alt: "", caption: "" },
-      { type: "image", label: "캐릭터 조회", src: "", alt: "", caption: "" },
-      { type: "image", label: "공지 화면", src: "", alt: "", caption: "" },
-      { type: "image", label: "백엔드 구조도", src: "", alt: "", caption: "" }
-    ]
+    // 07 — 카드 썸네일
+    cover: {
+      srcWebp: "./assets/img/img-07.webp",
+      srcFallback: "./assets/img/img-07.png",
+      alt: "다음 이벤트 후보를 예측한 화면",
+      caption: "다음 이벤트 후보 예측 화면 — 예측 모델 구현은 팀원 담당"
+    }
   },
   withmarry: {
-    cover: null,
-    items: [
-      { type: "image", label: "랜딩페이지", src: "", alt: "", caption: "" },
-      { type: "image", label: "청첩장 화면", src: "", alt: "", caption: "" },
-      { type: "image", label: "AI 음성 화면", src: "", alt: "", caption: "" }
-    ]
-  },
-  moonlight: {
-    cover: null,
-    items: [
-      { type: "image", label: "운영 대시보드 화면", src: "", alt: "", caption: "" }
-    ]
+    // 09 — 카드 안 작은 세로 이미지 (카드 폭 40% 이하)
+    cardShot: {
+      srcWebp: "./assets/img/img-09.webp",
+      srcFallback: "./assets/img/img-09.png",
+      alt: "모바일 청첩장 MVP 화면",
+      caption: "모바일 청첩장 MVP — 문의 5건, 첫 유료 결제 발생 (팀 결과)",
+      portrait: true
+    }
   }
+  // 달빛장어(moonlight)는 이미지 슬롯을 두지 않습니다. (작업 지시 4장)
 };
 
 (function () {
@@ -130,85 +126,51 @@ var MEDIA = {
   });
 
   /* ═══════════════════════════════════════════════════════════════════════
-     대표 이미지 — MEDIA[key].cover 가 있을 때만 카드에 표시
+     이미지 슬롯 — data-media-slot="프로젝트.슬롯이름" 이 붙은 요소마다
+     MEDIA 에서 같은 경로를 찾아 채웁니다. srcWebp 가 없거나 파일이
+     404 면 그 슬롯은 화면에 나타나지 않습니다. (빈 박스 없음)
+
+     마크업은 두 가지 형태를 모두 지원합니다.
+       1) <div data-media-slot="…" hidden><figure data-shot hidden>…</figure></div>
+          — 대표 이미지(cover)처럼 바깥 영역과 안쪽 figure 를 나눠 둔 경우
+       2) <figure data-media-slot="…" hidden>…</figure>
+          — 팝업 안 인라인 이미지 · 카드 안 작은 이미지처럼 figure 자체가
+            곧 슬롯인 경우
      ═══════════════════════════════════════════════════════════════════ */
 
-  Array.prototype.forEach.call(doc.querySelectorAll("[data-cover]"), function (block) {
-    var key = block.getAttribute("data-cover");
-    var entry = MEDIA[key];
-    var cover = entry && entry.cover;
-    if (!cover || !cover.src) { return; }
+  function resolveMedia(path) {
+    var parts = path.split(".");
+    var node = MEDIA;
+    for (var i = 0; i < parts.length; i += 1) {
+      if (!node) { return null; }
+      node = node[parts[i]];
+    }
+    return node || null;
+  }
 
-    var fig = block.querySelector("[data-shot]");
-    if (!fig) { return; }
+  Array.prototype.forEach.call(doc.querySelectorAll("[data-media-slot]"), function (block) {
+    var entry = resolveMedia(block.getAttribute("data-media-slot"));
+    if (!entry || !entry.srcWebp) { return; }
+
+    var fig = block.querySelector("[data-shot]") || block;
+    var source = fig.querySelector("source");
     var img = fig.querySelector("img");
     var cap = fig.querySelector("[data-caption]");
+    if (!img) { return; }
 
     img.addEventListener("error", function () { block.setAttribute("hidden", ""); });
-    img.setAttribute("src", cover.src);
-    img.setAttribute("alt", cover.alt || cover.caption || "");
+    if (source) { source.setAttribute("srcset", entry.srcWebp); }
+    img.setAttribute("src", entry.srcFallback || entry.srcWebp);
+    img.setAttribute("alt", entry.alt || "");
+    if (entry.portrait) { fig.classList.add("is-portrait"); }
 
     if (cap) {
-      if (cover.caption) { cap.textContent = cover.caption; }
+      if (entry.caption) { cap.textContent = entry.caption; }
       else { cap.setAttribute("hidden", ""); }
     }
 
     fig.removeAttribute("hidden");
     block.removeAttribute("hidden");
-  });
-
-  /* ═══════════════════════════════════════════════════════════════════════
-     상세 팝업의 이미지 · 영상 — MEDIA[key].items 중 src 가 있는 항목만 표시
-     하나도 없으면 "이미지 · 영상" 영역 전체를 숨깁니다.
-     ═══════════════════════════════════════════════════════════════════ */
-
-  function buildMediaItem(item) {
-    var fig = doc.createElement("figure");
-    fig.className = "media-item" + (item.portrait ? " is-portrait" : "");
-
-    if (item.type === "video") {
-      fig.classList.add("media-item-video");
-      var video = doc.createElement("video");
-      video.setAttribute("controls", "");
-      video.setAttribute("preload", "metadata");
-      if (item.poster) { video.setAttribute("poster", item.poster); }
-      var source = doc.createElement("source");
-      source.setAttribute("src", item.src);
-      video.appendChild(source);
-      fig.appendChild(video);
-    } else {
-      var img = doc.createElement("img");
-      img.setAttribute("loading", "lazy");
-      img.setAttribute("decoding", "async");
-      img.setAttribute("src", item.src);
-      img.setAttribute("alt", item.alt || item.label || "");
-      fig.appendChild(img);
-    }
-
-    var caption = item.caption || item.label || "";
-    if (caption) {
-      var cap = doc.createElement("figcaption");
-      cap.textContent = caption;
-      fig.appendChild(cap);
-    }
-
-    return fig;
-  }
-
-  Array.prototype.forEach.call(doc.querySelectorAll("[data-media-gallery]"), function (gallery) {
-    var key = gallery.getAttribute("data-media-gallery");
-    var entry = MEDIA[key];
-    var items = (entry && entry.items) || [];
-    var section = doc.querySelector('[data-media-section="' + key + '"]');
-    var rendered = 0;
-
-    items.forEach(function (item) {
-      if (!item.src) { return; }
-      gallery.appendChild(buildMediaItem(item));
-      rendered += 1;
-    });
-
-    if (rendered > 0 && section) { section.removeAttribute("hidden"); }
   });
 
   /* ═══════════════════════════════════════════════════════════════════════

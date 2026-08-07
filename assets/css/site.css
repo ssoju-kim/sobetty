@@ -167,6 +167,9 @@ a:focus-visible, .btn:focus-visible, button:focus-visible {
 /* ── 밴드 머리말 — 작은 영문 라벨 + 큰 한글 제목 ─────────────────────── */
 
 .band-head { margin-bottom: 3rem; }
+/* 실무 경험은 소개 문구가 빠져 제목 바로 아래에 회사명이 옵니다 —
+   기본 여백이 그대로면 둘 사이가 붕 떠 보여서 이 구간만 좁힙니다. */
+.band-exp .band-head { margin-bottom: 1.25rem; }
 .band-label {
   display: inline-flex; align-items: center; gap: .55rem;
   font-size: .75rem; font-weight: 800;
@@ -389,17 +392,10 @@ a:focus-visible, .btn:focus-visible, button:focus-visible {
 .carousel-track.is-dragging { cursor: grabbing; scroll-snap-type: none; }
 .carousel-slide { flex: 0 0 auto; width: min(23rem, 84vw); scroll-snap-align: start; }
 
-.carousel-nav { display: flex; align-items: center; justify-content: center; gap: 1rem; margin-top: .5rem; }
-.carousel-btn {
-  width: 2.5rem; height: 2.5rem; flex: 0 0 auto;
-  display: inline-flex; align-items: center; justify-content: center;
-  border: 1px solid var(--line-strong); border-radius: 999px;
-  background: #fff; color: var(--ink);
-  font-size: 1.25rem; line-height: 1; cursor: pointer;
-}
-.carousel-btn:hover { background: var(--muted); border-color: var(--ink); }
+.carousel-nav { display: flex; align-items: center; justify-content: center; margin-top: .5rem; }
 
-/* 현재 카드 위치 표시 — 클릭하면 해당 카드로 이동합니다 */
+/* 현재 카드 위치 표시 — 점을 클릭하면 해당 카드로 이동하고, 카드에
+   마우스를 올리거나 포커스가 가 있는 동안은 그 카드의 점이 칠해집니다. */
 .carousel-dots { display: flex; align-items: center; gap: .5rem; }
 .carousel-dot {
   width: .5rem; height: .5rem; padding: 0;
@@ -418,7 +414,7 @@ a:focus-visible, .btn:focus-visible, button:focus-visible {
 
 .rd-card {
   display: flex; flex-direction: column;
-  height: 27rem;
+  height: 29rem;
   background: #fff;
   border: 1px solid var(--line);
   border-radius: 14px;
@@ -475,7 +471,7 @@ a:focus-visible, .btn:focus-visible, button:focus-visible {
 .rd-card-title { margin-top: .5rem; font-size: 1.1875rem; font-weight: 800; line-height: 1.35; letter-spacing: -.02em; color: var(--ink); }
 .rd-card-subtitle { margin-top: .25rem; font-size: .8125rem; font-weight: 600; color: var(--accent-deep); }
 .rd-card-summary { margin-top: .6rem; font-size: .875rem; color: var(--dim); line-height: 1.6; }
-.rd-card-tags { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: 1rem; }
+.rd-card-tags { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: 1rem; margin-bottom: .5rem; }
 .rd-card-tags li {
   padding: .25rem .6rem;
   border: 1px solid var(--line-strong); border-radius: 999px;
@@ -773,19 +769,8 @@ dialog.detail-dialog::backdrop { background: rgba(12, 18, 22, .62); }
   border: 1px solid var(--line); border-radius: 12px;
   background: var(--surface);
 }
-.diagram-placeholder p { font-size: .8125rem; font-weight: 600; color: var(--dim); }
+.diagram-placeholder p { font-size: .8125rem; font-weight: 600; color: var(--dim); white-space: nowrap; }
 .diagram-placeholder-wide { min-height: 7rem; overflow-x: auto; }
-
-/* 작은 문서 카드 자리표시 (평가 조건 문서화) */
-.doc-placeholder {
-  margin-top: 1.1rem;
-  width: 10rem; max-width: 100%;
-  aspect-ratio: 3 / 4;
-  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .5rem;
-  border: 1px solid var(--line); border-radius: 10px;
-  background: var(--surface);
-}
-.doc-placeholder p { padding: 0 .75rem; font-size: .75rem; font-weight: 600; color: var(--dim); text-align: center; }
 
 .placeholder-icon { width: 1.75rem; height: 1.75rem; color: var(--dim); }
 
@@ -893,7 +878,7 @@ dialog.detail-dialog::backdrop { background: rgba(12, 18, 22, .62); }
   .timeline li::before { top: 2px; left: -4px; }
 
   /* 실무 경험 카드 — 슬라이더는 그대로 두고 카드 높이만 살짝 줄입니다 */
-  .rd-card { height: 25rem; }
+  .rd-card { height: 28rem; }
   .stat-trio { grid-template-columns: 1fr; gap: 1rem; }
   .role-grid,
   .metric-grid { grid-template-columns: repeat(2, 1fr); }

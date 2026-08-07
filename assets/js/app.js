@@ -379,38 +379,53 @@ var MEDIA = {
       }
     }, true);
 
-    /* 좌우 버튼 · 위치 점 */
+    /* 위치 점 — 스크롤 위치를 따라가고, 해당 카드에 마우스가 있거나
+       포커스가 있는 동안은 그 카드의 점을 우선해서 칠합니다. */
     var slides = Array.prototype.slice.call(track.querySelectorAll(".carousel-slide"));
 
     function slideStep() {
       var slide = track.querySelector(".carousel-slide");
       return slide ? slide.getBoundingClientRect().width + 24 : track.clientWidth * 0.8;
     }
-    function slideBy(dir) {
-      track.scrollBy({ left: dir * slideStep(), behavior: "smooth" });
-      pauseFor(1800);
-    }
-    var prevBtn = root.querySelector("[data-carousel-prev]");
-    var nextBtn = root.querySelector("[data-carousel-next]");
-    if (prevBtn) { prevBtn.addEventListener("click", function () { slideBy(-1); }); }
-    if (nextBtn) { nextBtn.addEventListener("click", function () { slideBy(1); }); }
 
     var dots = Array.prototype.slice.call(root.querySelectorAll("[data-carousel-dot]"));
     if (dots.length) {
+      var hoverIndex = -1;
+
+      function setActiveDot(index) {
+        dots.forEach(function (dot, i) { dot.classList.toggle("is-active", i === index); });
+      }
+      function scrollIndex() {
+        var step2 = slideStep();
+        var index = step2 ? Math.round(track.scrollLeft / step2) : 0;
+        return Math.max(0, Math.min(slides.length - 1, index));
+      }
+
       dots.forEach(function (dot, i) {
         dot.addEventListener("click", function () {
           track.scrollTo({ left: i * slideStep(), behavior: "smooth" });
           pauseFor(1800);
         });
       });
+
+      slides.forEach(function (slide, i) {
+        slide.addEventListener("mouseenter", function () { hoverIndex = i; setActiveDot(i); });
+        slide.addEventListener("mouseleave", function () {
+          hoverIndex = -1;
+          setActiveDot(scrollIndex());
+        });
+        slide.addEventListener("focusin", function () { hoverIndex = i; setActiveDot(i); });
+        slide.addEventListener("focusout", function () {
+          hoverIndex = -1;
+          setActiveDot(scrollIndex());
+        });
+      });
+
       var dotTimer = null;
       track.addEventListener("scroll", function () {
         window.clearTimeout(dotTimer);
         dotTimer = window.setTimeout(function () {
-          var step2 = slideStep();
-          var index = step2 ? Math.round(track.scrollLeft / step2) : 0;
-          index = Math.max(0, Math.min(slides.length - 1, index));
-          dots.forEach(function (dot, i) { dot.classList.toggle("is-active", i === index); });
+          if (hoverIndex === -1) { setActiveDot(scrollIndex()); }
         }, 80);
       }, { passive: true });
     }

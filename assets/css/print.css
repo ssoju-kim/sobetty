@@ -138,12 +138,12 @@ h1, h2, h3, h4, .band-title, .project-meta, .project-no { break-after: avoid; pa
 .stat-trio-num { font-size: 14pt; }
 .stat-trio-cap { font-size: 7.6pt; margin-top: 1mm; }
 
-/* 도식 · 문서 자리표시 — 인쇄물에는 짧은 이름만 작게 남깁니다 */
-.diagram-placeholder, .doc-placeholder {
+/* 도식 자리표시 — 인쇄물에는 흐름 문구만 작게 남깁니다 */
+.diagram-placeholder {
   min-height: 0 !important; aspect-ratio: auto !important; width: auto !important;
   border: .3mm solid #e2e7eb !important; padding: 3mm !important; margin-top: 2.5mm !important;
 }
-.diagram-placeholder p, .doc-placeholder p { font-size: 7.6pt; }
+.diagram-placeholder p { font-size: 7.6pt; }
 .placeholder-icon { display: none !important; }
 
 /* 한복 생성 사례 3단계 */

@@ -85,8 +85,16 @@ var MEDIA = {
       caption: "모바일 청첩장 MVP — 문의 5건, 첫 유료 결제 발생 (팀 결과)",
       portrait: true
     }
+  },
+  moonlight: {
+    // 10 — 카드 썸네일 (달빛장어는 팝업 없이 카드만 사용)
+    cover: {
+      srcWebp: "./assets/img/img-10.webp",
+      srcFallback: "./assets/img/img-10.png",
+      alt: "달빛장어 운영 대시보드 화면",
+      caption: "매출 · 지출, 월별 보고서, 마케팅 분석, 메뉴 관리 화면"
+    }
   }
-  // 달빛장어(moonlight)는 이미지 슬롯을 두지 않습니다. (작업 지시 4장)
 };
 
 (function () {

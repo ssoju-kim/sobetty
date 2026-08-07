@@ -34,10 +34,9 @@
   --fs-hero:    clamp(2rem, 3.3vw, 2.875rem);   /* 32 → 46px */
   --fs-band:    clamp(1.875rem, 3.2vw, 2.625rem); /* 30 → 42px 대분류 */
   --fs-project: 1.9375rem;  /* 31px 프로젝트명 */
-  --fs-h4:      .8125rem;   /* 13px 소제목 라벨 */
+  --fs-h4:      1.0625rem;  /* 17px 팝업 소제목 — 본문과 크기로 분명히 구분 */
   --fs-body:    1.0625rem;  /* 17px */
   --fs-small:   .875rem;    /* 14px */
-  --fs-stat:    clamp(1.5rem, 2.2vw, 1.875rem);
 
   --wrap: 74rem;
   --nav-h: 3.25rem;
@@ -145,6 +144,7 @@ a:focus-visible, .btn:focus-visible, button:focus-visible {
 /* 2) 주요 프로젝트 — 흰 배경, 넓은 여백 */
 .band-selected {
   background: var(--bg);
+  border-top: 2px solid var(--line-strong);
   padding: 6rem 0 6.5rem;
 }
 /* 3) 기타 프로젝트 — 회색 배경, 눈에 띄게 좁은 여백 */
@@ -196,8 +196,18 @@ a:focus-visible, .btn:focus-visible, button:focus-visible {
 .hero-head { flex: 1 1 auto; min-width: 0; }
 .hero-photo { flex: 0 0 12rem; }
 
+.hero-title {
+  font-size: var(--fs-hero);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -.035em;
+  word-break: keep-all;
+  overflow-wrap: normal;
+}
+
 .hero-major {
   display: flex; flex-wrap: wrap; align-items: center; gap: .5rem;
+  margin-top: .75rem;
   font-size: var(--fs-small); font-weight: 600; color: var(--accent);
 }
 .badge {
@@ -206,19 +216,8 @@ a:focus-visible, .btn:focus-visible, button:focus-visible {
   border-radius: 999px;
   font-size: .75rem; font-weight: 600; color: var(--accent-deep);
 }
-.hero-title {
-  margin-top: .9rem;
-  font-size: var(--fs-hero);
-  font-weight: 800;
-  line-height: 1.2;
-  letter-spacing: -.035em;
-  /* 한글은 글자폭이 1em 에 가까워 ch 보다 em 기준이 정확합니다. */
-  max-width: 21em;
-  word-break: keep-all;
-  overflow-wrap: normal;
-  text-wrap: balance;
-}
 
+/* 태그는 "무엇을 실제로 수행했는지"만 한 줄에 담습니다 — 긴 문장 지양 */
 .hero-points { display: flex; flex-wrap: wrap; gap: .5rem .75rem; margin-top: 1.5rem; }
 .hero-points li {
   padding: .35rem .8rem;
@@ -226,6 +225,7 @@ a:focus-visible, .btn:focus-visible, button:focus-visible {
   border-radius: 999px;
   font-size: var(--fs-small); font-weight: 600; color: var(--ink);
   background: #fff;
+  white-space: nowrap;
 }
 
 .hero-actions { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 2rem; }
@@ -345,28 +345,40 @@ a:focus-visible, .btn:focus-visible, button:focus-visible {
 .project-meta { margin-top: 1.25rem; font-size: .8125rem; color: var(--dim); }
 .meta-sub { display: block; }
 
-/* 핵심 지표 — 숫자 크게, 의미 중간, 조건 작게 */
-.stats {
-  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+/* 핵심 지표 — 대표 성과 1개만 크게, 보조 정보는 옆에 작게.
+   숫자를 전부 같은 크기로 나열하지 않기 위한 카드 공통 패턴입니다. */
+.stat-highlight {
+  display: flex; flex-wrap: wrap; align-items: flex-end; gap: 1.75rem 2.5rem;
   margin-top: 1.5rem; padding-top: 1.5rem;
   border-top: 1px solid var(--line-strong);
 }
-.stats > li { padding-right: 1.5rem; }
-.stats > li + li { padding-left: 1.75rem; border-left: 1px solid var(--line-strong); }
-.stat-num {
-  font-size: var(--fs-stat); font-weight: 800; color: var(--ink);
-  line-height: 1.15; letter-spacing: -.03em; white-space: nowrap;
+.stat-hero { flex: 0 0 auto; }
+.stat-hero-num {
+  font-size: clamp(2.25rem, 3.4vw, 3rem); font-weight: 800; color: var(--ink);
+  line-height: 1.1; letter-spacing: -.03em; white-space: nowrap;
 }
+.stat-hero-num .unit { font-size: .55em; margin-left: .1em; }
+.stat-hero-cap { margin-top: .35rem; font-size: 1rem; font-weight: 600; color: var(--ink); line-height: 1.4; }
+.stat-hero-sub { margin-top: .2rem; font-size: .8125rem; color: var(--dim); }
+
+.stat-secondary {
+  display: flex; flex-wrap: wrap; gap: 1.25rem 2rem;
+  flex: 1 1 auto; min-width: 0;
+  padding-left: 1.75rem; margin-bottom: .1rem;
+  border-left: 1px solid var(--line-strong);
+}
+.stat-sec-num { font-size: 1.0625rem; font-weight: 700; color: var(--ink); line-height: 1.3; }
+.stat-sec-cap { margin-top: .2rem; font-size: .8125rem; color: var(--dim); line-height: 1.45; max-width: 16rem; }
+
 .unit { font-size: .58em; margin-left: .1em; }
-.stat-cap { margin-top: .3rem; font-size: .9375rem; font-weight: 600; color: var(--ink); line-height: 1.4; }
-.stat-sub { margin-top: .2rem; font-size: .8125rem; color: var(--dim); line-height: 1.45; }
 .tag-team {
   display: inline-block;
+  margin-left: .4rem;
   padding: 0 .35rem;
   border: 1px solid var(--line-strong);
   border-radius: 3px;
   font-size: .6875rem; font-weight: 600; color: var(--dim);
-  vertical-align: 1px;
+  vertical-align: 2px;
 }
 
 /* 역할 — 실무 경험은 3개 불릿, 주요 프로젝트는 한 줄 (유형 · 역할) */
@@ -470,6 +482,7 @@ a:focus-visible, .btn:focus-visible, button:focus-visible {
 .card-facts dd { margin: 0; font-size: .8125rem; color: var(--ink); line-height: 1.55; }
 .card .detail-actions { margin-top: auto; padding-top: 1.1rem; }
 .card .btn-sm.btn-detail { width: 100%; }
+.card .card-link { margin-top: auto; padding-top: 1.1rem; }
 
 /* ── 프로필 ──────────────────────────────────────────────────────────── */
 
@@ -555,19 +568,37 @@ dialog.detail-dialog::backdrop { background: rgba(12, 18, 22, .62); }
   overflow-y: auto; -webkit-overflow-scrolling: touch;
   padding: 1.5rem 1.75rem 1.75rem;
 }
-.dialog-body section + section {
-  margin-top: 1.75rem; padding-top: 1.75rem;
-  border-top: 1px solid var(--line);
-}
+/* 구분선 대신 넉넉한 간격 + 큰 소제목만으로 섹션을 나눕니다
+   ("불필요한 구분선 반복 금지"). */
+.dialog-body section + section { margin-top: 2.25rem; }
 .dialog-body h4 {
-  font-size: var(--fs-h4); font-weight: 800;
-  letter-spacing: .08em; color: var(--dim);
-  margin-bottom: .7rem;
+  font-size: var(--fs-h4); font-weight: 700;
+  letter-spacing: -.01em; color: var(--ink);
+  margin-bottom: .8rem;
 }
 .dialog-body .lede { margin-top: 0; max-width: none; }
+.dialog-body .lede + .lede { margin-top: .6rem; }
 .dialog-body .split { margin-top: .5rem; }
 .dialog-body .steps li,
 .dialog-body .ticks li { color: var(--ink); }
+
+/* 결과 · 핵심 성과 섹션만 연한 강조 배경 (그 외 섹션은 카드화하지 않음).
+   이미지가 이 안에 들어오면 모달 폭 전체로 번지지 않고 박스 안에 담기게
+   .dialog-shot 의 배경 밖 여백(bleed)을 취소합니다. */
+.dialog-body .section-result {
+  background: var(--accent-soft);
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+}
+.dialog-body .section-result .dialog-shot {
+  margin: 1.1rem 0 0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.dialog-body .section-result .dialog-shot figcaption { padding: 0; }
+@media (max-width: 768px) {
+  .dialog-body .section-result { padding: 1.1rem; border-radius: 10px; }
+}
 
 /* ═══════════════ 반응형 ═══════════════ */
 
@@ -605,11 +636,10 @@ dialog.detail-dialog::backdrop { background: rgba(12, 18, 22, .62); }
   .project + .project { margin-top: 2.75rem; padding-top: 2.75rem; }
   .project-head { padding: 1.5rem 1.5rem 1.75rem; }
 
-  /* 지표는 세로 1열 — 좁은 3열로 찌그러지지 않게 */
-  .stats { grid-template-columns: 1fr; }
-  .stats > li { padding-right: 0; }
-  .stats > li + li {
-    padding-left: 0; padding-top: 1rem; margin-top: 1rem;
+  /* 대표 성과 · 보조 정보 — 세로로 쌓고, 구분선은 왼쪽 대신 위쪽으로 */
+  .stat-highlight { flex-direction: column; align-items: flex-start; gap: 1rem; }
+  .stat-secondary {
+    width: 100%; padding-left: 0; padding-top: 1rem;
     border-left: 0; border-top: 1px solid var(--line-strong);
   }
 
@@ -633,7 +663,7 @@ dialog.detail-dialog::backdrop { background: rgba(12, 18, 22, .62); }
 
 /* 480 */
 @media (max-width: 480px) {
-  :root { --fs-project: 1.5rem; --fs-body: 1rem; --fs-stat: 1.625rem; }
+  :root { --fs-project: 1.5rem; --fs-body: 1rem; }
   .wrap, .nav-inner { width: min(100% - 2rem, var(--wrap)); }
   .hero-photo { max-width: 9.5rem; }
   .hero-points li { flex: 1 1 100%; }

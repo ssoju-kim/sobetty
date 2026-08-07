@@ -46,17 +46,17 @@
   <div class="wrap">
     <div class="hero-top">
       <div class="hero-head">
+        <h1 class="hero-title">김소영</h1>
+
         <p class="hero-major">
           동국대학교 통계학 주전공 · 소프트웨어 AI 연계전공
           <span class="badge">2027년 8월 졸업 예정</span>
         </p>
 
-        <h1 class="hero-title">데이터를 검증하고 서비스로 연결하는 김소영입니다.</h1>
-
         <ul class="hero-points">
-          <li>은행 · 카드 · 증권 데이터를 통합하고 정합성 검증 규칙을 설계</li>
-          <li>근거 수준을 구분해 조사하고, 재현 가능한 문서로 정리</li>
-          <li>기획부터 배포까지 신규 서비스를 만들어 본 경험</li>
+          <li>금융 데이터 정합성 검증</li>
+          <li>AI 학습 데이터 전처리 · 평가</li>
+          <li>FastAPI · Supabase 서비스 구현</li>
         </ul>
 
         <div class="hero-actions">
@@ -84,7 +84,7 @@
     <header class="band-head">
       <p class="band-label">WORK EXPERIENCE</p>
       <h2 class="band-title" id="exp-h">실무 경험</h2>
-      <p class="band-lead">회사 소속으로 정부지원 R&amp;D 과제를 수행한 경험입니다.</p>
+      <p class="band-lead">3D 생성 AI의 학습 데이터 구성, LoRA 파인튜닝, 정량평가 환경 정리를 수행했습니다.</p>
     </header>
 
     <article class="project project-lead" id="spec" aria-labelledby="spec-h">
@@ -97,30 +97,26 @@
           <span class="meta-sub">1~2월 · 7월 프리랜서 / 3~6월 IPP 장기현장실습</span>
         </p>
 
-        <ul class="stats">
-          <li>
-            <p class="stat-num">4<span class="unit">단계</span></p>
-            <p class="stat-cap">평가 조건 근거 분류</p>
-            <p class="stat-sub">논문 명시 · 공식 코드 · 후속 관행 · 미확인</p>
-          </li>
-          <li>
-            <p class="stat-num">1,451<span class="unit">건</span></p>
-            <p class="stat-cap">정리한 유효 학습 데이터</p>
-            <p class="stat-sub">원본 1,500건 점검 후</p>
-          </li>
-          <li>
-            <p class="stat-num">1,268 / 143</p>
-            <p class="stat-cap">학습 · holdout 분할</p>
-            <p class="stat-sub">두 집합 간 데이터 누출 여부 점검</p>
-          </li>
-        </ul>
-
         <div class="kf-block">
           <p class="kf-label">주요 담당 역할</p>
           <ul class="ticks">
             <li>학습 데이터 점검 · 구성</li>
-            <li>LoRA 학습 실행</li>
-            <li>정량평가 실행과 평가 조건 리서치 · 문서화</li>
+            <li>LoRA 파인튜닝 및 정량평가 수행</li>
+            <li>평가 조건 근거 4단계 분류와 실행 절차 문서화</li>
+          </ul>
+        </div>
+
+        <div class="stat-highlight">
+          <div class="stat-hero">
+            <p class="stat-hero-num">1,451<span class="unit">건</span></p>
+            <p class="stat-hero-cap">전처리한 유효 학습 데이터</p>
+            <p class="stat-hero-sub">원본 1,500건 점검 후</p>
+          </div>
+          <ul class="stat-secondary">
+            <li>
+              <p class="stat-sec-num">1,268 / 143</p>
+              <p class="stat-sec-cap">학습 · holdout 구성</p>
+            </li>
           </ul>
         </div>
       </header>
@@ -183,24 +179,9 @@
     <button type="button" class="dialog-close" data-dialog-close aria-label="닫기"><span aria-hidden="true">✕</span></button>
   </header>
   <div class="dialog-body">
-    <!-- 요약 — "개요"와 "결과와 한계"에서 그대로 가져온 문장입니다. 새 문장을 만들지 않습니다. -->
     <section>
-      <h4>요약</h4>
-      <p class="lede">스팩스페이스 개발사업부 CV팀 소속으로 2026년 1월부터 7월까지(1~2월 · 7월 프리랜서, 3~6월 IPP 장기현장실습) 한국 문화 특화 3D 에셋 생성 정부지원 R&amp;D 과제에 참여했습니다.</p>
-      <ul class="ticks">
-        <li>과제 목표 성능에는 도달하지 못했습니다. 미달 원인을 데이터 · 전처리 · 평가 조건 · 체크포인트 관점으로 분리해 분석하고, 시도한 개선안과 그 결과를 기록했습니다.</li>
-        <li>후속 담당자와 시험기관이 같은 조건으로 재현할 수 있도록 데이터 구성, 평가 지표, 실행 환경, 실행 명령어를 실행 문서로 정리했습니다.</li>
-        <li>정성평가는 실행 전 단계에서 비교 대상, 평가 항목, 평가자 구성을 계획하는 데까지 진행했습니다. 실제 평가는 진행하지 않았습니다.</li>
-      </ul>
-    </section>
-
-    <section>
-      <h4>개요</h4>
-      <p class="lede">스팩스페이스 개발사업부 CV팀 소속으로 2026년 1월부터 7월까지(1~2월 · 7월 프리랜서, 3~6월 IPP 장기현장실습) 한국 문화 특화 3D 에셋 생성 정부지원 R&amp;D 과제에 참여했습니다.</p>
-    </section>
-
-    <section>
-      <h4>문제와 목표</h4>
+      <h4>문제 또는 배경</h4>
+      <p class="lede">스팩스페이스 개발사업부 CV팀 소속으로 한국 문화 특화 3D 에셋 생성 정부지원 R&amp;D 과제에 참여했습니다.</p>
       <p class="lede">학습 데이터 품질과 평가 조건이 정리되어 있지 않아 결과를 신뢰하거나 재현하기 어려운 상태였습니다. 데이터를 점검해 사용 가능한 범위를 확정하고, 평가 조건의 근거를 구분하는 것이 과제였습니다.</p>
     </section>
 
@@ -211,6 +192,8 @@
         <li>TRELLIS2 기반 LoRA 학습 실행과 체크포인트별 결과 비교</li>
         <li>정량평가 지표 조사와 실행, 평가 코드 · 렌더링 · 입력 조건 검증</li>
         <li>평가 조건 근거 리서치와 인수인계 문서화</li>
+        <li>사업계획서 시장조사 영역 담당 (3D 생성 AI 시장 · 경쟁 서비스 조사)</li>
+        <li>Relic 랜딩페이지 기획부터 구현까지 담당</li>
       </ul>
     </section>
 
@@ -265,11 +248,12 @@
       </figure>
     </section>
 
-    <section>
-      <h4>결과와 한계</h4>
+    <section class="section-result">
+      <h4>결과</h4>
       <ul class="ticks">
-        <li>과제 목표 성능에는 도달하지 못했습니다. 미달 원인을 데이터 · 전처리 · 평가 조건 · 체크포인트 관점으로 분리해 분석하고, 시도한 개선안과 그 결과를 기록했습니다.</li>
+        <li>데이터 구성, 전처리 조건, 체크포인트별 결과를 비교하고 성능 미달 원인과 적용한 개선 조건을 문서화했습니다.</li>
         <li>후속 담당자와 시험기관이 같은 조건으로 재현할 수 있도록 데이터 구성, 평가 지표, 실행 환경, 실행 명령어를 실행 문서로 정리했습니다.</li>
+        <li>확인된 사실과 미확인 사항을 구분해 표기한 인수인계 자료를 남겼습니다.</li>
       </ul>
 
       <!-- 정부지원 R&D 산출물이라 공개 승인 확인 전에는 assets/js/app.js 의
@@ -281,17 +265,12 @@
         </picture>
         <figcaption data-caption></figcaption>
       </figure>
-
-      <p class="callout">정성평가는 실행 전 단계에서 비교 대상, 평가 항목, 평가자 구성을 계획하는 데까지 진행했습니다. 실제 평가는 진행하지 않았습니다.</p>
     </section>
 
     <section>
-      <h4>산출물</h4>
-      <ul class="ticks">
-        <li>확인된 사실과 미확인 사항을 구분해 표기한 인수인계 자료</li>
-        <li>사업계획서 시장조사 영역 담당 (3D 생성 AI 시장 · 경쟁 서비스 조사)</li>
-        <li>Relic 랜딩페이지 기획부터 구현까지 담당</li>
-      </ul>
+      <h4>한계 및 개선 사항</h4>
+      <p class="lede">과제 목표 성능에는 도달하지 못했습니다.</p>
+      <p class="callout">정성평가는 실행 전 단계에서 비교 대상, 평가 항목, 평가자 구성을 계획하는 데까지 진행했습니다. 실제 평가는 진행하지 않았습니다.</p>
     </section>
 
     <section>
@@ -309,7 +288,6 @@
     <header class="band-head">
       <p class="band-label">SELECTED PROJECTS</p>
       <h2 class="band-title" id="proj-h">주요 프로젝트</h2>
-      <p class="band-lead">데이터 검증과 서비스 개발 경험 중 데이터 · 디지털 서비스 직무와 관련성이 높은 두 가지입니다.</p>
     </header>
 
     <!-- ───── 금융 데이터 정합성 검증 ───── -->
@@ -321,27 +299,27 @@
 
         <p class="project-meta">2026년 6월 – 7월 · 모의 금융 데이터</p>
 
-        <ul class="stats">
-          <li>
-            <p class="stat-num">84<span class="unit">건</span></p>
-            <p class="stat-cap">데이터 대사</p>
-            <p class="stat-sub">실제 금융회사 데이터가 아닌 모의 데이터</p>
-          </li>
-          <li>
-            <p class="stat-num">15<span class="unit">건</span></p>
-            <p class="stat-cap">오류 시나리오 검출</p>
-            <p class="stat-sub">의도적으로 구성한 오류 15건 기준</p>
-          </li>
-          <li>
-            <p class="stat-num">4<span class="unit">개</span></p>
-            <p class="stat-cap">정합성 검증 규칙</p>
-            <p class="stat-sub">누락 · 중복 · 금액 · 건수/잔액 불일치</p>
-          </li>
-        </ul>
-
         <div class="kf-block">
           <p class="kf-label">유형 · 역할</p>
-          <p class="kf-text">개인 프로젝트 · 데이터 수집부터 형식 표준화, 통합, 검증 규칙, 결과 확인 화면까지 전 과정 직접 구현</p>
+          <p class="kf-text">개인 프로젝트 · 데이터 수집부터 형식 표준화, 통합, 검증 규칙 설계, 결과 확인 화면까지 전 과정 직접 구현</p>
+        </div>
+
+        <div class="stat-highlight">
+          <div class="stat-hero">
+            <p class="stat-hero-num">15<span class="unit">/15</span></p>
+            <p class="stat-hero-cap">의도적으로 삽입한 오류 전부 검출</p>
+            <p class="stat-hero-sub">검증 대상 84건 중</p>
+          </div>
+          <ul class="stat-secondary">
+            <li>
+              <p class="stat-sec-num">4개</p>
+              <p class="stat-sec-cap">정합성 검증 규칙</p>
+            </li>
+            <li>
+              <p class="stat-sec-num">은행 · 카드 · 증권</p>
+              <p class="stat-sec-cap">모의 데이터 검증</p>
+            </li>
+          </ul>
         </div>
       </header>
 
@@ -375,27 +353,32 @@
 
         <p class="project-meta">2026년 3월 – 6월 · 2인 · 2026년 5월 출시</p>
 
-        <ul class="stats">
-          <li>
-            <p class="stat-num">10주 중 9주</p>
-            <p class="stat-cap">TOP3 적중</p>
-            <p class="stat-sub">팀 백테스트 결과</p>
-          </li>
-          <li>
-            <p class="stat-num">455<span class="unit">건</span></p>
-            <p class="stat-cap">구조화한 과거 이벤트 이력</p>
-            <p class="stat-sub">2017년 3월 – 2026년 5월</p>
-          </li>
-          <li>
-            <p class="stat-num">4<span class="unit">개</span></p>
-            <p class="stat-cap">서비스 기능</p>
-            <p class="stat-sub">예측 · 캘린더 · 캐릭터 조회 · 공지 조회</p>
-          </li>
-        </ul>
-
         <div class="kf-block">
-          <p class="kf-label">유형 · 역할</p>
-          <p class="kf-text">2인 팀 · 백엔드 API(FastAPI), Supabase 데이터베이스 설계, 외부 API 연동, Render 배포 · 운영 담당</p>
+          <p class="kf-label">본인 역할</p>
+          <ul class="ticks">
+            <li>FastAPI 백엔드 구현</li>
+            <li>Supabase 데이터베이스 설계 · 연동</li>
+            <li>넥슨 오픈 API 연동</li>
+            <li>Render 배포 · 운영</li>
+          </ul>
+        </div>
+
+        <div class="stat-highlight">
+          <div class="stat-hero">
+            <p class="stat-hero-num">455<span class="unit">건</span></p>
+            <p class="stat-hero-cap">구조화한 과거 이벤트 이력</p>
+            <p class="stat-hero-sub">2017년 3월 – 2026년 5월</p>
+          </div>
+          <ul class="stat-secondary">
+            <li>
+              <p class="stat-sec-num">4개</p>
+              <p class="stat-sec-cap">서비스 기능 — 예측 · 캘린더 · 캐릭터 조회 · 공지 조회</p>
+            </li>
+            <li>
+              <p class="stat-sec-num">10주 중 9주<span class="tag-team">팀 결과</span></p>
+              <p class="stat-sec-cap">TOP3 적중 · 팀 백테스트, 예측 모델은 팀원 담당</p>
+            </li>
+          </ul>
         </div>
       </header>
 
@@ -430,24 +413,9 @@
     <button type="button" class="dialog-close" data-dialog-close aria-label="닫기"><span aria-hidden="true">✕</span></button>
   </header>
   <div class="dialog-body">
-    <!-- 요약 — "개요"와 "결과와 한계"에서 그대로 가져온 문장입니다. 새 문장을 만들지 않습니다. -->
     <section>
-      <h4>요약</h4>
-      <p class="lede">은행 · 카드 · 증권 모의 제공기관 데이터를 통합하고, 통합 결과의 정합성을 검증한 개인 프로젝트입니다. 실제 금융회사 데이터가 아닌 모의 데이터를 사용했습니다. (2026년 6월 – 7월)</p>
-      <ul class="ticks">
-        <li>대사 대상 84건 중 의도적으로 삽입한 오류 15건 검출 (누락 12 · 중복 1 · 금액 불일치 1 · 건수 · 잔액 불일치 1)</li>
-        <li>모든 운영 레코드에 원천 · 원천레코드ID · 원본 링크를 남겨 역추적이 가능하도록 설계</li>
-        <li>오류 판정은 규칙 기반으로 처리하고, 생성형 AI는 결과 설명 보조 용도로만 사용했습니다. 판정 자체를 AI에 맡기지 않아 결과를 재현하고 검증할 수 있도록 했습니다.</li>
-      </ul>
-    </section>
-
-    <section>
-      <h4>개요</h4>
-      <p class="lede">은행 · 카드 · 증권 모의 제공기관 데이터를 통합하고, 통합 결과의 정합성을 검증한 개인 프로젝트입니다. 실제 금융회사 데이터가 아닌 모의 데이터를 사용했습니다. (2026년 6월 – 7월)</p>
-    </section>
-
-    <section>
-      <h4>문제와 목표</h4>
+      <h4>문제 또는 배경</h4>
+      <p class="lede">은행 · 카드 · 증권 모의 제공기관 데이터를 통합하고, 통합 결과의 정합성을 검증한 개인 프로젝트입니다.</p>
       <p class="lede">기관마다 형식이 다른 데이터를 하나로 모으면 통합 과정에서 생긴 누락 · 중복 · 금액 오류가 드러나지 않습니다. 통합 결과를 원천과 대사해 오류를 자동으로 찾는 것이 과제였습니다.</p>
 
       <figure class="diagram diagram-scroll">
@@ -535,13 +503,13 @@
       </ol>
     </section>
 
-    <section>
-      <h4>결과와 한계</h4>
+    <section class="section-result">
+      <h4>결과</h4>
       <ul class="ticks">
         <li>대사 대상 84건 중 의도적으로 삽입한 오류 15건 검출 (누락 12 · 중복 1 · 금액 불일치 1 · 건수 · 잔액 불일치 1)</li>
         <li>모든 운영 레코드에 원천 · 원천레코드ID · 원본 링크를 남겨 역추적이 가능하도록 설계</li>
         <li>오류 발생 원인을 페이지 타임아웃 · 재전송 · 환율 반올림 등으로 구분해 기록</li>
-        <li>오류 판정은 규칙 기반으로 처리하고, 생성형 AI는 결과 설명 보조 용도로만 사용했습니다. 판정 자체를 AI에 맡기지 않아 결과를 재현하고 검증할 수 있도록 했습니다.</li>
+        <li>대사 결과를 확인하는 웹 대시보드와 Supabase SQL 스키마 · 마이그레이션 · 감사 로그를 구현</li>
       </ul>
 
       <figure class="dialog-shot is-4x3" data-media-slot="finance.ruleResultShot" hidden>
@@ -554,10 +522,10 @@
     </section>
 
     <section>
-      <h4>산출물</h4>
+      <h4>한계 및 개선 사항</h4>
       <ul class="ticks">
-        <li>대사 결과를 확인하는 웹 대시보드</li>
-        <li>Supabase SQL 스키마 · 마이그레이션 · 감사 로그</li>
+        <li>실제 금융회사 데이터가 아닌 모의 데이터를 사용했습니다.</li>
+        <li>오류 판정은 규칙 기반으로 처리하고, 생성형 AI는 결과 설명 보조 용도로만 사용했습니다. 판정 자체를 AI에 맡기지 않아 결과를 재현하고 검증할 수 있도록 했습니다.</li>
       </ul>
     </section>
 
@@ -576,24 +544,9 @@
     <button type="button" class="dialog-close" data-dialog-close aria-label="닫기"><span aria-hidden="true">✕</span></button>
   </header>
   <div class="dialog-body">
-    <!-- 요약 — "개요"와 "결과와 한계"에서 그대로 가져온 문장입니다. 새 문장을 만들지 않습니다. -->
     <section>
-      <h4>요약</h4>
-      <p class="lede">커뮤니티에서 반복되던 "다음 이벤트는 언제인가"라는 질문을 서비스 문제로 정의하고, 예측 · 캘린더 · 캐릭터 조회 · 공지 조회를 하나의 웹서비스로 묶었습니다. 2인 팀으로 2026년 3월부터 개발해 5월에 출시했습니다.</p>
-      <ul class="ticks">
-        <li>2026년 5월 서비스 출시 — 이벤트 후보 예측, 과거 이벤트 캘린더, 캐릭터 조회, 공지 조회 기능</li>
-        <li>10주 백테스트 중 9주 TOP3 적중은 팀 백테스트 결과이며, 예측 모델 구현은 팀원이 담당했습니다.</li>
-        <li>인벤 홍보 게시글 조회수 7.6만 회는 서비스 방문자 수와는 별도의 지표이며, 팀 결과입니다.</li>
-      </ul>
-    </section>
-
-    <section>
-      <h4>개요</h4>
-      <p class="lede">커뮤니티에서 반복되던 "다음 이벤트는 언제인가"라는 질문을 서비스 문제로 정의하고, 예측 · 캘린더 · 캐릭터 조회 · 공지 조회를 하나의 웹서비스로 묶었습니다. 2인 팀으로 2026년 3월부터 개발해 5월에 출시했습니다.</p>
-    </section>
-
-    <section>
-      <h4>문제와 목표</h4>
+      <h4>문제 또는 배경</h4>
+      <p class="lede">커뮤니티에서 반복되던 "다음 이벤트는 언제인가"라는 질문을 서비스 문제로 정의하고, 예측 · 캘린더 · 캐릭터 조회 · 공지 조회를 하나의 웹서비스로 묶었습니다.</p>
       <p class="lede">2017년 3월부터 2026년 5월까지 이벤트 이력이 공지 · 커뮤니티 · 위키에 흩어져 있어, 다음 이벤트를 예측할 재사용 가능한 데이터가 없는 상태였습니다.</p>
     </section>
 
@@ -684,19 +637,19 @@
       </figure>
     </section>
 
-    <section>
-      <h4>결과와 한계</h4>
+    <section class="section-result">
+      <h4>결과</h4>
       <ul class="ticks">
         <li>2026년 5월 서비스 출시 — 이벤트 후보 예측, 과거 이벤트 캘린더, 캐릭터 조회, 공지 조회 기능</li>
-        <li>10주 백테스트 중 9주 TOP3 적중은 팀 백테스트 결과이며, 예측 모델 구현은 팀원이 담당했습니다.</li>
-        <li>인벤 홍보 게시글 조회수 7.6만 회는 서비스 방문자 수와는 별도의 지표이며, 팀 결과입니다.</li>
+        <li>2017년 이후 이벤트 이력 455건을 재사용 가능한 데이터셋으로 정리</li>
       </ul>
     </section>
 
     <section>
-      <h4>산출물</h4>
+      <h4>한계 및 개선 사항</h4>
       <ul class="ticks">
-        <li>2017년 이후 이벤트 이력 455건을 재사용 가능한 데이터셋으로 정리</li>
+        <li>10주 백테스트 중 9주 TOP3 적중은 팀 백테스트 결과이며, 예측 모델 구현은 팀원이 담당했습니다.</li>
+        <li>인벤 홍보 게시글 조회수 7.6만 회는 서비스 방문자 수와는 별도의 지표이며, 팀 결과입니다.</li>
       </ul>
     </section>
 
@@ -740,13 +693,26 @@
       </article>
 
       <article class="card">
+        <!-- 대표 이미지(16:9)는 assets/js/app.js 의 MEDIA.moonlight.cover 에서 관리합니다.
+             파일이 없으면(404) 이 영역은 자동으로 화면에서 사라집니다. -->
+        <div class="media" hidden data-media-slot="moonlight.cover">
+          <figure class="shot" data-shot hidden>
+            <picture>
+              <source type="image/webp">
+              <img class="img-16x9" alt="" width="1600" height="900" loading="eager" decoding="async">
+            </picture>
+            <figcaption data-caption></figcaption>
+          </figure>
+        </div>
         <h3>달빛장어 운영 대시보드</h3>
-        <p class="card-desc">실제 매장 운영 데이터를 관리하는 개인 프로젝트입니다.</p>
+        <p class="card-desc">실제 매장 운영을 목적으로 배포했으며, 초기 사용 과정에서 입력 동선과 모바일 사용성을 점검했습니다.</p>
         <dl class="card-facts">
-          <div><dt>역할</dt><dd>모바일 중심 UI 설계 · 개발 · 배포</dd></div>
-          <div><dt>결과</dt><dd>매출 · 지출 입력, 월별 보고서, 마케팅 분석, 메뉴 관리 기능 제공</dd></div>
+          <div><dt>역할</dt><dd>기획 · UI 설계 · 개발 · 배포까지 혼자 진행</dd></div>
+          <div><dt>기능</dt><dd>매출 · 지출 입력, 월별 보고서, 마케팅 분석, 메뉴 관리</dd></div>
+          <div><dt>기술</dt><dd>React · Supabase · Vercel</dd></div>
         </dl>
-        <p class="detail-actions"><button type="button" class="btn btn-sm btn-detail" data-open-dialog="moonlight-detail">상세 보기</button></p>
+        <!-- TODO: 배포된 서비스 URL 확보 시 아래 저장소 링크보다 앞에 배치. 현재 배포 꺼짐 (QUESTIONS.md 참고) -->
+        <p class="card-link links"><a href="https://github.com/ssoju-kim/moonlight" target="_blank" rel="noopener noreferrer">저장소 — React · Supabase 대시보드</a></p>
       </article>
     </div>
   </div>
@@ -760,8 +726,8 @@
   </header>
   <div class="dialog-body">
     <section>
-      <h4>개요</h4>
-      <p class="lede">개발 2명 · 마케팅 1명, 3인 팀이 약 1개월간 만든 모바일 청첩장 MVP입니다.</p>
+      <h4>문제 또는 배경</h4>
+      <p class="lede">개발 2명 · 마케팅 1명, 3인 팀이 약 1개월간 모바일 청첩장 MVP를 만들었습니다. 제작 예산을 10만 원 이내로 제한해, 적은 비용으로 사용자 반응을 검증할 수 있는지 확인하는 것이 목표였습니다.</p>
     </section>
 
     <section>
@@ -774,10 +740,11 @@
       </ul>
     </section>
 
-    <section>
-      <h4>결과와 한계</h4>
+    <section class="section-result">
+      <h4>결과</h4>
       <ul class="ticks">
-        <li>실제 배포 후 사용자 문의 5건, 첫 유료 결제 발생 (팀 결과)</li>
+        <li>예산 10만 원 이내로 제작해 배포했습니다.</li>
+        <li>지인 판매 없이 사용자 문의 5건과 첫 유료 결제를 확보했습니다 (팀 결과).</li>
       </ul>
     </section>
 
@@ -785,47 +752,6 @@
     <section>
       <h4>기술 스택</h4>
       <p class="tech"><span>기술</span> FastAPI · Supabase · Vite · Cloudflare Pages</p>
-    </section>
-  </div>
-</dialog>
-
-<!-- ══════════════ 달빛장어 상세 팝업 ══════════════ -->
-<dialog class="detail-dialog" id="moonlight-detail" aria-labelledby="moonlight-detail-title">
-  <header class="dialog-head">
-    <h2 class="dialog-title" id="moonlight-detail-title">달빛장어 운영 대시보드 — 상세</h2>
-    <button type="button" class="dialog-close" data-dialog-close aria-label="닫기"><span aria-hidden="true">✕</span></button>
-  </header>
-  <div class="dialog-body">
-    <section>
-      <h4>개요</h4>
-      <p class="lede">실제 매장 운영 데이터를 관리하는 개인 프로젝트입니다. 모바일 중심 UI로 설계 · 개발 · 배포했습니다.</p>
-    </section>
-
-    <section>
-      <h4>내가 맡은 역할</h4>
-      <p class="lede">기획부터 UI 설계, 개발, 배포까지 혼자 진행했습니다.</p>
-    </section>
-
-    <section>
-      <h4>수행 과정</h4>
-      <ul class="ticks">
-        <li>매출 · 지출 입력 기능 구현</li>
-        <li>월별 보고서 기능 구현</li>
-        <li>마케팅 분석, 메뉴 관리 기능 구현</li>
-      </ul>
-    </section>
-
-    <section>
-      <h4>결과와 한계</h4>
-      <p class="lede">실제 매장에서 사용 중이며, 사용 범위와 개선 방향은 계속 확인하고 있습니다.</p>
-    </section>
-
-    <!-- 달빛장어는 이미지 슬롯을 두지 않습니다. (작업 지시 4장) -->
-    <section>
-      <h4>기술 스택과 관련 링크</h4>
-      <!-- TODO: 배포된 서비스 URL 확보 시 아래 저장소 링크보다 앞에 배치. 현재 배포 꺼짐 (QUESTIONS.md 참고) -->
-      <p class="tech"><span>기술</span> React · Supabase · Vercel</p>
-      <p class="links"><a href="https://github.com/ssoju-kim/moonlight" target="_blank" rel="noopener noreferrer">저장소 — React · Supabase 대시보드</a></p>
     </section>
   </div>
 </dialog>

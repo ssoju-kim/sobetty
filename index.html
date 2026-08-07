@@ -83,8 +83,9 @@
     <header class="band-head">
       <p class="band-label">WORK EXPERIENCE</p>
       <h2 class="band-title" id="exp-h">실무 경험</h2>
+      <p class="band-lead">3D 생성 AI 연구개발부터 시장조사, 서비스 소개 페이지 기획·구현까지 참여했습니다.</p>
     </header>
-    <p class="project-no">스팩스페이스 개발사업부 CV팀
+    <p class="project-no">스팩스페이스 개발사업부 CV팀</p>
 
     <!-- 가로 카드 슬라이더 — 데스크톱은 천천히 자동으로 흐르다 마우스를 올리면
          멈추고, 드래그·버튼으로도 이동합니다. 모바일은 자동 이동 없이 네이티브
@@ -99,7 +100,7 @@
               <span class="rd-card-hint" aria-hidden="true">자세히 보기 →</span>
             </div>
             <div class="rd-card-body">
-              <p class="rd-card-eyebrow">3D AI R&amp;D</p>
+              <p class="rd-card-eyebrow">3D AI 연구개발</p>
               <h3 class="rd-card-title" id="spec-h">3D 생성 AI 연구개발</h3>
               <p class="rd-card-subtitle">Text-to-Image-to-3D 생성 파이프라인</p>
               <p class="rd-card-summary">학습 데이터 검증, TRELLIS2 기반 LoRA 파인튜닝, 정량평가를 수행했습니다.</p>
@@ -194,6 +195,7 @@
       <div class="sample-flow">
         <div class="sample-step">
           <div class="sample-step-media sample-step-prompt">
+            <span class="sample-step-prompt-label">TEXT PROMPT</span>
             <p>연둣빛 저고리와 청람색 치마의 비단 한복을 입고 흰 가면과 비녀를 착용한 인물이 단색 스튜디오 배경에서 두 손을 배 앞에 모은 채 정면을 향해 전신으로 곧게 서 있는 모습.</p>
           </div>
           <p class="sample-step-label">Text Prompt</p>
@@ -249,7 +251,9 @@
     <section>
       <h4>학습 데이터 검증 및 모델 학습</h4>
 
-      <p class="flow-line">원본 1,500건 → 사용 불가 49건 제외 → 유효 1,451건 → 학습 1,268건 / Holdout 143건</p>
+      <p class="flow-line">
+        <strong class="flow-num">원본 1,500건</strong><span class="sample-arrow" aria-hidden="true">→</span><span class="flow-muted">사용 불가 49건 제외</span><span class="sample-arrow" aria-hidden="true">→</span><strong class="flow-num">유효 1,451건</strong><span class="sample-arrow" aria-hidden="true">→</span><strong class="flow-num">학습 1,268건 / Holdout 143건</strong>
+      </p>
       <ul class="ticks">
         <li>학습 · Holdout 간 데이터 누출 여부</li>
         <li>캡션 결측 여부</li>
@@ -265,10 +269,9 @@
       </ul>
     </section>
 
-    <!-- 6. 정량평가 및 평가 조건 검증 (기존 세 섹션 통합, 문서 이미지 영역 없음) -->
+    <!-- 6. 정량평가 결과 -->
     <section>
-      <h4>정량평가 및 평가 조건 검증</h4>
-
+      <h4>정량평가 결과</h4>
       <ul class="metric-grid">
         <li>
           <p class="metric-num">27.24</p>
@@ -292,33 +295,45 @@
         </li>
       </ul>
       <p class="callout">과제 목표 기준에는 도달하지 못했습니다.</p>
-
-      <p class="lede">평가 결과를 동일 조건에서 비교할 수 있도록 논문, 공식 코드, 후속 연구 구현을 대조해 평가 조건의 근거를 구분했습니다.</p>
-      <ol class="steps">
-        <li><strong>논문 명시</strong> — 논문에서 직접 확인</li>
-        <li><strong>공식 코드</strong> — 공식 구현에서 확인</li>
-        <li><strong>후속 연구 관행</strong> — 후속 연구의 공통 조건</li>
-        <li><strong>근거 미확인</strong> — 출처 확인 불가</li>
-      </ol>
-
-      <p class="flow-line">데이터 구성 및 제외 기준 · 정량평가 지표 정의 · 평가 환경과 실행 명령어 · 렌더링 및 입력 조건 · 후속 담당자용 실행 절차</p>
-      <p class="callout">후속 담당자가 동일한 조건으로 평가를 재실행할 수 있도록 기준과 실행 절차를 정리했습니다.</p>
     </section>
 
-    <!-- 7. 결과 해석 및 한계 + 기술 스택 -->
+    <!-- 6-2. 평가 조건 검증 -->
     <section>
-      <h4>결과 해석 및 한계</h4>
+      <h4>평가 조건 검증</h4>
+      <p class="lede">정량평가 결과를 동일한 조건에서 비교할 수 있도록 논문, 공식 코드, 후속 연구를 대조해 평가 조건의 근거를 구분했습니다.</p>
+      <div class="role-grid role-grid-evidence">
+        <div class="role-card">
+          <p class="role-card-title">논문 명시</p>
+          <p class="role-card-desc">논문에서 직접 확인</p>
+        </div>
+        <div class="role-card">
+          <p class="role-card-title">공식 코드</p>
+          <p class="role-card-desc">공식 구현에서 확인</p>
+        </div>
+        <div class="role-card">
+          <p class="role-card-title">후속 연구 관행</p>
+          <p class="role-card-desc">후속 연구의 공통 조건</p>
+        </div>
+        <div class="role-card">
+          <p class="role-card-title">근거 미확인</p>
+          <p class="role-card-desc">출처 확인 불가</p>
+        </div>
+      </div>
+      <p class="split-head">인수인계</p>
+      <p class="lede">데이터 구성, 평가 조건, 실행 환경과 평가 절차를 정리해 후속 담당자가 동일한 조건에서 연구개발을 이어갈 수 있도록 인계했습니다.</p>
+    </section>
+
+    <!-- 7. 평가 결과 및 후속 진행 -->
+    <section>
+      <h4>평가 결과 및 후속 진행</h4>
       <div class="split">
         <div>
-          <p class="split-head">결과 해석</p>
-          <p class="lede">목표 성능에는 도달하지 못했지만, 데이터 구성과 평가 조건을 재점검하고 동일 조건에서 후속 평가가 가능하도록 실행 기준을 정리했습니다.</p>
+          <p class="split-head">평가 결과</p>
+          <p class="lede"><strong>정량평가</strong> 결과 과제 목표 기준에는 도달하지 못해 데이터 구성, 평가 코드, 렌더링·입력 조건을 <strong>재점검</strong>하고 성능 미달 원인과 <strong>개선 조건을 검토</strong>했습니다.</p>
         </div>
         <div>
-          <p class="split-head">한계</p>
-          <ul class="ticks">
-            <li>정성평가는 비교 대상, 평가 항목, 평가자 구성 계획까지만 진행</li>
-            <li>실제 정성평가는 수행하지 않음</li>
-          </ul>
+          <p class="split-head">후속 진행</p>
+          <p class="lede"><strong>정성평가</strong>는 비교 대상, 평가 항목, 평가자 구성까지 설계했으며, 실제 평가는 후속 연구개발에서 이어갈 수 있도록 관련 기준과 실행 절차를 <strong>인수인계</strong>했습니다.</p>
         </div>
       </div>
     </section>

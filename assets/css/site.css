@@ -167,9 +167,6 @@ a:focus-visible, .btn:focus-visible, button:focus-visible {
 /* ── 밴드 머리말 — 작은 영문 라벨 + 큰 한글 제목 ─────────────────────── */
 
 .band-head { margin-bottom: 3rem; }
-/* 실무 경험은 소개 문구가 빠져 제목 바로 아래에 회사명이 옵니다 —
-   기본 여백이 그대로면 둘 사이가 붕 떠 보여서 이 구간만 좁힙니다. */
-.band-exp .band-head { margin-bottom: 1.25rem; }
 .band-label {
   display: inline-flex; align-items: center; gap: .55rem;
   font-size: .75rem; font-weight: 800;
@@ -561,11 +558,15 @@ a:focus-visible, .btn:focus-visible, button:focus-visible {
 .project-links a:hover { text-decoration: underline; }
 .links-note { display: block; margin-top: .2rem; color: var(--dim); font-weight: 400; }
 
-/* 결과 · 문제 · 산출물 등 인용/강조 문단 (상세 팝업) */
+/* 결과 · 문제 · 산출물 등 인용/강조 문단 (상세 팝업).
+   목표 미달처럼 부정적인 사실도 경고색이 아니라 낮은 채도의 중립 배경으로
+   담담하게 표시합니다. */
 .callout {
-  margin-top: 1.1rem;
-  padding-left: .85rem;
-  border-left: 2px solid var(--line-strong);
+  display: inline-block;
+  margin-top: 1rem;
+  padding: .5rem .9rem;
+  background: var(--surface);
+  border-radius: 8px;
   font-size: var(--fs-small);
   color: var(--dim);
 }
@@ -695,7 +696,8 @@ dialog.detail-dialog::backdrop { background: rgba(12, 18, 22, .62); }
   border-bottom: 1px solid var(--line);
   background: #fff;
 }
-.dialog-title { flex: 1 1 auto; min-width: 0; font-size: 1.0625rem; font-weight: 700; line-height: 1.45; }
+/* 팝업에서 가장 큰 글자 — 소제목(h4)보다 뚜렷하게 한 단계 큽니다. */
+.dialog-title { flex: 1 1 auto; min-width: 0; font-size: 1.375rem; font-weight: 700; line-height: 1.35; letter-spacing: -.01em; }
 .dialog-close {
   flex: 0 0 auto;
   width: 2.25rem; height: 2.25rem;
@@ -712,15 +714,25 @@ dialog.detail-dialog::backdrop { background: rgba(12, 18, 22, .62); }
   padding: 1.5rem 1.75rem 1.75rem;
 }
 /* 구분선 대신 넉넉한 간격 + 큰 소제목만으로 섹션을 나눕니다
-   ("불필요한 구분선 반복 금지"). */
-.dialog-body section + section { margin-top: 2.25rem; }
+   ("불필요한 구분선 반복 금지"). 섹션 사이는 크게, 제목 바로 아래는
+   좁게 둬서 "제목 → 핵심 내용" 묶음이 한눈에 보이게 합니다. */
+.dialog-body section + section { margin-top: 3.25rem; }
 .dialog-body h4 {
+  position: relative;
+  display: flex; align-items: center; gap: .55rem;
   font-size: var(--fs-h4); font-weight: 700;
   letter-spacing: -.01em; color: var(--ink);
-  margin-bottom: .8rem;
+  margin-bottom: .7rem;
+}
+.dialog-body h4::before {
+  content: ""; flex: 0 0 auto;
+  width: 3px; height: 1rem;
+  background: var(--accent); border-radius: 2px;
 }
 .dialog-body .lede { margin-top: 0; max-width: none; }
 .dialog-body .lede + .lede { margin-top: .6rem; }
+/* 설명 문장은 옅게, 그 안에서 강조한 핵심 단어만 진하게 도드라지게 */
+.dialog-body .lede strong { color: var(--ink); font-weight: 700; }
 .dialog-body .split { margin-top: .5rem; }
 .dialog-body .steps li,
 .dialog-body .ticks li { color: var(--ink); }
@@ -743,19 +755,27 @@ dialog.detail-dialog::backdrop { background: rgba(12, 18, 22, .62); }
   .dialog-body .section-result { padding: 1.1rem; border-radius: 10px; }
 }
 
-/* ── 기간 (상세 팝업 헤더) ─────────────────────────────────────────── */
+/* ── 기간 (상세 팝업 헤더) — 굵은 텍스트 대신 옅은 배지로, 보조 정보임을
+   바로 알 수 있게 합니다. ─────────────────────────────────────────── */
 
 .dialog-period {
-  margin-top: 1.25rem; padding-top: 1.25rem;
-  border-top: 1px solid var(--line-strong);
-  font-size: .9375rem; font-weight: 700; color: var(--ink);
+  display: inline-block;
+  margin-top: 1rem;
+  padding: .25rem .65rem;
+  background: var(--muted);
+  border-radius: 999px;
+  font-size: .75rem; font-weight: 600; color: var(--dim);
 }
 .dialog-period-sub { display: block; margin-top: .3rem; font-size: .8125rem; font-weight: 500; color: var(--dim); }
 
-/* ── 핵심 수치 3개 (상세 팝업 헤더) ───────────────────────────────────── */
-
-.stat-trio { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 1.5rem; }
-.stat-trio-num { font-size: clamp(1.5rem, 2.4vw, 1.875rem); font-weight: 800; color: var(--ink); letter-spacing: -.02em; line-height: 1.15; white-space: nowrap; }
+/* ── 핵심 수치 3개 (상세 팝업 헤더) — 팝업 초반에서 가장 눈에 띄는 요소.
+   옅은 강조 배경 박스 하나로 묶고, 숫자에만 강조색을 씁니다. */
+.stat-trio {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+  margin-top: 1.5rem; padding: 1.25rem 1.5rem;
+  background: var(--accent-soft); border-radius: 12px;
+}
+.stat-trio-num { font-size: clamp(1.5rem, 2.4vw, 1.875rem); font-weight: 800; color: var(--accent-deep); letter-spacing: -.02em; line-height: 1.15; white-space: nowrap; }
 .stat-trio-cap { margin-top: .3rem; font-size: .8125rem; color: var(--dim); }
 
 /* ── 도식 자리표시 — 추후 실제 도식 이미지로 교체할 자리만 잡아 둡니다.
@@ -786,19 +806,35 @@ dialog.detail-dialog::backdrop { background: rgba(12, 18, 22, .62); }
 }
 .sample-step-media img { width: 100%; height: 100%; object-fit: contain; }
 .sample-step-media-dark { background: #14181c; }
-/* Text Prompt 칸 — 실제 프롬프트 문장을 담는 텍스트 카드 (자리표시 아님) */
-.sample-step-prompt { background: var(--surface); padding: 1.1rem; }
-.sample-step-prompt p { font-size: .8125rem; color: var(--ink); line-height: 1.6; text-align: center; }
+/* Text Prompt 칸 — 실제 프롬프트 문장을 담는 텍스트 카드 (자리표시 아님).
+   작은 라벨로 "TEXT PROMPT" 임을 표시하고, 본문은 인용문처럼 normal
+   weight 로 둡니다 (문장 전체를 bold 처리하지 않음). */
+.sample-step-prompt { flex-direction: column; background: var(--surface); padding: 1.1rem; }
+.sample-step-prompt-label {
+  display: block; margin-bottom: .5rem;
+  font-size: .6875rem; font-weight: 700; letter-spacing: .08em;
+  color: var(--accent); text-align: center;
+}
+.sample-step-prompt p { font-size: .8125rem; font-weight: 400; color: var(--ink); line-height: 1.6; text-align: center; }
 .sample-step-label { margin-top: .6rem; font-size: .875rem; font-weight: 700; color: var(--ink); text-align: center; }
 .sample-step-note { margin-top: .3rem; font-size: .75rem; color: var(--dim); text-align: center; }
 .sample-arrow { flex: 0 0 auto; align-self: center; font-size: 1.25rem; color: var(--line-strong); }
 
-/* ── 주요 담당 역할 — 작은 카드 4개, 한 줄 요약 ───────────────────────── */
+/* ── 작은 카드 4개 — 주요 담당 역할 · 평가 조건 검증 공용 ─────────────
+   카드 제목은 진한 기본색 + semibold (강조색은 숫자에만 씁니다). */
 
 .role-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; margin-top: 1.1rem; }
 .role-card { padding: 1.1rem 1.1rem 1.25rem; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; }
-.role-card-title { font-size: .875rem; font-weight: 800; color: var(--accent-deep); }
-.role-card-desc { margin-top: .4rem; font-size: .8125rem; color: var(--ink); line-height: 1.5; }
+.role-card-title { font-size: .875rem; font-weight: 600; color: var(--ink); }
+.role-card-desc { margin-top: .4rem; font-size: .8125rem; color: var(--dim); line-height: 1.5; }
+
+/* 근거 수준 중 "확인된 조건"과 "미확인 조건"을 선만으로 구분합니다
+   (색상 추가 없이, 마지막 카드만 점선 테두리). */
+.role-grid-evidence .role-card:last-child {
+  background: none;
+  border-style: dashed;
+  border-color: var(--line-strong);
+}
 
 /* ── 흐름 한 줄 (데이터 구성 · LoRA 파인튜닝 단계) ───────────────────── */
 
@@ -807,18 +843,22 @@ dialog.detail-dialog::backdrop { background: rgba(12, 18, 22, .62); }
   padding: .9rem 1.1rem;
   background: var(--surface);
   border-radius: 10px;
-  font-size: .875rem; font-weight: 600; color: var(--ink);
+  font-size: .875rem; font-weight: 400; color: var(--dim);
   overflow-x: auto; white-space: nowrap;
 }
-.flow-line-process { color: var(--accent-deep); }
+.flow-line-process { color: var(--ink); font-weight: 600; }
+/* 데이터 수치 흐름 — 핵심 숫자만 강조색 + bold, 제외되는 수치는 중립색 */
+.flow-num { color: var(--accent-deep); font-weight: 700; }
+.flow-muted { color: var(--dim); }
+.flow-line .sample-arrow { display: inline-block; font-size: 1em; margin: 0 .2rem; }
 
-/* ── 정량평가 지표 4개 ─────────────────────────────────────────────── */
+/* ── 정량평가 지표 4개 — 숫자(강조) → 지표명(medium) → 의미(muted) ──── */
 
 .metric-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; margin-top: 1.1rem; }
 .metric-grid li { padding-top: 1rem; border-top: 1px solid var(--line-strong); }
-.metric-num { font-size: 1.375rem; font-weight: 800; color: var(--ink); letter-spacing: -.02em; }
-.metric-cap { margin-top: .25rem; font-size: .75rem; color: var(--dim); }
-.metric-desc { margin-top: .3rem; font-size: .6875rem; color: var(--dim); line-height: 1.4; }
+.metric-num { font-size: 1.375rem; font-weight: 800; color: var(--accent-deep); letter-spacing: -.02em; }
+.metric-cap { margin-top: .3rem; font-size: .8125rem; font-weight: 600; color: var(--ink); }
+.metric-desc { margin-top: .25rem; font-size: .6875rem; font-weight: 400; color: var(--dim); line-height: 1.4; }
 
 /* ── 기술 스택 작은 태그 ───────────────────────────────────────────── */
 

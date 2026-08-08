@@ -69,7 +69,8 @@ dialog.detail-dialog:not([open]) {
 /* 페이지 나눔 */
 h1, h2, h3, h4, .band-title, .project-meta, .project-no { break-after: avoid; page-break-after: avoid; }
 .shot, figure, .stats, .card, .split, .kf-block, .project-head, .timeline,
-.rd-card, .role-card, .metric-grid, .sample-flow {
+.rd-card, .role-card, .metric-grid, .sample-flow,
+.landing-shots, .compare-matrix, .criteria-grid {
   break-inside: avoid; page-break-inside: avoid;
 }
 .band { break-before: page; page-break-before: always; }
@@ -120,8 +121,10 @@ h1, h2, h3, h4, .band-title, .project-meta, .project-no { break-after: avoid; pa
 }
 .carousel-slide { width: auto !important; flex: 1 1 100%; }
 .rd-card { height: auto !important; border: .3mm solid #e2e7eb !important; transform: none !important; box-shadow: none !important; }
-.rd-card-soon { display: none !important; }
 .rd-card-media { break-inside: avoid; }
+.rd-card-media-placeholder::after { display: none !important; }
+.rd-card-media-note { font-size: 7.4pt; }
+.rd-card-media-skeleton { display: none !important; }
 .rd-card-eyebrow { font-size: 7.4pt; color: #12655c !important; }
 .rd-card-title { font-size: 13pt !important; margin-top: 1.5mm; }
 .rd-card-subtitle { font-size: 8pt; margin-top: .8mm; }
@@ -143,7 +146,6 @@ h1, h2, h3, h4, .band-title, .project-meta, .project-no { break-after: avoid; pa
 .placeholder-icon { display: none !important; }
 
 /* 파이프라인 적용 결과 3단계 */
-.sample-result { font-size: 9pt; font-weight: 700; margin-top: 1mm; }
 .sample-flow { display: flex !important; flex-direction: row; gap: 4mm; margin-top: 3mm; break-inside: avoid; }
 .sample-step { flex: 1 1 0; min-width: 0; }
 .sample-step-media { border: .3mm solid #e2e7eb; }
@@ -153,11 +155,38 @@ h1, h2, h3, h4, .band-title, .project-meta, .project-no { break-after: avoid; pa
 .sample-step-note { font-size: 7pt; margin-top: .5mm; }
 .sample-arrow { font-size: 9pt; align-self: center; }
 
-/* 담당 역할 4개 · 평가 조건 검증 3개 */
+/* 담당 역할 4개 · 평가 조건 검증 3개 · 랜딩페이지 담당 범위 3개 */
 .role-grid { display: flex !important; flex-wrap: nowrap; gap: 3mm; margin-top: 3mm; }
 .role-card { flex: 1 1 0; min-width: 0; padding: 2.5mm !important; border: .3mm solid #e2e7eb; break-inside: avoid; }
 .role-card-title { font-size: 7.8pt; margin-bottom: 1.5mm; }
 .role-card-desc { font-size: 7.6pt; margin-top: 1mm; }
+
+/* 흐름 한 줄 (예: 페이지 기획 → 콘텐츠 구성 → 웹 구현) */
+.flow-line { font-size: 8pt; padding: 2mm 2.5mm; margin-top: 2.5mm; white-space: normal; }
+.flow-line-process { font-weight: 700; }
+
+/* 과정 흐름 (예: 데이터 → LoRA 파인튜닝 → 평가 → 인수인계) */
+.process-flow { display: flex !important; flex-wrap: wrap; gap: 2mm; margin-top: 2.5mm; }
+.process-step { padding: 1.5mm 2.5mm !important; border: .3mm solid #e2e7eb; break-inside: avoid; }
+.process-step-num { font-size: 7pt; }
+.process-step-title { font-size: 7.6pt; }
+.process-arrow { font-size: 9pt; }
+
+/* 랜딩페이지 대표 화면 · 동작 화면 */
+.landing-shots { display: flex !important; flex-wrap: nowrap; gap: 4mm; margin-top: 3mm; }
+.landing-shot { flex: 1 1 0; min-width: 0; }
+.landing-shot-label { font-size: 7.8pt; font-weight: 700; }
+
+/* 비교 기준 chip */
+.criteria-grid { display: flex !important; flex-wrap: wrap; gap: 1.5mm; margin-top: 2.5mm; }
+.criteria-grid li { font-size: 7.4pt; border: .3mm solid #d3dae0; padding: 1mm 2mm; }
+
+/* 비교 구조 표 */
+.compare-matrix-scroll { margin-top: 2.5mm; overflow: visible !important; }
+.compare-matrix { min-width: 0 !important; font-size: 7.4pt; }
+.compare-matrix th,
+.compare-matrix td { padding: 1.5mm 2mm !important; border-bottom: .3mm solid #e2e7eb !important; }
+.matrix-note { font-size: 7pt; margin-top: 1.5mm; }
 
 /* 정량평가 지표 4개 */
 .metric-grid { display: flex !important; flex-wrap: nowrap; gap: 5mm; margin-top: 3mm; }

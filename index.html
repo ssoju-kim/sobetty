@@ -110,19 +110,45 @@
           </article>
         </li>
 
+        <!-- 02. LANDING PAGE — 실제 Web 결과물이 가장 크게 보이는 카드.
+             이미지·영상은 아직 없어 media 영역을 빈 placeholder 로 둡니다. -->
         <li class="carousel-slide">
-          <article class="rd-card rd-card-soon">
-            <p class="rd-card-eyebrow">3D AI MARKET</p>
-            <h3 class="rd-card-title">3D 생성 AI 시장조사</h3>
-            <p class="rd-card-soon-note">상세 내용 준비 중</p>
+          <article class="rd-card rd-card-featured" data-open-dialog="landing-detail" tabindex="0" role="button" aria-labelledby="landing-h">
+            <div class="rd-card-media rd-card-media-placeholder">
+              <p class="rd-card-media-note">이미지 · 영상 예정</p>
+              <span class="rd-card-hint" aria-hidden="true">자세히 보기 →</span>
+            </div>
+            <div class="rd-card-body">
+              <p class="rd-card-eyebrow">LANDING PAGE</p>
+              <h3 class="rd-card-title" id="landing-h">3D 생성 AI 랜딩페이지 기획·구현</h3>
+              <ul class="rd-card-tags">
+                <li>페이지 기획</li>
+                <li>콘텐츠 구성</li>
+                <li>웹 구현</li>
+              </ul>
+            </div>
           </article>
         </li>
 
+        <!-- 03. 3D AI MARKET — 정돈된 분석 패널 느낌으로 LANDING PAGE 와
+             시각적으로 구분합니다. 실제 수치·경쟁사명은 아직 없어
+             중립적인 skeleton 줄로만 "자료가 들어올 자리"를 표시합니다. -->
         <li class="carousel-slide">
-          <article class="rd-card rd-card-soon">
-            <p class="rd-card-eyebrow">LANDING PAGE</p>
-            <h3 class="rd-card-title">Relic 랜딩페이지 기획·구현</h3>
-            <p class="rd-card-soon-note">상세 내용 준비 중</p>
+          <article class="rd-card rd-card-featured" data-open-dialog="market-detail" tabindex="0" role="button" aria-labelledby="market-h">
+            <div class="rd-card-media rd-card-media-placeholder rd-card-media-panel">
+              <div class="rd-card-media-skeleton" aria-hidden="true"><span></span><span></span><span></span></div>
+              <p class="rd-card-media-note">분석 자료 예정</p>
+              <span class="rd-card-hint" aria-hidden="true">자세히 보기 →</span>
+            </div>
+            <div class="rd-card-body">
+              <p class="rd-card-eyebrow">3D AI MARKET</p>
+              <h3 class="rd-card-title" id="market-h">3D 생성 AI 시장·경쟁사 분석</h3>
+              <ul class="rd-card-tags">
+                <li>시장 동향</li>
+                <li>경쟁 서비스</li>
+                <li>기술 비교</li>
+              </ul>
+            </div>
           </article>
         </li>
       </ul>
@@ -164,7 +190,6 @@
          이어지는 흐름처럼, 프롬프트 · 이미지 · GIF 로만 보여줍니다. -->
     <section class="section-sample">
       <h4>파이프라인 적용 결과</h4>
-      <p class="sample-result">한복 3D 에셋 생성</p>
       <div class="sample-flow">
         <div class="sample-step">
           <div class="sample-step-media sample-step-prompt">
@@ -195,25 +220,29 @@
       </div>
     </section>
 
-    <!-- 4. 주요 담당 역할 -->
+    <!-- 4. 주요 담당 역할 — 4개를 흩어진 카드로 나열하지 않고, 데이터부터
+         인수인계까지 한 흐름으로 이어지는 과정임을 보여줍니다. -->
     <section>
-      <h4>프로젝트 내 담당 역할</h4>
-      <div class="role-grid">
-        <div class="role-card">
-          <p class="role-card-title">데이터</p>
-          <p class="role-card-desc">전처리·검수 · Train/Holdout 구성</p>
+      <h4>R&D 수행 범위</h4>
+      <div class="process-flow">
+        <div class="process-step">
+          <span class="process-step-num">01</span>
+          <p class="process-step-title">학습 데이터 전처리·구성</p>
         </div>
-        <div class="role-card">
-          <p class="role-card-title">모델 학습</p>
-          <p class="role-card-desc">TRELLIS2 LoRA 파인튜닝</p>
+        <span class="process-arrow" aria-hidden="true">→</span>
+        <div class="process-step">
+          <span class="process-step-num">02</span>
+          <p class="process-step-title">TRELLIS.2 LoRA 파인튜닝</p>
         </div>
-        <div class="role-card">
-          <p class="role-card-title">모델 평가</p>
-          <p class="role-card-desc">정량평가 · 평가 조건 검증</p>
+        <span class="process-arrow" aria-hidden="true">→</span>
+        <div class="process-step">
+          <span class="process-step-num">03</span>
+          <p class="process-step-title">정량평가·평가 조건 검증</p>
         </div>
-        <div class="role-card">
-          <p class="role-card-title">인수인계</p>
-          <p class="role-card-desc">평가 기준 · 실행 절차 정리</p>
+        <span class="process-arrow" aria-hidden="true">→</span>
+        <div class="process-step">
+          <span class="process-step-num">04</span>
+          <p class="process-step-title">결과 분석·후속 인계</p>
         </div>
       </div>
     </section>
@@ -314,6 +343,191 @@
           </ul>
         </div>
       </div>
+    </section>
+  </div>
+</dialog>
+
+<!-- ══════════════ 3D 생성 AI 랜딩페이지 상세 팝업 ══════════════ -->
+<dialog class="detail-dialog" id="landing-detail" aria-labelledby="landing-detail-title">
+  <header class="dialog-head">
+    <h2 class="dialog-title" id="landing-detail-title">3D 생성 AI 랜딩페이지 기획·구현</h2>
+    <button type="button" class="dialog-close" data-dialog-close aria-label="닫기"><span aria-hidden="true">✕</span></button>
+  </header>
+  <div class="dialog-body">
+    <!-- 1. 팝업 헤더 -->
+    <section>
+      <p class="lede">3D 생성 AI 서비스의 핵심 내용을 정리하고, 랜딩페이지 기획부터 구현까지 전반을 담당했습니다.</p>
+    </section>
+
+    <!-- 2. 담당 범위 -->
+    <section>
+      <h4>담당 범위</h4>
+      <div class="role-grid role-grid-3">
+        <div class="role-card">
+          <p class="role-card-title">페이지 기획</p>
+          <p class="role-card-desc">서비스 내용을 웹페이지 구조로 정리</p>
+        </div>
+        <div class="role-card">
+          <p class="role-card-title">콘텐츠 구성</p>
+          <p class="role-card-desc">페이지에 필요한 핵심 정보와 콘텐츠 구성</p>
+        </div>
+        <div class="role-card">
+          <p class="role-card-title">웹 구현</p>
+          <p class="role-card-desc">기획한 랜딩페이지 직접 구현</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. 기획부터 구현까지 -->
+    <section>
+      <h4>기획부터 구현까지</h4>
+      <p class="flow-line flow-line-process">페이지 기획 → 콘텐츠 구성 → 웹 구현</p>
+    </section>
+
+    <!-- 4. 실제 랜딩페이지 — 대표 화면을 크게, 동작 화면을 보조로.
+         실제 자료가 들어오면 diagram-placeholder(-dashed/-tall) 클래스만
+         빼고 이미지·영상을 넣으면 되는 구조입니다. -->
+    <section>
+      <h4>실제 랜딩페이지</h4>
+      <div class="landing-shots">
+        <div class="landing-shot">
+          <p class="landing-shot-label">대표 화면</p>
+          <div class="diagram-placeholder diagram-placeholder-dashed diagram-placeholder-tall">
+            <p>스크린샷 예정</p>
+          </div>
+        </div>
+        <div class="landing-shot">
+          <p class="landing-shot-label">동작 화면</p>
+          <div class="diagram-placeholder diagram-placeholder-dashed">
+            <p>영상 · GIF 예정</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. 역할 요약 -->
+    <section>
+      <h4>역할 요약</h4>
+      <ul class="tag-list">
+        <li>기획</li>
+        <li>콘텐츠 구성</li>
+        <li>구현</li>
+      </ul>
+    </section>
+  </div>
+</dialog>
+
+<!-- ══════════════ 3D 생성 AI 시장·경쟁사 분석 상세 팝업 ══════════════ -->
+<dialog class="detail-dialog" id="market-detail" aria-labelledby="market-detail-title">
+  <header class="dialog-head">
+    <h2 class="dialog-title" id="market-detail-title">3D 생성 AI 시장·경쟁사 분석</h2>
+    <button type="button" class="dialog-close" data-dialog-close aria-label="닫기"><span aria-hidden="true">✕</span></button>
+  </header>
+  <div class="dialog-body">
+    <!-- 1. 팝업 헤더 -->
+    <section>
+      <p class="lede">3D 생성 AI 시장과 주요 모델·서비스를 조사하고, 기술 및 서비스 특성을 비교·정리했습니다.</p>
+    </section>
+
+    <!-- 2. 조사 범위 -->
+    <section>
+      <h4>조사 범위</h4>
+      <div class="role-grid">
+        <div class="role-card">
+          <p class="role-card-title">시장 동향</p>
+          <p class="role-card-desc">3D 생성 AI 시장과 기술 발전 동향 조사</p>
+        </div>
+        <div class="role-card">
+          <p class="role-card-title">모델·서비스</p>
+          <p class="role-card-desc">주요 3D 생성 모델 및 서비스 조사</p>
+        </div>
+        <div class="role-card">
+          <p class="role-card-title">오픈소스·상용 솔루션</p>
+          <p class="role-card-desc">공개 모델과 상용 서비스의 특징 비교</p>
+        </div>
+        <div class="role-card">
+          <p class="role-card-title">활용 사례</p>
+          <p class="role-card-desc">3D 생성 기술의 산업 활용 사례 조사</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. 주요 비교 대상 -->
+    <section>
+      <h4>주요 비교 대상</h4>
+      <ul class="tag-list">
+        <li>Meshy</li>
+        <li>Tripo</li>
+        <li>Rodin</li>
+        <li>Hunyuan3D 2.0</li>
+        <li>TRELLIS.2</li>
+      </ul>
+    </section>
+
+    <!-- 4. 비교 기준 — 순위·점수 없이 어떤 관점에서 비교했는지만 보여줍니다 -->
+    <section>
+      <h4>비교 기준</h4>
+      <ul class="criteria-grid">
+        <li>문화 데이터 적합성</li>
+        <li>파인튜닝 가능 여부</li>
+        <li>PBR·고해상도 지원</li>
+        <li>학습 코드 공개 여부</li>
+        <li>라이선스</li>
+        <li>생성 품질</li>
+        <li>비용</li>
+        <li>생성 시간</li>
+      </ul>
+    </section>
+
+    <!-- 5. 비교 구조 — 내부 평가표를 옮긴 것이 아니라 포트폴리오용으로
+         새로 만든 표 구조입니다. 값은 공개 자료 확인 후 채웁니다. -->
+    <section>
+      <h4>비교 구조</h4>
+      <div class="compare-matrix-scroll">
+        <table class="compare-matrix">
+          <thead>
+            <tr>
+              <th scope="col"><span class="sr-only">서비스</span></th>
+              <th scope="col">Data</th>
+              <th scope="col">Fine-tuning</th>
+              <th scope="col">Output</th>
+              <th scope="col">License</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">Meshy</th><td></td><td></td><td></td><td></td></tr>
+            <tr><th scope="row">Tripo</th><td></td><td></td><td></td><td></td></tr>
+            <tr><th scope="row">Rodin</th><td></td><td></td><td></td><td></td></tr>
+            <tr><th scope="row">Hunyuan3D 2.0</th><td></td><td></td><td></td><td></td></tr>
+            <tr><th scope="row">TRELLIS.2</th><td></td><td></td><td></td><td></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="matrix-note">공개 자료 확인 후 값을 채울 예정입니다.</p>
+    </section>
+
+    <!-- 6. 조사에서 R&D로 — 시장조사와 R&D 업무가 이어지는 흐름만 짧게 -->
+    <section>
+      <h4>시장·기술 조사에서 R&amp;D로</h4>
+      <p class="lede">주요 3D 생성 모델과 파인튜닝 조건을 비교·검토했으며, 이후 TRELLIS.2 기반 LoRA 파인튜닝을 포함한 3D 생성 AI R&amp;D를 수행했습니다.</p>
+    </section>
+
+    <!-- 7. 공개 자료 영역 -->
+    <section>
+      <h4>공개 자료 영역</h4>
+      <div class="diagram-placeholder diagram-placeholder-wide">
+        <p>비교 자료 예정</p>
+      </div>
+    </section>
+
+    <!-- 8. 담당 업무 요약 -->
+    <section>
+      <h4>담당 업무 요약</h4>
+      <ul class="tag-list">
+        <li>시장 조사</li>
+        <li>경쟁 서비스 분석</li>
+        <li>기술 비교·정리</li>
+      </ul>
     </section>
   </div>
 </dialog>

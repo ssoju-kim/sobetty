@@ -187,15 +187,13 @@ h1, h2, h3, h4, .band-title, .project-meta, .project-no { break-after: avoid; pa
 .metric-num { font-size: 12pt; }
 .metric-cap { font-size: 7pt; }
 
-.tag-list-label { margin-top: 3mm; font-size: 7.6pt; font-weight: 700; }
-.tag-list-label + .tag-list { margin-top: 1.5mm; }
-
 .tag-list { display: flex !important; flex-wrap: wrap; gap: 2mm; margin-top: 2mm; }
 .tag-list li { font-size: 7.4pt; border: .3mm solid #d3dae0; padding: .8mm 2mm; }
 
 .tag-groups { margin-top: 3mm; display: flex !important; flex-direction: column; gap: 2.5mm; }
 .tag-group-title { font-size: 7.6pt; font-weight: 700; }
 .tag-group .tag-list { margin-top: 1.5mm; }
+.tag-group + .tag-group { padding-top: 2.5mm; border-top: .3mm solid #d3dae0; }
 
 .stats {
   display: flex !important; flex-wrap: nowrap;

@@ -864,7 +864,7 @@ dialog.detail-dialog::backdrop { background: rgba(12, 18, 22, .62); }
 .sample-step { flex: 0 0 auto; width: 12rem; }
 .sample-step-media {
   aspect-ratio: 1 / 1;
-  border-radius: 10px; overflow: hidden;
+  border: 1px solid var(--line); border-radius: 10px; overflow: hidden;
   background: var(--muted);
   display: flex; align-items: center; justify-content: center;
 }
@@ -911,10 +911,6 @@ dialog.detail-dialog::backdrop { background: rgba(12, 18, 22, .62); }
 
 /* ── 기술 스택 작은 태그 ───────────────────────────────────────────── */
 
-/* 알약 목록 앞에 붙는 짧은 라벨 (예: "데이터 검수 항목 : ") */
-.tag-list-label { margin-top: 1.1rem; font-size: .8125rem; font-weight: 600; color: var(--ink); }
-.tag-list-label + .tag-list { margin-top: .5rem; }
-
 .tag-list { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .75rem; }
 .tag-list li {
   padding: .3rem .75rem;
@@ -925,9 +921,16 @@ dialog.detail-dialog::backdrop { background: rgba(12, 18, 22, .62); }
 /* 기술 및 모델 — 개발·학습 환경 / 모델·기법을 같은 영역 안에서 구분.
    태그 자체는 위 .tag-list 스타일 그대로 두고(강조 없이 보조 정보 수준),
    그룹 제목만 semibold 로 살짝 구분합니다. */
-.tag-groups { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-top: 1.1rem; }
-.tag-group-title { font-size: .8125rem; font-weight: 600; color: var(--ink); }
-.tag-group .tag-list { margin-top: .5rem; }
+.tag-groups { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 1.25rem; margin-top: 1.1rem; }
+/* 한쪽 그룹 항목 수가 적어도(예: 데이터 구성 1개 vs 검수 항목 3개) 칸 자체는
+   50:50 로 균형을 맞추고, 그 안의 내용만 각자 가운데로 오게 합니다.
+   (칸 너비까지 내용에 맞추면 두 칸 크기가 크게 벌어져 오히려 불균형해 보입니다.) */
+.tag-groups-uneven { grid-template-columns: 1fr 2fr; }
+.tag-group-title { font-size: .8125rem; font-weight: 600; color: var(--ink); text-align: center; }
+.tag-group .tag-list { margin-top: .5rem; justify-content: center; }
+/* 두 그룹이 나란히 있을 때 옅은 세로선으로 구분 (카드로 감싸지 않고
+   .stat-secondary 와 같은 방식) */
+.tag-group + .tag-group { padding-left: 1.25rem; border-left: 1px solid var(--line-strong); }
 
 /* ═══════════════ 반응형 ═══════════════ */
 
@@ -1013,6 +1016,7 @@ dialog.detail-dialog::backdrop { background: rgba(12, 18, 22, .62); }
   .kf-block { padding-left: .8rem; }
   .split { grid-template-columns: 1fr; gap: 1rem; }
   .tag-groups { grid-template-columns: 1fr; gap: .85rem; }
+  .tag-group + .tag-group { padding-left: 0; padding-top: .85rem; border-left: 0; border-top: 1px solid var(--line-strong); }
   .steps li { grid-template-columns: 1.6rem 1fr; }
 
   .role-grid { grid-template-columns: 1fr; }

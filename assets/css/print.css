@@ -165,13 +165,6 @@ h1, h2, h3, h4, .band-title, .project-meta, .project-no { break-after: avoid; pa
 .flow-line { font-size: 8pt; padding: 2mm 2.5mm; margin-top: 2.5mm; white-space: normal; }
 .flow-line-process { font-weight: 700; }
 
-/* 과정 흐름 (예: 데이터 → LoRA 파인튜닝 → 평가 → 인수인계) */
-.process-flow { display: flex !important; flex-wrap: wrap; gap: 2mm; margin-top: 2.5mm; }
-.process-step { padding: 1.5mm 2.5mm !important; border: .3mm solid #e2e7eb; break-inside: avoid; }
-.process-step-num { font-size: 7pt; }
-.process-step-title { font-size: 7.6pt; }
-.process-arrow { font-size: 9pt; }
-
 /* 랜딩페이지 대표 화면 · 동작 화면 */
 .landing-shots { display: flex !important; flex-wrap: nowrap; gap: 4mm; margin-top: 3mm; }
 .landing-shot { flex: 1 1 0; min-width: 0; }

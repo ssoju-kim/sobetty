@@ -902,21 +902,6 @@ dialog.detail-dialog::backdrop { background: rgba(12, 18, 22, .62); }
 }
 .flow-line-process { color: var(--ink); font-weight: 600; }
 
-/* ── 과정 흐름 (예: 데이터 → LoRA 파인튜닝 → 평가 → 인수인계) — 각 단계를
-   흩어진 카드가 아니라 화살표로 이어진 하나의 진행으로 보여줍니다.
-   숫자만 강조색을 쓰고 제목은 ink 로 둡니다. */
-.process-flow { display: flex; flex-wrap: wrap; align-items: center; gap: .6rem; margin-top: 1.1rem; }
-.process-step {
-  display: flex; align-items: center; gap: .5rem;
-  padding: .6rem .95rem;
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: 999px;
-}
-.process-step-num { font-size: .75rem; font-weight: 800; color: var(--accent-deep); }
-.process-step-title { font-size: .8125rem; font-weight: 600; color: var(--ink); white-space: nowrap; }
-.process-arrow { flex: 0 0 auto; font-size: 1.25rem; color: var(--line-strong); }
-
 /* ── 정량평가 지표 4개 — 숫자(강조) → 지표명(medium) → 의미(muted) ──── */
 
 .metric-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; margin-top: 1.1rem; }
